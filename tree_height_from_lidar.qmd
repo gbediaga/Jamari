@@ -13,6 +13,10 @@ bibliography: c:/Gustavo/Doutorado/mendeley.bib
 
 This is a pilot test script to extract tree height from a Canopy Height Model (CHM) generated from LiDAR-derived point clouds in a forest management area. Two CHMs will be used: one from the year before harvesting (2015) and one from the year after (2017). The Forest Inventory of the area will also be used. The goal is to identify the crown of the harvested tree and obtain its height from the CHM metrics.
 
+
+## Teste
+testando
+
 # Lecture
 
 -   CHM generation: @Fischer2024.

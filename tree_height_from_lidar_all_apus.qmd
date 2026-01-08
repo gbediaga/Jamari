@@ -6,7 +6,7 @@ format:
   html:
     embed-resources: true
     toc: true
-bibliography: c:/Gustavo/Doutorado/mendeley.bib
+bibliography: mendeley.bib
 ---
 
 # This script

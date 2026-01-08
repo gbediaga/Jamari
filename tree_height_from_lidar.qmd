@@ -6,7 +6,7 @@ format:
   html:
     embed-resources: true
     toc: true
-bibliography: c:/Gustavo/Doutorado/mendeley.bib
+bibliography: mendeley.bib
 ---
 
 # This script
@@ -42,9 +42,9 @@ setwd("C:/Gustavo/Doutorado/Dados/UPAS da pesquisa/Jamari/Piloto delimit copa")
 
 dir.lidar <- "D:/Lidar/Script/output/Jamari"
 
-lid.antes <- "C:/Gustavo/Doutorado/Dados/Lidar/Fischer/processado_pelo_Fischer/Jamari/2015/JAM01_chm_lspikefree.tif"
+lid.antes <- "C:/Gustavo/Doutorado/Dados/Lidar/Fischer/processado_pelo_Fischer/Jamari/2015/JAM01_2015_chm_lspikefree.tif"
 
-lid.depois <- "C:/Gustavo/Doutorado/Dados/Lidar/Fischer/processado_pelo_Fischer/Jamari/2017/JAM02_chm_lspikefree.tif"
+lid.depois <- "C:/Gustavo/Doutorado/Dados/Lidar/Fischer/processado_pelo_Fischer/Jamari/2017/JAM02_2017_chm_lspikefree.tif"
 
 if100_pesquisa <- "C:/Gustavo/Doutorado/Dados/UPAS da pesquisa/Jamari/if100_com_romaneio.csv"
 
@@ -211,7 +211,7 @@ if100_upa <- subset(if100_romaneio,
                                      "_UPA_",
                                      upa.piloto))
 
-if100_upa <- if100_upa[!is.na(if100_upa$Tora), ]
+if100_upa <- if100_upa[!is.na(if100_upa$vol_tora), ]
 
 if100_pts <- vect(if100_upa, 
                   geom = c("lon", "lat"),

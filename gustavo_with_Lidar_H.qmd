@@ -1,0 +1,217 @@
+---
+title: "Gustavo"
+author: "S. Schmitt"
+date: last-modified
+format: 
+  html:
+    embed-resources: true
+    toc: true
+bibliography: mendeley.bib
+---
+
+# Lecture
+
+-   About tree height allometry: @Molto2014
+-   TALLO database: @Jucker2022
+-   `cmdstanr` installation: <https://mc-stan.org/cmdstanr/articles/cmdstanr.html>
+-   `stan` programming: <https://mc-stan.org/>
+
+# Setup
+
+You only need the `tidyverse` package for table manipulation and figures preparation, `cmdstanr`, `brms`, and `bayesplot` for Bayesian statistics.
+
+```{r libs}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(cmdstanr)
+library(brms)
+library(bayesplot)
+library(here)
+```
+
+# Data
+
+Data are tree hight and diameter from the TALLO database [@Jucker2022] itself using @dos-Santos2022 data for Jamari. Longitude and latitude are in degrees, so 1 degree is about 110 km at the equator, and we use a buffer of 10km. We have a total of 974 individuals and 134 species.
+
+```{r data}
+#| message: false
+#| warning: false
+lon <- -62.99
+lat <- -9.11
+buffer <- 10/110
+data <- read_csv(here("data/forest_inventory/tallo.csv")) %>% 
+  filter(longitude >= lon-buffer, longitude <= lon+buffer,
+          latitude >= lat-buffer, latitude <= lat+buffer) %>% 
+  mutate(species = paste(genus, species)) %>% 
+  select(tree_id, species, height_m, stem_diameter_cm)
+ggplot(data, aes(stem_diameter_cm, height_m)) +
+  geom_point(aes(col = species), alpha = 0.25) +
+  theme_bw() +
+  geom_smooth(se = FALSE) +
+  scale_color_discrete(guide = "none") +
+  xlab("diameter (cm)") + ylab("height (m)") +
+  ggtitle(paste(nrow(data), "individuals"),
+          
+          paste(unique(data$species) %>% length(),
+                "species"))
+```
+
+Let's see if data from @dos-Santos2022 area the same. Filter only tree (type == "O") and alive (dead == "A").
+
+```{r dos_santos}
+#| message: false
+#| warning: false
+
+dos_santos <- list.files(here("data/forest_inventory"),
+                          pattern = "^JAM.*\\.csv$",
+                          full.names = T)
+
+dos_santos_df <- dos_santos %>% 
+                        purrr::map_df(~ read_csv(.x, 
+                                      show_col_types = FALSE, 
+                                      col_types = cols(.default = col_character()))) %>%
+                               filter(type == "O" ,
+                                      dead == "A",
+                                      !is.na(transect))
+
+ggplot(dos_santos_df, aes(as.numeric(DBH), as.numeric(Htot))) +
+  geom_point(aes(col = scientific_name), alpha = 0.25) +
+  theme_bw() +
+  geom_smooth(se = FALSE) +
+  scale_color_discrete(guide = "none") +
+  xlab("diameter (cm)") + ylab("height (m)") +
+  ggtitle(paste(nrow(dos_santos_df), "individuals"),
+          paste(unique(dos_santos_df$scientific_name) %>% length(),
+                "species"))
+
+```
+
+Let's see Brazilian National Forest Inventory data on Flona de Jamari. We will load the full inventory from Rondônia state and then we filter only the four plots inside Flona de Jamari (plots RO_74, RO_75, RO_95, RO_96)
+
+```{r ifn_data}
+#| message: false
+#| warning: false
+
+ifn_data <- read.csv2(here("data/forest_inventory/IFN_DAP10_Rondônia_disp-set2025.csv"),
+                      dec = ",")
+
+ifn_data_jamari <- subset(ifn_data,
+                          ua == "RO_74" | ua == "RO_75" | ua == "RO_95" | ua == "RO_96")
+
+ggplot(ifn_data_jamari, aes(as.numeric(dap), ht)) +
+  geom_point(aes(col = scientific_name), alpha = 0.25) +
+  theme_bw() +
+  geom_smooth(se = FALSE) +
+  scale_color_discrete(guide = "none") +
+  xlab("diameter (cm)") + ylab("height (m)") +
+  ggtitle(paste(nrow(ifn_data_jamari), "individuals"),
+          paste(unique(ifn_data_jamari$scientific_name) %>% length(),
+                "species"))
+
+```
+
+Merging two datasets (Dos Santos and IFN) in a standardized data frame.
+
+```{r merge_datasets}
+#| message: false
+#| warning: false
+
+df1_clean <- dos_santos_df %>%
+  select(scientific_name, DBH, Htot) %>%
+  mutate(DBH = as.numeric(DBH),
+         Htot = as.numeric(Htot),
+         source = "dos_santos") %>%
+  rename(
+    dbh = DBH,
+    total_height = Htot
+  )
+
+df2_clean <- ifn_data_jamari %>%
+  select(scientific_name, dap, ht) %>%
+  mutate(dap = as.numeric(dap),
+         source = "IFN") %>%
+  rename(
+    dbh = dap,
+    total_height = ht
+  )
+
+
+jam_for_inv <- bind_rows(df1_clean, df2_clean)
+
+
+ggplot(jam_for_inv, aes(dbh, total_height)) +
+  geom_point(aes(col = scientific_name), alpha = 0.25) +
+  theme_bw() +
+  geom_smooth(se = FALSE) +
+  scale_color_discrete(guide = "none") +
+  xlab("diameter (cm)") + ylab("height (m)") +
+  ggtitle(paste(nrow(jam_for_inv), "individuals"),
+          paste(unique(jam_for_inv$scientific_name) %>% length(),
+                "species"))
+
+
+
+
+```
+
+# Model
+
+We model tree height $h$ in function of tree diameter $d$ as:
+
+$$
+h \sim logN( \frac{h_{max}\times d}{a + d} , \sigma)
+$$
+
+with $h_{max}$ the maximum tree height and $a$.
+
+# Example with `cmdstanr`
+
+```{r stan_model}
+mdata <- list(
+  N = nrow(jam_for_inv),
+  h = jam_for_inv$total_height,
+  d = jam_for_inv$dbh
+)
+model <- cmdstan_model("gustavo.stan")
+model
+```
+
+```{r stan_fit}
+fit <- model$sample(data = mdata, parallel_chains = 4,
+                    show_messages = FALSE, show_exceptions = FALSE)
+fit
+```
+
+```{r stan_pars}
+fit$draws(c("hmax", "a")) %>%
+  mcmc_hist()
+```
+
+```{r stan_proj}
+ggplot(jam_for_inv, aes(dbh, total_height)) +
+  geom_point(col = "lightgrey") +
+  stat_function(fun = function(x) 54.50*x/(33.90+x)) +
+  theme_bw() +
+  xlab("diameter (cm)") + ylab("height (m)") +
+  ggtitle(paste(nrow(jam_for_inv), "individuals"),
+          paste(unique(jam_for_inv$scientific_name) %>% length(),
+                "species"))
+```
+
+# Example with `brms`
+
+```{r fit_brm}
+#| eval: false
+fit <- brm(bf(log(h) ~ log(hmax * d/ (a + d)),
+              hmax ~ 1, a ~ 1,
+              nl = TRUE),
+           prior = c(
+             prior(uniform(0, 100), lb = 10, nlpar = "hmax"),
+             prior(uniform(0, 100), lb = 0, nlpar = "a")
+             ),
+           data = mdata, chains = 4, cores = 4)
+fit
+```
+
+# References

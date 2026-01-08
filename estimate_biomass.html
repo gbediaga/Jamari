@@ -9,7 +9,7 @@
 <meta name="author" content="G. Bediaga">
 <meta name="dcterms.date" content="2026-01-08">
 
-<title>estimate_biomass_H_lidar</title>
+<title>Estimate biomass with different total height estimations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2426,7 +2426,7 @@ border: 0;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#this-script" id="toc-this-script" class="nav-link active" data-scroll-target="#this-script">This script</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#lecture" id="toc-lecture" class="nav-link" data-scroll-target="#lecture">Lecture</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#allometric-equations-parameters" id="toc-allometric-equations-parameters" class="nav-link" data-scroll-target="#allometric-equations-parameters">Allometric equations parameters</a>
@@ -2448,7 +2448,7 @@ border: 0;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">estimate_biomass_H_lidar</h1>
+<h1 class="title">Estimate biomass with different total height estimations</h1>
 </div>
 
 
@@ -2477,8 +2477,8 @@ border: 0;
 </header>
 
 
-<section id="this-script" class="level1">
-<h1>This script</h1>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>This is a script to estimate Above Ground Biomass (AGB) of a given Annual Production Unit in Jamari Forest Concession using two different total heights estimations: one obtained from Lidar (see <a href="https://gbediaga.github.io/Jamari/tree_height_from_lidar.html" class="uri">https://gbediaga.github.io/Jamari/tree_height_from_lidar.html</a>), and other obtained from <code>rerieveH</code> function from <code>BIOMASS</code> package (<span class="citation" data-cites="Rjou-Mchain2017">Réjou-Méchain et al. (<a href="#ref-Rjou-Mchain2017" role="doc-biblioref">2017</a>)</span>).</p>
 <p>We will also estimate biomass with only DBH using three different equations: <span class="citation" data-cites="Chave2014">Chave et al. (<a href="#ref-Chave2014" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="Nogueira2008">Nogueira et al. (<a href="#ref-Nogueira2008" role="doc-biblioref">2008</a>)</span> and <span class="citation" data-cites="Melo2024">Melo et al. (<a href="#ref-Melo2024" role="doc-biblioref">2024</a>)</span>.</p>
 <p>We will then compare the results.</p>

@@ -1,5 +1,5 @@
 ---
-title: "estimate_biomass_H_lidar"
+title: "Estimate biomass with different total height estimations"
 author: "G. Bediaga"
 date: last-modified
 format: 
@@ -9,7 +9,7 @@ format:
 bibliography: mendeley.bib
 ---
 
-# This script
+# Introduction
 
 This is a script to estimate Above Ground Biomass (AGB) of a given Annual Production Unit in Jamari Forest Concession using two different total heights estimations: one obtained from Lidar (see <https://gbediaga.github.io/Jamari/tree_height_from_lidar.html>), and other obtained from `rerieveH` function from `BIOMASS` package (@Rjou-Mchain2017).
 

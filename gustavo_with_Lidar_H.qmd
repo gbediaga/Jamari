@@ -111,7 +111,7 @@ ggplot(ifn_data_jamari, aes(as.numeric(dap), ht)) +
 
 ```
 
-Merging two datasets (Dos Santos and IFN) in a standardized data frame.
+Merging two datasets (@dos-Santos2022 and IFN) in a standardized data frame.
 
 ```{r merge_datasets}
 #| message: false

@@ -9,7 +9,7 @@ format:
 bibliography: mendeley.bib
 ---
 
-# This script
+# Introduction
 
 This is **the final script** to extract tree height from a Canopy Height Model (CHM) generated from LiDAR-derived point clouds in a forest management area. Two CHMs will be used: one from the year before harvesting and one from the year after. The path to the CHM of each area will be provided in a table.
 
@@ -326,20 +326,21 @@ ggplot(all_tables,
              show.legend = F) +
   geom_smooth(method = "lm", 
               se = FALSE, 
-              color = "black",
-              formula = 'y ~ 0 + x') +
+              color = "black"
+              ) +
+  scale_x_log10() +
+  scale_y_log10() +
   theme_minimal() +
   labs(
     title = "DBH x Lidar height",
-    x = "DBH (cm)",
-    y = "Lidar height (m)"
+    x = "DBH (cm, log scale)",
+    y = "Lidar height (m, log scale)"
   ) +
   theme(
     plot.title = element_text(hjust = 0.5, 
                               size = 14, 
                               face = "bold"),
     legend.title = element_text(face = "bold")
-  ) +
-  ggpubr::stat_regline_equation(formula = 'y ~ 0 + x')
+  )
 
 ```

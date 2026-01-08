@@ -1,0 +1,29 @@
+project:
+  type: book
+  output-dir: book_site
+
+book:
+  title: "Phd scripts book"
+  author: "G. Bediaga"
+  date: last-modified
+  chapters: 
+    - index.qmd
+    - scripts.qmd
+    - references.qmd
+
+bibliography: mendeley.bib
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    css: styles.css
+    code-line-numbers: true
+    code-fold: true
+    
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

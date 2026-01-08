@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Phd scripts book",
+    "section": "",
+    "text": "PhD Scripts Book\n\n\nG. Bediaga\n\n\n\n1 Overview\nThis book This book brings together the scripts developed within the PhD project “Evaluation of above-ground carbon dynamics in Sustainable Forest Management in the Amazon: providing support to Brazil’s climate commitments”, carried out by Gustavo Bediaga in the Graduate Program in Ecology at the University of Brasília.\nThe project is supervised by Dr. Mercedes Bustamante and developed in partnership with CIRAD, with the collaboration of researchers Plinio Sist, Sylvain Schmmit and Géraldine Derroire.\nThe scripts address the following topics:\n- Forest structure;\n- LiDAR-derived metrics;\n- Wood density databases;\n- Biomass estimation.\nAll scripts were written in RStudio 2025.09.2+418 as Quarto files, and were subsequently rendered into the HTML documents available here.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>PhD Scripts Book</span>"
+    ]
+  },
+  {
+    "objectID": "scripts.html",
+    "href": "scripts.html",
+    "title": "2  R Scripts",
+    "section": "",
+    "text": "2.1 📏 Pilot script to extract tree height\nExtraction of tree height from LiDAR and field data within an APU.\n➡️ Open script",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Scripts</span>"
+    ]
+  },
+  {
+    "objectID": "scripts.html#script-to-extract-tree-height-from-all-apus",
+    "href": "scripts.html#script-to-extract-tree-height-from-all-apus",
+    "title": "2  R Scripts",
+    "section": "2.2 🗺️ Script to extract tree height from all APUs",
+    "text": "2.2 🗺️ Script to extract tree height from all APUs\nExtraction of tree height from LiDAR and field data across all APUs.\n➡️ Open script",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Scripts</span>"
+    ]
+  },
+  {
+    "objectID": "scripts.html#wood-density-databases",
+    "href": "scripts.html#wood-density-databases",
+    "title": "2  R Scripts",
+    "section": "2.3 🪵 Wood density databases",
+    "text": "2.3 🪵 Wood density databases\nComparison of the effect of different wood density databases on biomass estimates.\n➡️ Open script",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Scripts</span>"
+    ]
+  },
+  {
+    "objectID": "scripts.html#biomass-estimation",
+    "href": "scripts.html#biomass-estimation",
+    "title": "2  R Scripts",
+    "section": "2.4 🌳 Biomass estimation",
+    "text": "2.4 🌳 Biomass estimation\nAboveground biomass estimation using allometric equations and different height estimations.\n➡️ Open script",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Scripts</span>"
+    ]
+  },
+  {
+    "objectID": "scripts.html#modelling-tree-height-as-a-function-of-diameter",
+    "href": "scripts.html#modelling-tree-height-as-a-function-of-diameter",
+    "title": "2  R Scripts",
+    "section": "2.5 📈 Modelling tree height as a function of diameter",
+    "text": "2.5 📈 Modelling tree height as a function of diameter\nModeling tree height using forest inventory data from Jamari.\n➡️ Open script",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Scripts</span>"
+    ]
+  }
+]

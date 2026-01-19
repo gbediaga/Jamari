@@ -1,0 +1,12 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Phd scripts book",
+    "section": "",
+    "text": "PhD Scripts Book\n\n\nG. Bediaga\n\n\n\n1 Overview\nThis book This book brings together the scripts developed within the PhD project “Evaluation of above-ground carbon dynamics in Sustainable Forest Management in the Amazon: providing support to Brazil’s climate commitments”, carried out by Gustavo Bediaga in the Graduate Program in Ecology at the University of Brasília.\nNez line\nThe project is supervised by Dr. Mercedes Bustamante and developed in partnership with CIRAD, with the collaboration of researchers Plinio Sist, Sylvain Schmmit and Géraldine Derroire.\nThe scripts address the following topics:\n- Forest structure;\n- LiDAR-derived metrics;\n- Wood density databases;\n- Biomass estimation.\nAll scripts were written in RStudio 2025.09.2+418 as Quarto files, and were subsequently rendered into the HTML documents available here.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  }
+]

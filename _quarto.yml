@@ -8,7 +8,22 @@ book:
   date: last-modified
   chapters: 
     - index.qmd
-    - references.qmd
+    - part: 10_data_prep.qmd
+      chapters: 
+        - 11_pps_prep.qmd
+  appendices:
+    - 99_references.qmd
+    
+    #     - 12_if100_prep.qmd
+    # - part: 20_data_exp.qmd
+    #   chapters: 
+    #     - 21_wd_exp.qmd
+    # - part: 30_data_analisys.qmd
+    #   chapters: 
+    #     - 31_tree_height_from_lidar.qmd
+    #     - 32_tree_height_from_lidar_all_apus.qmd
+    #     - 33_estimate_biomass.qmd
+    #     - 34_gustavo_with_Lidar_H.qmd
 
 bibliography: mendeley.bib
 

@@ -1,0 +1,252 @@
+# PPS prep {.unnumbered}
+
+## Introduction
+
+This is a script to merge all Permanent Plots (PP) tables from Floresta Nacional do Jamari (Flona do Jamari) used in my Phd project. Those PPs are within Annual Production Units (APU) from Flona do Jamari that had at least three Lidar flights. PPs tables were provided by Madeflona. There is a xlsx file for each year measurement on each APU. We organized the files in subdirectories following this scheme: *./data/tables/FMU_NAME/APU_NAME/xlxs files*.
+
+## Setup
+
+```{r}
+#| message: false 
+#| warning: false 
+library(dplyr)
+library(sf)
+library(ggplot2)
+library(readxl)
+library(stringr)
+library(kableExtra)
+library(openxlsx)
+```
+
+## Permanent plots information
+
+Permanent plots were installed and measured following guidelines from @natalino2005.
+
+All PPs have 2,500 m^2^ (50 x 50 mts). Below you can see PPs distribution in the Flona do Jamari. Shapefiles of the PPs were provided by Madeflona. PPs shapefiles are in 31980 projection.
+
+```{r pps_map}
+#| message: false
+#| warning: false
+
+flona_jamari <- st_read("data/pps/geo/flona_jamari.shp")
+st_crs(flona_jamari) <- 4674
+
+umfs <- st_read("data/pps/geo/umfs_RO.shp")
+umfs <- umfs[2:3, ]
+
+st_crs(umfs) <- 4674
+
+pps_umf1 <- st_read("data/pps/geo/handheld_gps/JAM1_PP.shp")
+pps_umf4 <- st_read("data/pps/geo/handheld_gps/JAM4_U15_PP.shp")
+
+st_crs(pps_umf1) <- 31980
+st_crs(pps_umf4) <- 31980
+
+
+ggplot() +
+  geom_sf(data = flona_jamari, 
+          fill = NA, 
+          color = "black") +
+  geom_sf(data = umfs, 
+          fill = NA,
+          color = "orange") +
+  geom_sf(data = pps_umf1, 
+          color = "red", 
+          size = 1) +
+  geom_sf(data = pps_umf4, 
+          color = "blue", 
+          size = 1) +
+ theme_minimal() +
+  labs(
+    title = paste0(nrow(pps_umf1) + nrow(pps_umf4),
+                   " Permanent Plots"),
+    subtitle = "FLONA do Jamari – FMU 1 and 4",
+    x = "Longitude",
+    y = "Latitude"
+  )
+
+
+```
+
+The PPs tables contain several columns with information collected in the field. Below are the column headers and an example row.
+
+```{r table_columns}
+pp_table_header <- read.xlsx("data/pps/tables/UMF_I/UPA_1/JAM_I_UPA_1_2010.xlsx",
+                                       rows = c(1, 2))
+
+pp_table_header %>%
+   kbl(caption = "PP table columns") %>%
+   kable_classic(full_width = FALSE)
+
+```
+
+The meaning of each column is described below. A complete description can be found in @natalino2005.
+
+**p23_cdarea** = area code;
+
+**p23_cdmedicao** = year of measurement;
+
+**p23_cdparcela** = plot number;
+
+**p23_cdsubparcela** = subplot number;
+
+**p23_nrindividuo** = sequential number of individual measurement;
+
+**p23_cdespecie** = unique code for species;
+
+**Especie** = common name of the species;
+
+**p23_cdcif** = see table below;
+
+**diametromm** = DBH in mm;
+
+**p23_lgmudancapdm** = only filled if there was a change in the trunk point of measurement;
+
+**p23_cdcif** = tree status in the forest. see table below.
+
+```{r cif_codes}
+pp_table_codes <- read.csv("data/pps/tables/pps_table_codes.csv")
+
+pp_table_codes %>%
+   slice(c(1:16)) %>%
+   kbl(caption = "p23_cdcif codes") %>%
+   kable_classic(full_width = FALSE)
+```
+
+**p23_cdtratamento** = silvicultural status. see table below.
+
+```{r trat_codes}
+pp_table_codes %>%
+   slice(c(17:22)) %>%
+   kbl(caption = "p23_cdtratamento codes") %>%
+   kable_classic(full_width = FALSE)
+```
+
+**p23_cdiluminacao** = crown sun exposure. see table below.
+
+```{r ilum_codes}
+pp_table_codes %>%
+   slice(c(23:26)) %>%
+   kableExtra::kbl(caption = "p23_cdiluminacao codes") %>%
+   kableExtra::kable_classic(full_width = FALSE)
+```
+
+## Standardizing and merging all tables in one
+
+We will standardize the PPs tables, add some extra columns and merge all tables in only one. First, let's read all tables.
+
+```{r read_tables}
+lista.pps <- list.files(".",
+                        "^JAM.*\\.xls[x]?$",
+                        recursive = T)
+
+```
+
+We have xlsx and xls files. We will do a *loop* to:
+
+1.  Use `read.excel` to read the file;
+2.  Retrieve the APU and FMU information from the directories and add corresponding columns;
+3.  Add a DBH column in cm (by dividing `diametromm` by ten);
+4.  Add a column with the species' common name (retrieved in the `Especie` column);
+5.  Add separate columns for the epithet and genus extracted from the scientific name (retrieved in the `Especie` column);
+6.  Add a unique individual numeric code column in the final table.
+
+```{r loop}
+#| message: false 
+#| warning: false 
+tabelao.pps <- data.frame()
+
+for(i in 1:length(lista.pps)) {
+  
+  
+  upa.table <- read_excel(lista.pps[i])
+  
+  upa.table$UPA <- basename(dirname(lista.pps[i]))
+  
+  upa.table$UMF <- basename(dirname(dirname(lista.pps[i])))
+                      
+  
+  upa.table$diametrocm <- upa.table$diametromm / 10
+  
+  # Cria uma coluna com nome popular
+  upa.table$nome_pop <- str_extract(upa.table$Especie, 
+                                    ".+?(?=\\s)")
+  
+  # Separa o nome científico  
+  upa.table <- upa.table %>%
+    mutate(Especie =  str_extract(upa.table$Especie, 
+                                  "(?<=\\[).+?(?=\\])")) %>%
+    tidyr::separate(`Especie`,
+                    c("genero",
+                      "epiteto"),
+                      " ")
+  
+  tabelao.pps <<- rbind(tabelao.pps,
+                        upa.table)
+  
+}
+
+tabelao.pps$cod_indiv <- paste(tabelao.pps$UMF,
+                               tabelao.pps$UPA,
+                               tabelao.pps$p23_cdparcela,
+                               tabelao.pps$p23_cdsubparcela,
+                               tabelao.pps$p23_nrindividuo,
+                               sep="_")
+
+write.csv(tabelao.pps,
+          "output/pps/tabelao_pps.csv")
+
+```
+
+Now we have all PPs data merged in one main table (*tabelao.pps*). Let's take a look at the data.
+
+```{r pps_info}
+tabelao.pps %>%
+    group_by(UMF, 
+             UPA) %>%
+    summarise("Number of measurements" = n_distinct(p23_cdmedicao),
+              "Years" = paste(sort(unique(p23_cdmedicao)), 
+                              collapse = ", "),
+              .groups = "drop") %>%
+    kbl(caption = "PPs measurements") %>%
+    kable_classic(full_width = FALSE)
+
+sp_indiv <- tabelao.pps %>%
+    group_by(UMF, 
+             UPA) %>%
+    summarise("Number of species" = n_distinct(paste0(genero,
+                                                      epiteto)),
+              "Number of individuals" = n(),
+              .groups = "drop")
+
+sp_indiv_total <- tabelao.pps %>%
+  summarise(
+    UMF = "Total",
+    UPA = "-",
+    "Number of species" = n_distinct(paste0(genero, 
+                                            epiteto)),
+    "Number of individuals" = n()
+            )
+
+tabelao_final <- bind_rows(sp_indiv, 
+                           sp_indiv_total)
+
+tabelao_final %>%
+    kbl(caption = "Number of species and individuals") %>%
+    kable_classic(full_width = FALSE)
+
+ggplot(tabelao.pps, aes(x = diametrocm)) +
+  geom_histogram(
+    binwidth = 5,
+    fill = "steelblue",
+    color = "black",
+    alpha = 0.8
+  ) +
+  theme_minimal() +
+  labs(
+    title = "DBH histogram",
+    x = "DBH (cm)",
+    y = "Number of individuals"
+  )
+
+```

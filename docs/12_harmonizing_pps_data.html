@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Harmonizing Permanent Plots data – Phd scripts book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./13_merge_if100_romaneio.html" rel="next">
+<link href="./11_pps_prep.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_data_prep.html">Data preparation</a></li><li class="breadcrumb-item"><a href="./12_harmonizing_pps_data.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Phd scripts book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./10_data_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data preparation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_pps_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation of Permament Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_harmonizing_pps_data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_merge_if100_romaneio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./20_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Exploration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_wood_density_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./30_data_analisys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Analisys</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31_tree_height_from_lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./32_tree_height_from_lidar_all_apus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./33_estimate_biomass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./34_modelling_H.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modelling DBH x Height</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">2.2</span> Setup</a></li>
+  <li><a href="#load-data-and-visualize-years-of-measurement" id="toc-load-data-and-visualize-years-of-measurement" class="nav-link" data-scroll-target="#load-data-and-visualize-years-of-measurement"><span class="header-section-number">2.3</span> Load data and visualize years of measurement</a></li>
+  <li><a href="#taxonomic-identification" id="toc-taxonomic-identification" class="nav-link" data-scroll-target="#taxonomic-identification"><span class="header-section-number">2.4</span> Taxonomic identification</a></li>
+  <li><a href="#check-data-consistency" id="toc-check-data-consistency" class="nav-link" data-scroll-target="#check-data-consistency"><span class="header-section-number">2.5</span> Check data consistency</a></li>
+  <li><a href="#keep-only-live-trees" id="toc-keep-only-live-trees" class="nav-link" data-scroll-target="#keep-only-live-trees"><span class="header-section-number">2.6</span> Keep only live trees</a></li>
+  <li><a href="#interpolation-of-missing-measurements" id="toc-interpolation-of-missing-measurements" class="nav-link" data-scroll-target="#interpolation-of-missing-measurements"><span class="header-section-number">2.7</span> Interpolation of missing measurements</a></li>
+  <li><a href="#substitute-excessive-dbh-changes-from-bioforest-package" id="toc-substitute-excessive-dbh-changes-from-bioforest-package" class="nav-link" data-scroll-target="#substitute-excessive-dbh-changes-from-bioforest-package"><span class="header-section-number">2.8</span> Substitute excessive DBH changes (from Bioforest package)</a></li>
+  <li><a href="#data-aggregation" id="toc-data-aggregation" class="nav-link" data-scroll-target="#data-aggregation"><span class="header-section-number">2.9</span> Data aggregation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_data_prep.html">Data preparation</a></li><li class="breadcrumb-item"><a href="./12_harmonizing_pps_data.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-pps-harm" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
+<p>This script corrects and harmonizes data from the Permanent Plots (PPs). It adapts the methodology described in [<a href="https://github.com/Bioforest-project/inventories/blob/main/analyses/data_aggregation.qmd" class="uri">https://github.com/Bioforest-project/inventories/blob/main/analyses/data_aggregation.qmd</a>] of the <a href="https://www.fondationbiodiversite.fr/la-frb-en-action/programmes-et-projets/le-cesab/bioforest/">BioForest project</a>.</p>
+<p>Data processed here were generated by <a href="11_pps_prep.html" class="quarto-xref"><span>Chapter 1</span></a> script.</p>
+</section>
+<section id="setup" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">2.2</span> Setup</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(entropart)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="load-data-and-visualize-years-of-measurement" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="load-data-and-visualize-years-of-measurement"><span class="header-section-number">2.3</span> Load data and visualize years of measurement</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>pps <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./output/pps/tabelao_pps.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>pps <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="fu">group_by</span>(UMF, </span>
+<span id="cb2-5"><a href="#cb2-5"></a>             UPA) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="fu">summarise</span>(<span class="st">"Number of measurements"</span> <span class="ot">=</span> <span class="fu">n_distinct</span>(p23_cdmedicao),</span>
+<span id="cb2-7"><a href="#cb2-7"></a>              <span class="st">"Years"</span> <span class="ot">=</span> <span class="fu">paste</span>(<span class="fu">sort</span>(<span class="fu">unique</span>(p23_cdmedicao)), </span>
+<span id="cb2-8"><a href="#cb2-8"></a>                              <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>              <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"PPs measurements"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small">
+<caption>PPs measurements</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">UMF</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">UPA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Number of measurements</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Years</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">2010, 2013, 2016, 2018, 2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_10</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">2015, 2017, 2023</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_13</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2020, 2022</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">2011, 2013, 2016, 2021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">2012, 2013, 2017, 2023</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">2012, 2014, 2018, 2023</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">2013, 2015, 2019</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">2014, 2016, 2020</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2019, 2020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2017, 2019</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2017, 2019</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_IV</td>
+<td style="text-align: left;">UPA_15</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2020, 2022</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="taxonomic-identification" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="taxonomic-identification"><span class="header-section-number">2.4</span> Taxonomic identification</h2>
+<p>We will visualize the proportion of complete species identification (genus + epithet), genus only and non identified species for each APU. We can see that around 35% of the trees on each APU are non identified.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>pps_cat <span class="ot">&lt;-</span> pps <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="at">nome_completo =</span> nome_florabr,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    </span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">categoria =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-6"><a href="#cb3-6"></a>      <span class="fu">str_detect</span>(nome_completo, <span class="fu">regex</span>(<span class="st">"Ni"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)) <span class="sc">~</span> <span class="st">"Undetermined"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>      </span>
+<span id="cb3-8"><a href="#cb3-8"></a>      <span class="fu">is.na</span>(epiteto) <span class="sc">|</span> epiteto <span class="sc">==</span> <span class="st">""</span> <span class="sc">|</span> epiteto <span class="sc">==</span> <span class="st">"sp"</span> <span class="sc">~</span> <span class="st">"Genus Only"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>      </span>
+<span id="cb3-10"><a href="#cb3-10"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Species"</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>    )</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  )</span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a>tab_cat <span class="ot">&lt;-</span> pps_cat <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="fu">group_by</span>(UMF, UPA, categoria) <span class="sc">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-17"><a href="#cb3-17"></a>    <span class="at">n_individuos =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-18"><a href="#cb3-18"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="fu">group_by</span>(UPA) <span class="sc">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-22"><a href="#cb3-22"></a>    <span class="at">porc =</span> <span class="dv">100</span> <span class="sc">*</span> n_individuos <span class="sc">/</span> <span class="fu">sum</span>(n_individuos, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-23"><a href="#cb3-23"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb3-25"><a href="#cb3-25"></a></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="fu">ggplot</span>(tab_cat,</span>
+<span id="cb3-27"><a href="#cb3-27"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">interaction</span>(UMF, UPA),</span>
+<span id="cb3-28"><a href="#cb3-28"></a>           <span class="at">y =</span> n_individuos,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>           <span class="at">fill =</span> categoria)) <span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb3-32"><a href="#cb3-32"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(porc), <span class="st">"%"</span>)),</span>
+<span id="cb3-33"><a href="#cb3-33"></a>    <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb3-34"><a href="#cb3-34"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb3-35"><a href="#cb3-35"></a>    <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb3-38"><a href="#cb3-38"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb3-39"><a href="#cb3-39"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-42"><a href="#cb3-42"></a>    <span class="at">x =</span> <span class="st">"UMF + UPA"</span>,</span>
+<span id="cb3-43"><a href="#cb3-43"></a>    <span class="at">y =</span> <span class="st">"Proportion of individuals"</span>,</span>
+<span id="cb3-44"><a href="#cb3-44"></a>    <span class="at">title =</span> <span class="st">"Proportion of taxonomic identification levels per UMF and UPA"</span>,</span>
+<span id="cb3-45"><a href="#cb3-45"></a>    <span class="at">fill =</span> <span class="st">"Category"</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-48"><a href="#cb3-48"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb3-49"><a href="#cb3-49"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb3-50"><a href="#cb3-50"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_harmonizing_pps_data_files/figure-html/taxo-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>text <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"In average, "</span>, </span>
+<span id="cb4-2"><a href="#cb4-2"></a>              <span class="fu">round</span>(<span class="fu">mean</span>(tab_cat<span class="sc">$</span>porc[tab_cat<span class="sc">$</span>categoria <span class="sc">==</span> <span class="st">"Undetermined"</span>], </span>
+<span id="cb4-3"><a href="#cb4-3"></a>                   <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-4"><a href="#cb4-4"></a>             <span class="st">"% of the trees on each APU are non identified."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In average, 36% of the trees on each APU are non identified.</p>
+</div>
+</div>
+</section>
+<section id="check-data-consistency" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="check-data-consistency"><span class="header-section-number">2.5</span> Check data consistency</h2>
+<section id="consistency-of-diameter-measurements" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="consistency-of-diameter-measurements"><span class="header-section-number">2.5.1</span> Consistency of diameter measurements</h3>
+</section>
+<section id="missing-na-and-zeros-dbh-values" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="missing-na-and-zeros-dbh-values"><span class="header-section-number">2.5.2</span> Missing (NA) and zeros DBH values</h3>
+<p>We have no zeros or NA values in our DBH records.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>pps <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">group_by</span>(UMF,UPA) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="st">`</span><span class="at">Zeros in diametrocm</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(diametrocm <span class="sc">==</span> <span class="dv">0</span>, </span>
+<span id="cb5-5"><a href="#cb5-5"></a>                                <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="st">`</span><span class="at">NA in diametrocm</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(diametrocm)),</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="st">`</span><span class="at">Total records</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="at">caption =</span> <span class="st">"Number of zero and NA values in diameter (cm) by UMF and UPA"</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small">
+<caption>Number of zero and NA values in diameter (cm) by UMF and UPA</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">UMF</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">UPA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Zeros in diametrocm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NA in diametrocm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total records</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5708</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2894</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_13</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2194</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5327</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5738</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3680</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1884</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1845</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1845</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_IV</td>
+<td style="text-align: left;">UPA_15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">895</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="check-dbh-cutoff" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="check-dbh-cutoff"><span class="header-section-number">2.5.3</span> Check DBH cutoff</h3>
+<p>We have no diameter records below 10 cm.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>pps <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">group_by</span>(UMF,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>           UPA) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="st">`</span><span class="at">DBH below 10 cm</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(diametrocm <span class="sc">&lt;</span> <span class="dv">10</span>, </span>
+<span id="cb6-6"><a href="#cb6-6"></a>                            <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="st">`</span><span class="at">Total records</span><span class="st">`</span>      <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="at">caption =</span> <span class="st">"Number of diameter values below 10 cm by APU"</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small">
+<caption>Number of diameter values below 10 cm by APU</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">UMF</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">UPA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">DBH below 10 cm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total records</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5708</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2894</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_13</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2194</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5327</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5738</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3680</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3680</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1884</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1845</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1845</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_IV</td>
+<td style="text-align: left;">UPA_15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">895</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="avoid-duplicated-measurements" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="avoid-duplicated-measurements"><span class="header-section-number">2.5.4</span> Avoid duplicated measurements</h3>
+<p>Threre are no duplicated records in this dataset.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>pps <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">group_by</span>(<span class="fu">across</span>(<span class="sc">-</span>cod_indiv)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">n_ids =</span> <span class="fu">n_distinct</span>(cod_indiv),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">ids   =</span> <span class="fu">paste</span>(<span class="fu">unique</span>(cod_indiv), </span>
+<span id="cb7-6"><a href="#cb7-6"></a>                  <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">filter</span>(n_ids <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb7-11"><a href="#cb7-11"></a>    <span class="at">caption =</span> <span class="st">"Duplicate records"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="at">align =</span> <span class="st">"l"</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Duplicate records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">X</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdarea</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdmedicao</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdparcela</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdsubparcela</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_nrindividuo</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdespecie</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">genero</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">epiteto</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdcif</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">diametromm</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_lgmudancapdm</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdtratamento</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">p23_cdiluminacao</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">UPA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">UMF</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">diametrocm</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">nome_pop</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cod_upa</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">exploit_year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">apu_area_ha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">authorized_area_ha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cutting_intens_m3_ha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">authorized_vol_m3</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">nome_corrigido</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">nome_florabr</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">n_ids</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ids</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="keep-only-live-trees" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="keep-only-live-trees"><span class="header-section-number">2.6</span> Keep only live trees</h2>
+<section id="remove-dead-trees" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="remove-dead-trees"><span class="header-section-number">2.6.1</span> Remove dead trees</h3>
+<p>We will remove all records with column cd23_cif == 5, 6, 7, 8, 9 or 10.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>pps <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(p23_cdcif <span class="sc">%in%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">count</span>(UMF, </span>
+<span id="cb8-4"><a href="#cb8-4"></a>        UPA, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>        <span class="at">name =</span> <span class="st">"Removed records"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">caption =</span> <span class="st">"Dead trees (cd23_cif = 5–10) by APU"</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small">
+<caption>Dead trees (cd23_cif = 5–10) by APU</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">UMF</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">UPA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Removed records</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_1</td>
+<td style="text-align: right;">286</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_10</td>
+<td style="text-align: right;">183</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_13</td>
+<td style="text-align: right;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_2</td>
+<td style="text-align: right;">272</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_3</td>
+<td style="text-align: right;">281</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_4</td>
+<td style="text-align: right;">241</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_5</td>
+<td style="text-align: right;">239</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_6</td>
+<td style="text-align: right;">162</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_7</td>
+<td style="text-align: right;">94</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_8</td>
+<td style="text-align: right;">69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I</td>
+<td style="text-align: left;">UPA_9</td>
+<td style="text-align: right;">69</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_IV</td>
+<td style="text-align: left;">UPA_15</td>
+<td style="text-align: right;">79</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>pps_live <span class="ot">&lt;-</span> pps[<span class="sc">!</span>pps<span class="sc">$</span>p23_cdcif <span class="sc">%in%</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="interpolation-of-missing-measurements" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="interpolation-of-missing-measurements"><span class="header-section-number">2.7</span> Interpolation of missing measurements</h2>
+<p>If trees are missed in a census and remeasured in a later census, we use the DBH values from the previous and next census to interpolate the missing DBH value(s). This can lead to bias in the first and last censuses where missing DBH cannot be detected. We need to check that recruitment and mortality rates are not systematically lower in these two censuses.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Convert to BioForest data pattern to run the code</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>data_cor <span class="ot">&lt;-</span> pps_live</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">names</span>(data_cor) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"X"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>                     <span class="st">"p23_cdarea"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>                     <span class="st">"Year"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>                     <span class="st">"Plot"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>                     <span class="st">"Subplot"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>                     <span class="st">"p23_nrindividuo"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9"></a>                     <span class="st">"p23_cdespecie"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10"></a>                     <span class="st">"Genus"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11"></a>                     <span class="st">"Species"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12"></a>                     <span class="st">"p23_cdcif"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13"></a>                     <span class="st">"diametromm"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14"></a>                     <span class="st">"p23_lgmudancapdm"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15"></a>                     <span class="st">"p23_cdtratamento"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16"></a>                     <span class="st">"p23_cdiluminacao"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17"></a>                     <span class="st">"UPA"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18"></a>                     <span class="st">"UMF"</span>,</span>
+<span id="cb10-19"><a href="#cb10-19"></a>                     <span class="st">"diameter_cor"</span>,</span>
+<span id="cb10-20"><a href="#cb10-20"></a>                     <span class="st">"nome_pop"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21"></a>                     <span class="st">"Site"</span>,</span>
+<span id="cb10-22"><a href="#cb10-22"></a>                     <span class="st">"exploit_year"</span>,</span>
+<span id="cb10-23"><a href="#cb10-23"></a>                     <span class="st">"apu_area_ha"</span>,</span>
+<span id="cb10-24"><a href="#cb10-24"></a>                     <span class="st">"authorized_area_ha"</span>,</span>
+<span id="cb10-25"><a href="#cb10-25"></a>                     <span class="st">"cutting_intens_m3_ha"</span>,</span>
+<span id="cb10-26"><a href="#cb10-26"></a>                     <span class="st">"authorized_vol_m3"</span>,</span>
+<span id="cb10-27"><a href="#cb10-27"></a>                     <span class="st">"IdStem"</span>,</span>
+<span id="cb10-28"><a href="#cb10-28"></a>                     <span class="st">"nome_corrigido"</span>,</span>
+<span id="cb10-29"><a href="#cb10-29"></a>                     <span class="st">"ScientificName"</span>)</span>
+<span id="cb10-30"><a href="#cb10-30"></a></span>
+<span id="cb10-31"><a href="#cb10-31"></a></span>
+<span id="cb10-32"><a href="#cb10-32"></a>interpolate <span class="ot">&lt;-</span> <span class="cf">function</span>(diam, years) {</span>
+<span id="cb10-33"><a href="#cb10-33"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(diam)) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb10-34"><a href="#cb10-34"></a>    <span class="fu">return</span>(<span class="fu">approx</span>(years, diam, years)<span class="sc">$</span>y)</span>
+<span id="cb10-35"><a href="#cb10-35"></a>  } <span class="cf">else</span> {</span>
+<span id="cb10-36"><a href="#cb10-36"></a>    <span class="fu">return</span>(diam)</span>
+<span id="cb10-37"><a href="#cb10-37"></a>  }</span>
+<span id="cb10-38"><a href="#cb10-38"></a>}</span>
+<span id="cb10-39"><a href="#cb10-39"></a></span>
+<span id="cb10-40"><a href="#cb10-40"></a><span class="co"># columns with tree-level information in data_cor</span></span>
+<span id="cb10-41"><a href="#cb10-41"></a>col_tree <span class="ot">&lt;-</span></span>
+<span id="cb10-42"><a href="#cb10-42"></a>  <span class="sc">!</span><span class="fu">grepl</span>(</span>
+<span id="cb10-43"><a href="#cb10-43"></a>    <span class="st">"census|year|month|day|date|status|code|diam|hom|pom|circ|dbh"</span>,</span>
+<span id="cb10-44"><a href="#cb10-44"></a>    <span class="fu">tolower</span>(<span class="fu">colnames</span>(data_cor))</span>
+<span id="cb10-45"><a href="#cb10-45"></a>  )</span>
+<span id="cb10-46"><a href="#cb10-46"></a>col_pattern <span class="ot">&lt;-</span> <span class="st">"Census|Year|Month|Day|Date|Status|Code|Diam|HOM|POM|Circ|DBH"</span></span>
+<span id="cb10-47"><a href="#cb10-47"></a></span>
+<span id="cb10-48"><a href="#cb10-48"></a>tree_info <span class="ot">&lt;-</span> data_cor <span class="sc">|&gt;</span></span>
+<span id="cb10-49"><a href="#cb10-49"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"Year"</span>, <span class="fu">colnames</span>(data_cor)[col_tree])) <span class="sc">|&gt;</span></span>
+<span id="cb10-50"><a href="#cb10-50"></a>  <span class="fu">group_by</span>(Site, Plot, IdStem) <span class="sc">|&gt;</span></span>
+<span id="cb10-51"><a href="#cb10-51"></a>  <span class="fu">filter</span>(Year <span class="sc">==</span> <span class="fu">max</span>(Year)) <span class="sc">|&gt;</span></span>
+<span id="cb10-52"><a href="#cb10-52"></a>  <span class="fu">select</span>(<span class="sc">-</span>Year)</span>
+<span id="cb10-53"><a href="#cb10-53"></a></span>
+<span id="cb10-54"><a href="#cb10-54"></a>missing_censuses <span class="ot">&lt;-</span> data_cor <span class="sc">|&gt;</span></span>
+<span id="cb10-55"><a href="#cb10-55"></a>  <span class="co"># list all census years by plot and subplot</span></span>
+<span id="cb10-56"><a href="#cb10-56"></a>  <span class="fu">group_by</span>(Site, Plot, Subplot) <span class="sc">|&gt;</span></span>
+<span id="cb10-57"><a href="#cb10-57"></a>  <span class="fu">reframe</span>(<span class="at">Year =</span> <span class="fu">unique</span>(Year)) <span class="sc">|&gt;</span></span>
+<span id="cb10-58"><a href="#cb10-58"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-59"><a href="#cb10-59"></a>  <span class="co"># add all combinations of IdStem x IdCensus (by Plot and Subplot)</span></span>
+<span id="cb10-60"><a href="#cb10-60"></a>  <span class="fu">right_join</span>(</span>
+<span id="cb10-61"><a href="#cb10-61"></a>    <span class="fu">unique</span>(data_cor[, <span class="fu">c</span>(<span class="st">"Site"</span>, <span class="st">"Plot"</span>, <span class="st">"Subplot"</span>, <span class="st">"IdStem"</span>)]),</span>
+<span id="cb10-62"><a href="#cb10-62"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Site"</span>, <span class="st">"Plot"</span>, <span class="st">"Subplot"</span>)</span>
+<span id="cb10-63"><a href="#cb10-63"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-64"><a href="#cb10-64"></a>  <span class="co"># add tree-level information</span></span>
+<span id="cb10-65"><a href="#cb10-65"></a>  <span class="fu">merge</span>(tree_info) <span class="sc">|&gt;</span></span>
+<span id="cb10-66"><a href="#cb10-66"></a>  <span class="co"># add DBH information</span></span>
+<span id="cb10-67"><a href="#cb10-67"></a>  <span class="fu">merge</span>(</span>
+<span id="cb10-68"><a href="#cb10-68"></a>    data_cor[, <span class="fu">c</span>(<span class="st">"IdStem"</span>, <span class="st">"Year"</span>, <span class="st">"diameter_cor"</span>)],</span>
+<span id="cb10-69"><a href="#cb10-69"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"IdStem"</span>, <span class="st">"Year"</span>),</span>
+<span id="cb10-70"><a href="#cb10-70"></a>    <span class="at">all =</span> <span class="cn">TRUE</span></span>
+<span id="cb10-71"><a href="#cb10-71"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-72"><a href="#cb10-72"></a>  <span class="co"># interpolate missing diameters</span></span>
+<span id="cb10-73"><a href="#cb10-73"></a>  <span class="fu">group_by</span>(IdStem) <span class="sc">|&gt;</span></span>
+<span id="cb10-74"><a href="#cb10-74"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-75"><a href="#cb10-75"></a>    <span class="at">diameter_cor =</span> <span class="fu">interpolate</span>(diameter_cor, Year)</span>
+<span id="cb10-76"><a href="#cb10-76"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-77"><a href="#cb10-77"></a>  <span class="fu">subset</span>(<span class="sc">!</span><span class="fu">is.na</span>(diameter_cor)) <span class="sc">|&gt;</span></span>
+<span id="cb10-78"><a href="#cb10-78"></a>  <span class="co"># keep only measurements missing from original data:</span></span>
+<span id="cb10-79"><a href="#cb10-79"></a>  <span class="fu">subset</span>(<span class="sc">!</span><span class="fu">paste</span>(IdStem, Year) <span class="sc">%in%</span></span>
+<span id="cb10-80"><a href="#cb10-80"></a>    <span class="fu">with</span>(data_cor, <span class="fu">paste</span>(IdStem, Year))) <span class="sc">|&gt;</span> <span class="co"># nolint</span></span>
+<span id="cb10-81"><a href="#cb10-81"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> Year)</span>
+<span id="cb10-82"><a href="#cb10-82"></a></span>
+<span id="cb10-83"><a href="#cb10-83"></a><span class="co"># add interpolated DBHs to raw data</span></span>
+<span id="cb10-84"><a href="#cb10-84"></a>data_cor <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb10-85"><a href="#cb10-85"></a>  data_cor,</span>
+<span id="cb10-86"><a href="#cb10-86"></a>  missing_censuses</span>
+<span id="cb10-87"><a href="#cb10-87"></a>)</span>
+<span id="cb10-88"><a href="#cb10-88"></a><span class="fu">rm</span>(missing_censuses)</span>
+<span id="cb10-89"><a href="#cb10-89"></a></span>
+<span id="cb10-90"><a href="#cb10-90"></a><span class="cf">if</span> (<span class="fu">sum</span>(<span class="fu">is.na</span>(data_cor<span class="sc">$</span>Diameter)) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb10-91"><a href="#cb10-91"></a>  n_missing <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(data_cor<span class="sc">$</span>Diameter))</span>
+<span id="cb10-92"><a href="#cb10-92"></a>  stem_missing <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(data_cor<span class="sc">$</span>IdStem[<span class="fu">is.na</span>(data_cor<span class="sc">$</span>Diameter)]))</span>
+<span id="cb10-93"><a href="#cb10-93"></a>  text <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb10-94"><a href="#cb10-94"></a>    <span class="st">"We found a total of"</span>, <span class="fu">sum</span>(<span class="fu">is.na</span>(data_cor<span class="sc">$</span>Diameter)),</span>
+<span id="cb10-95"><a href="#cb10-95"></a>    <span class="st">"missing DBH values, in"</span>, stem_missing, <span class="st">"stems."</span>,</span>
+<span id="cb10-96"><a href="#cb10-96"></a>    <span class="st">"The figure below shows a subset of"</span>, <span class="fu">min</span>(stem_missing, <span class="dv">12</span>),</span>
+<span id="cb10-97"><a href="#cb10-97"></a>    <span class="st">"trees with missing DBH (red points are interpolated DBH)."</span></span>
+<span id="cb10-98"><a href="#cb10-98"></a>  )</span>
+<span id="cb10-99"><a href="#cb10-99"></a>} <span class="cf">else</span> {</span>
+<span id="cb10-100"><a href="#cb10-100"></a>  text <span class="ot">&lt;-</span> <span class="st">"No missing DBH values were interpolated."</span></span>
+<span id="cb10-101"><a href="#cb10-101"></a>}</span>
+<span id="cb10-102"><a href="#cb10-102"></a></span>
+<span id="cb10-103"><a href="#cb10-103"></a></span>
+<span id="cb10-104"><a href="#cb10-104"></a><span class="cf">if</span> (<span class="fu">sum</span>(<span class="fu">is.na</span>(data_cor<span class="sc">$</span>Diameter)) <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="fu">isTRUE</span>(params<span class="sc">$</span>print)) {</span>
+<span id="cb10-105"><a href="#cb10-105"></a>  illustration <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb10-106"><a href="#cb10-106"></a>    <span class="fu">subset</span>(data_cor, <span class="fu">is.na</span>(Diameter))<span class="sc">$</span>IdStem,</span>
+<span id="cb10-107"><a href="#cb10-107"></a>    <span class="fu">min</span>(stem_missing, <span class="dv">12</span>)</span>
+<span id="cb10-108"><a href="#cb10-108"></a>  )</span>
+<span id="cb10-109"><a href="#cb10-109"></a>  <span class="fu">subset</span>(data_cor, IdStem <span class="sc">%in%</span> illustration) <span class="sc">|&gt;</span></span>
+<span id="cb10-110"><a href="#cb10-110"></a>    <span class="fu">separate</span>(IdTree, <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"IdTree"</span>), <span class="at">sep =</span> <span class="st">"_"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-111"><a href="#cb10-111"></a>    <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">paste0</span>(</span>
+<span id="cb10-112"><a href="#cb10-112"></a>      <span class="st">"Plot: "</span>, Plot, <span class="st">"_"</span>, Subplot,</span>
+<span id="cb10-113"><a href="#cb10-113"></a>      <span class="st">", treeID: "</span>, IdTree, <span class="st">"</span><span class="sc">\n</span><span class="st"> Species: "</span>, ScientificName</span>
+<span id="cb10-114"><a href="#cb10-114"></a>    )) <span class="sc">|&gt;</span></span>
+<span id="cb10-115"><a href="#cb10-115"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> diameter_cor)) <span class="sc">+</span></span>
+<span id="cb10-116"><a href="#cb10-116"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> <span class="fu">is.na</span>(diameter_cor))) <span class="sc">+</span></span>
+<span id="cb10-117"><a href="#cb10-117"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Census year"</span>, <span class="at">y =</span> <span class="st">"Diameter (cm)"</span>, <span class="at">col =</span> <span class="st">"Interpolated"</span>) <span class="sc">+</span></span>
+<span id="cb10-118"><a href="#cb10-118"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb10-119"><a href="#cb10-119"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>label, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb10-120"><a href="#cb10-120"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb10-121"><a href="#cb10-121"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb10-122"><a href="#cb10-122"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No missing DBH values were interpolated.</p>
+</div>
+</div>
+<p>Below there is another way to verify it.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>pps <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">group_by</span>(UPA, p23_cdparcela, cod_indiv) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">Years =</span> <span class="fu">paste</span>(<span class="fu">sort</span>(<span class="fu">unique</span>(p23_cdmedicao)), <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">DBH_measured =</span> <span class="fu">any</span>(<span class="sc">!</span><span class="fu">is.na</span>(diametrocm)),</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="at">Missing_measurement =</span> <span class="fu">any</span>(<span class="fu">is.na</span>(diametrocm)),</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">filter</span>(DBH_measured <span class="sc">&amp;</span> Missing_measurement) <span class="sc">%&gt;%</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="at">caption =</span> <span class="st">"Individuals with DBH measured in some years and missing in others, by UPA and plot."</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Individuals with DBH measured in some years and missing in others, by UPA and plot.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">UPA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p23_cdparcela</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">cod_indiv</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Years</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DBH_measured</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Missing_measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="substitute-excessive-dbh-changes-from-bioforest-package" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="substitute-excessive-dbh-changes-from-bioforest-package"><span class="header-section-number">2.8</span> Substitute excessive DBH changes (from Bioforest package)</h2>
+<p>Growth and productivity measurements are very sensitive to large changes in DBH, for example when the measurement height is changed. To mitigate this problem, we replace excessive DBH changes with the average growth value of similar trees (without changing the DBH values).</p>
+<p>This poses two challenges: 1. what can be considered an ‘excessive’ DBH change and 2. how to define ‘similar’ trees.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>data_cor <span class="ot">&lt;-</span> data_cor <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">group_by</span>(IdStem) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">arrange</span>(Year,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>          <span class="at">.by_group =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="at">prev_year   =</span> <span class="fu">lag</span>(Year),</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="at">diff_year   =</span> Year <span class="sc">-</span> prev_year,</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="at">diam_growth =</span> (diameter_cor <span class="sc">-</span> <span class="fu">lag</span>(diameter_cor)) <span class="sc">/</span> diff_year</span>
+<span id="cb12-9"><a href="#cb12-9"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Here we defined ‘similar’ trees by first grouping them by genus and size (DBH), assuming that these two factors are among the main drivers of tree growth. We ranked genera by median DBH growth and divided them into four groups of increasing median DBH growth, with similar numbers of individual measurements per group.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>genus_groups <span class="ot">&lt;-</span> data_cor <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Genus)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="co"># get median growth (excluding negative values) per genus</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">group_by</span>(Genus) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">mutate</span>(<span class="at">med_growth =</span> <span class="fu">median</span>(diam_growth[diam_growth <span class="sc">&gt;=</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="co"># create quantile bins with equal number of individuals</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">mutate</span>(<span class="at">gen_group =</span> <span class="fu">ntile</span>(med_growth, <span class="dv">4</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">group_by</span>(Genus, med_growth) <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="co"># summarize back to species level</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">summarise</span>(<span class="at">gen_group =</span> <span class="fu">first</span>(gen_group), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">if</span> (<span class="fu">any</span>(<span class="sc">!</span><span class="fu">is.na</span>(genus_groups<span class="sc">$</span>med_growth))) {</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  genus_groups <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="fu">subset</span>(<span class="sc">!</span><span class="fu">is.na</span>(gen_group) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Genus)) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="fu">group_by</span>(gen_group) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb14-6"><a href="#cb14-6"></a>      <span class="at">range =</span> <span class="fu">paste</span>(</span>
+<span id="cb14-7"><a href="#cb14-7"></a>        <span class="fu">paste</span>(<span class="fu">round</span>(<span class="fu">range</span>(med_growth), <span class="dv">2</span>), <span class="at">collapse =</span> <span class="st">" - "</span>),</span>
+<span id="cb14-8"><a href="#cb14-8"></a>        <span class="st">"cm/yr"</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>      ),</span>
+<span id="cb14-10"><a href="#cb14-10"></a>      <span class="at">genus =</span> <span class="fu">paste</span>(Genus, <span class="at">collapse =</span> <span class="st">", "</span>)</span>
+<span id="cb14-11"><a href="#cb14-11"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>    <span class="fu">select</span>(range, genus) <span class="sc">|&gt;</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>    <span class="fu">t</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb14-15"><a href="#cb14-15"></a>      <span class="at">col.names =</span> <span class="fu">paste</span>(</span>
+<span id="cb14-16"><a href="#cb14-16"></a>        <span class="st">"Group"</span>, <span class="fu">seq_len</span>(<span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">drop_na</span>(genus_groups)<span class="sc">$</span>gen_group)))</span>
+<span id="cb14-17"><a href="#cb14-17"></a>      ),</span>
+<span id="cb14-18"><a href="#cb14-18"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a>    )</span>
+<span id="cb14-20"><a href="#cb14-20"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 6%">
+<col style="width: 1%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Group 1</th>
+<th style="text-align: left;">Group 2</th>
+<th style="text-align: left;">Group 3</th>
+<th style="text-align: left;">Group 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0 - 0.2 cm/yr</td>
+<td style="text-align: left;">0.2 - 0.2 cm/yr</td>
+<td style="text-align: left;">0.2 - 0.2 cm/yr</td>
+<td style="text-align: left;">0.23 - 0.77 cm/yr</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Andira, Aspidosperma, Astronium, Bagassa, Bertholletia, Buchenavia, Castilla, Cedrelinga, Chrysophyllum, Clarisia, Couma, Dinizia, Eschweilera, Guarea, Handroanthus, Huberodendron, Lacistema, Laetia, Licania, Martiodendron, NI, Naucleopsis, Ni, Oxandra, Rinorea, Robrichia, Roupala, Schizolobium, Sterculia, Vitex</td>
+<td style="text-align: left;">Erisma, Minquartia, Pouteria, Pseudolmedia, Virola</td>
+<td style="text-align: left;">Ocotea, Protium</td>
+<td style="text-align: left;">Aldina, Allantoma, Anacardium, Aniba, Bowdichia, Brosimum, Cariniana, Caryocar, Cecropia, Cedrela, Ceiba, Coccoloba, Copaifera, Couratari, Diplotropis, Dipteryx, Duckesia, Endopleura, Enterolobium, Goupia, Hevea, Hymenaea, Hymenolobium, Hymenopus, Jacaranda, Lecythis, Manilkara, Mezilaurus, Osteophloeum, Parkia, Peltogyne, Qualea, Ruizterania, Sextonia, Simarouba, Tachigali, Terminalia, Thyrsodium, Tovomita, Vatairea, Vochysia, Zygia</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We then split each genus group into 5 quantiles of DBH: this results in 20 groups of DBH growth measures based on both genus-level growth rates and size (DBH).</p>
+<p>Outliers are defined here as the 0.5% lowest DBH growth values (all groups combined) and the 0.5% highest DBH growth values per group. These outliers in DBH growth were replaced by the mean growth of their group.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>data_cor <span class="ot">&lt;-</span> data_cor <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">left_join</span>(genus_groups, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>            <span class="at">by =</span> <span class="st">"Genus"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">group_by</span>(gen_group) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">mutate</span>(<span class="at">diam_group =</span> <span class="fu">paste</span>(gen_group, <span class="fu">ntile</span>(diameter_cor, <span class="dv">5</span>), <span class="at">sep =</span> <span class="st">"_"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="co"># lower diameter growth threshold is the same for all species and sizes</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-9"><a href="#cb15-9"></a>    <span class="at">dgrowth_lower =</span> <span class="fu">quantile</span>(diam_growth, <span class="fl">0.005</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-10"><a href="#cb15-10"></a>    <span class="co"># define general upper quantile for unidentified individuals</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>    <span class="at">dgrowth_upper =</span> <span class="fu">quantile</span>(diam_growth, <span class="fl">0.995</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-12"><a href="#cb15-12"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a>  <span class="co"># upper diameter growth threshold defined by species and size</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a>  <span class="fu">group_by</span>(diam_group) <span class="sc">|&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>  <span class="fu">mutate</span>(<span class="at">dgrowth_upper =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(gen_group),</span>
+<span id="cb15-16"><a href="#cb15-16"></a>    <span class="fu">quantile</span>(diam_growth, <span class="fl">0.995</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-17"><a href="#cb15-17"></a>    dgrowth_upper</span>
+<span id="cb15-18"><a href="#cb15-18"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a>  <span class="co"># define outlier values</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a>  <span class="fu">mutate</span>(<span class="at">outlier =</span> <span class="sc">!</span><span class="fu">is.na</span>(diam_growth) <span class="sc">&amp;</span></span>
+<span id="cb15-21"><a href="#cb15-21"></a>    (diam_growth <span class="sc">&lt;</span> dgrowth_lower <span class="sc">|</span> diam_growth <span class="sc">&gt;</span> dgrowth_upper)) <span class="sc">|&gt;</span> <span class="co"># nolint</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a>  <span class="co"># estimate average growth by group</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a>  <span class="fu">mutate</span>(<span class="at">average_growth =</span> <span class="fu">mean</span>(diam_growth[<span class="sc">!</span>outlier], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-24"><a href="#cb15-24"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-25"><a href="#cb15-25"></a>  <span class="co"># substitute diameter growth</span></span>
+<span id="cb15-26"><a href="#cb15-26"></a>  <span class="fu">mutate</span>(<span class="at">diam_growth_cor =</span> <span class="fu">ifelse</span>(outlier, average_growth, diam_growth))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="cf">if</span> (<span class="fu">sum</span>(data_cor<span class="sc">$</span>outlier) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  text <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="st">"This graph shows all outlier DBH growth values (in cm/yr),"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="st">"as well as the lower and upper bounds of 'acceptable' DBH"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    <span class="st">"growth (in red) and the average DBH growth with which outlier"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    <span class="st">"values are replaced (blue), as a function of tree DBH and"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="st">"genus groups."</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  )</span>
+<span id="cb16-9"><a href="#cb16-9"></a>} <span class="cf">else</span> {</span>
+<span id="cb16-10"><a href="#cb16-10"></a>  text <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb16-11"><a href="#cb16-11"></a>    <span class="st">"There were no diameter growth values to correct, as no stem"</span>,</span>
+<span id="cb16-12"><a href="#cb16-12"></a>    <span class="st">"was measured more than once."</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>  )</span>
+<span id="cb16-14"><a href="#cb16-14"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout-info">
+<p>This graph shows all outlier DBH growth values (in cm/yr), as well as the lower and upper bounds of ‘acceptable’ DBH growth (in red) and the average DBH growth with which outlier values are replaced (blue), as a function of tree DBH and genus groups.</p>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="cf">if</span> (<span class="fu">sum</span>(data_cor<span class="sc">$</span>outlier) <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="fu">isTRUE</span>(params<span class="sc">$</span>print)) {</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  data_thresh <span class="ot">&lt;-</span> data_cor <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">subset</span>(<span class="sc">!</span><span class="fu">is.na</span>(gen_group)) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">group_by</span>(gen_group, diam_group) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb17-6"><a href="#cb17-6"></a>      <span class="at">diam_min =</span> <span class="fu">min</span>(diameter_cor),</span>
+<span id="cb17-7"><a href="#cb17-7"></a>      <span class="at">diam_max =</span> <span class="fu">max</span>(diameter_cor),</span>
+<span id="cb17-8"><a href="#cb17-8"></a>      <span class="at">dgrowth_upper =</span> <span class="fu">unique</span>(dgrowth_upper),</span>
+<span id="cb17-9"><a href="#cb17-9"></a>      <span class="at">dgrowth_lower =</span> <span class="fu">unique</span>(dgrowth_lower),</span>
+<span id="cb17-10"><a href="#cb17-10"></a>      <span class="at">average_growth =</span> <span class="fu">unique</span>(average_growth)</span>
+<span id="cb17-11"><a href="#cb17-11"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"diam_max"</span>, <span class="st">"diam_min"</span>))</span>
+<span id="cb17-13"><a href="#cb17-13"></a>  data_cor <span class="sc">|&gt;</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>    <span class="fu">subset</span>(outlier) <span class="sc">|&gt;</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> diameter_cor, <span class="at">y =</span> diam_growth)) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data_thresh, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> dgrowth_upper), <span class="at">col =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="#cb17-18"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data_thresh, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> dgrowth_lower), <span class="at">col =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> data_thresh, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> average_growth), <span class="at">col =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb17-20"><a href="#cb17-20"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diameter (cm)"</span>, <span class="at">y =</span> <span class="st">"Diameter growth (cm/yr)"</span>) <span class="sc">+</span></span>
+<span id="cb17-21"><a href="#cb17-21"></a>    <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb17-22"><a href="#cb17-22"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"Genus group"</span>, gen_group)) <span class="sc">+</span></span>
+<span id="cb17-23"><a href="#cb17-23"></a>    <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb17-24"><a href="#cb17-24"></a>    <span class="fu">theme_classic</span>()</span>
+<span id="cb17-25"><a href="#cb17-25"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_harmonizing_pps_data_files/figure-html/dbh-change-fig-1.png" class="img-fluid figure-img" width="1056"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="cf">if</span> (<span class="fu">sum</span>(data_cor<span class="sc">$</span>outlier) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  text <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="st">"The graph below shows a subset of trees with outlier DBH"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="st">"growth values; the top panels show the DBH growth values and"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="st">"the bottom panels show the corresponding DBH values (one"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="st">"column per tree). The red dots are the outlier DBH growth"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7"></a>    <span class="st">"values, which were then replaced by the average growth values"</span>,</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    <span class="st">"for their group (species x DBH). DBH values were not replaced."</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a>  )</span>
+<span id="cb18-10"><a href="#cb18-10"></a>} <span class="cf">else</span> {</span>
+<span id="cb18-11"><a href="#cb18-11"></a>  text <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout-info">
+<p>The graph below shows a subset of trees with outlier DBH growth values; the top panels show the DBH growth values and the bottom panels show the corresponding DBH values (one column per tree). The red dots are the outlier DBH growth values, which were then replaced by the average growth values for their group (species x DBH). DBH values were not replaced.</p>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="cf">if</span> (<span class="fu">sum</span>(data_cor<span class="sc">$</span>outlier) <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="fu">isTRUE</span>(params<span class="sc">$</span>print)) {</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  id_cor <span class="ot">&lt;-</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>    data_cor <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="fu">subset</span>(outlier) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>    <span class="fu">group_by</span>(gen_group) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>    <span class="fu">summarise</span>(<span class="at">id =</span> <span class="fu">sample</span>(<span class="fu">unique</span>(IdStem), <span class="fu">min</span>(<span class="dv">2</span>, <span class="fu">length</span>(<span class="fu">unique</span>(IdStem)))))</span>
+<span id="cb19-7"><a href="#cb19-7"></a></span>
+<span id="cb19-8"><a href="#cb19-8"></a>  labs_diam <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-9"><a href="#cb19-9"></a>    <span class="at">diam_growth =</span> <span class="st">"Diameter growth rate (cm/yr)"</span>,</span>
+<span id="cb19-10"><a href="#cb19-10"></a>    <span class="at">diameter_cor =</span> <span class="st">"Diameter (cm)"</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>  )</span>
+<span id="cb19-12"><a href="#cb19-12"></a>  data_cor <span class="sc">|&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>    <span class="fu">subset</span>(IdStem <span class="sc">%in%</span> id_cor<span class="sc">$</span>id) <span class="sc">|&gt;</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a>    <span class="fu">separate</span>(IdStem, <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"IdStem"</span>), <span class="at">sep =</span> <span class="st">"_"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-15"><a href="#cb19-15"></a>    <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">paste0</span>(</span>
+<span id="cb19-16"><a href="#cb19-16"></a>      <span class="st">"Plot: "</span>, Plot, <span class="st">"_"</span>, Subplot,</span>
+<span id="cb19-17"><a href="#cb19-17"></a>      <span class="st">"</span><span class="sc">\n</span><span class="st">treeID: "</span>, IdStem, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, ScientificName</span>
+<span id="cb19-18"><a href="#cb19-18"></a>    )) <span class="sc">|&gt;</span></span>
+<span id="cb19-19"><a href="#cb19-19"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"diam_growth"</span>, <span class="st">"diameter_cor"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-20"><a href="#cb19-20"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year)) <span class="sc">+</span></span>
+<span id="cb19-21"><a href="#cb19-21"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> value, <span class="at">col =</span> outlier)) <span class="sc">+</span></span>
+<span id="cb19-22"><a href="#cb19-22"></a>    <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">"Outlier DBH growth?"</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb19-23"><a href="#cb19-23"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb19-24"><a href="#cb19-24"></a>    <span class="fu">facet_grid</span>(name <span class="sc">~</span> label,</span>
+<span id="cb19-25"><a href="#cb19-25"></a>      <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">switch =</span> <span class="st">"y"</span>,</span>
+<span id="cb19-26"><a href="#cb19-26"></a>      <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">name =</span> labs_diam)</span>
+<span id="cb19-27"><a href="#cb19-27"></a>    ) <span class="sc">+</span></span>
+<span id="cb19-28"><a href="#cb19-28"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb19-29"><a href="#cb19-29"></a>    <span class="fu">theme</span>(</span>
+<span id="cb19-30"><a href="#cb19-30"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">strip.placement =</span> <span class="st">"outside"</span>,</span>
+<span id="cb19-31"><a href="#cb19-31"></a>      <span class="at">strip.background.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb19-32"><a href="#cb19-32"></a>    )</span>
+<span id="cb19-33"><a href="#cb19-33"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_harmonizing_pps_data_files/figure-html/show-examples-substitution-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Write final file</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">write.csv</span>(data_cor,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>          <span class="at">file =</span> <span class="st">"./output/pps/harmonized_pps.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="data-aggregation" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="data-aggregation"><span class="header-section-number">2.9</span> Data aggregation</h2>
+<p>To visualize some variables of interest.</p>
+<section id="taxonomic-diversity" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="taxonomic-diversity"><span class="header-section-number">2.9.1</span> Taxonomic Diversity</h3>
+<p>To evaluate taxonomic diversity, we used functions from the entropart package in R (Marcon et al., 2020). We estimated all these indices at both species and genus level.</p>
+<p>We quantified taxonomic diversity using Hill numbers, a family of diversity measures that account for both species richness and evenness.</p>
+<section id="species-richness" class="level4" data-number="2.9.1.1">
+<h4 data-number="2.9.1.1" class="anchored" data-anchor-id="species-richness"><span class="header-section-number">2.9.1.1</span> Species Richness</h4>
+<p>Diversity of Order q = 0: Species richness, which counts all species equally, regardless of their abundance.</p>
+</section>
+<section id="shannon-diversity" class="level4" data-number="2.9.1.2">
+<h4 data-number="2.9.1.2" class="anchored" data-anchor-id="shannon-diversity"><span class="header-section-number">2.9.1.2</span> Shannon Diversity</h4>
+<p>Diversity of Order q = 1: Shannon diversity, calculated as the exponential of Shannon entropy, which gives proportional weight to species based on their relative abundances. This index balances sensitivity to both common and rare species.</p>
+</section>
+<section id="simpson-diversity" class="level4" data-number="2.9.1.3">
+<h4 data-number="2.9.1.3" class="anchored" data-anchor-id="simpson-diversity"><span class="header-section-number">2.9.1.3</span> Simpson Diversity</h4>
+<p>Diversity of Order q = 2: Simpson diversity, calculated as the inverse of the Simpson index, which emphasizes dominant species and is less sensitive to rare taxa.</p>
+</section>
+<section id="evenness" class="level4" data-number="2.9.1.4">
+<h4 data-number="2.9.1.4" class="anchored" data-anchor-id="evenness"><span class="header-section-number">2.9.1.4</span> Evenness</h4>
+<p>Evenness reflects how uniformly individuals are distributed among the observed species. It was derived by dividing the observed diversity (for a given value of q) by the theoretical maximum diversity for the same number of species. Values closer to 1 indicate communities where individuals are more evenly distributed across species, while lower values indicate dominance by a few species.</p>
+</section>
+<section id="coverage" class="level4" data-number="2.9.1.5">
+<h4 data-number="2.9.1.5" class="anchored" data-anchor-id="coverage"><span class="header-section-number">2.9.1.5</span> Coverage</h4>
+<p>Sample coverage estimates the proportion of individuals in a community that belong to species already detected in the sample. It provides an indication of sampling completeness, with values approaching 1 suggesting that most of the community has been captured and that further sampling is unlikely to yield many additional species.</p>
+<p>The following figures represent all the above mentioned indices at the species and genus level. The y axis shows the different census years, while the x-axis shows the value of the indices. The different coloured lines represent the plots.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), <span class="fu">c</span>(<span class="st">"data_cor"</span>, <span class="st">"params"</span>)))</span>
+<span id="cb21-2"><a href="#cb21-2"></a>data_aggr <span class="ot">&lt;-</span> <span class="fu">c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># for each census year, add information on previous and next census years</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>data_year <span class="ot">&lt;-</span> data_cor <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">select</span>(Site, Plot, Year) <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">unique</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">arrange</span>(Site, Plot, Year) <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">group_by</span>(Site, Plot) <span class="sc">|&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-10"><a href="#cb22-10"></a>    <span class="at">prev_census =</span> <span class="fu">c</span>(<span class="cn">NA</span>, Year[<span class="sc">-</span><span class="fu">length</span>(Year)]),</span>
+<span id="cb22-11"><a href="#cb22-11"></a>    <span class="at">next_census =</span> <span class="fu">c</span>(Year[<span class="sc">-</span><span class="dv">1</span>], <span class="cn">NA</span>)</span>
+<span id="cb22-12"><a href="#cb22-12"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb22-14"><a href="#cb22-14"></a></span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="co"># add information on each tree's recruitment and mortality years</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a>data_cor <span class="ot">&lt;-</span> data_cor <span class="sc">|&gt;</span></span>
+<span id="cb22-17"><a href="#cb22-17"></a>  <span class="fu">left_join</span>(data_year) <span class="sc">|&gt;</span></span>
+<span id="cb22-18"><a href="#cb22-18"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-19"><a href="#cb22-19"></a>    <span class="at">recr_year =</span> <span class="fu">min</span>(Year),</span>
+<span id="cb22-20"><a href="#cb22-20"></a>    <span class="at">mort_year =</span> <span class="fu">max</span>(Year), <span class="at">.by =</span> IdStem</span>
+<span id="cb22-21"><a href="#cb22-21"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Calculate neutral diversity indices per plot and year</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># species</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>neutral_div_sp <span class="ot">&lt;-</span> data_cor <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">subset</span>(<span class="sc">!</span><span class="fu">is.na</span>(Species)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">group_by</span>(UMF, Site, <span class="at">Year =</span> Year, ScientificName) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">group_by</span>(UMF, Site, Year) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb23-10"><a href="#cb23-10"></a>    <span class="at">diversity_q0_sp =</span> <span class="fu">Diversity</span>(count,</span>
+<span id="cb23-11"><a href="#cb23-11"></a>      <span class="at">q =</span> <span class="dv">0</span>, <span class="at">SampleCoverage =</span> <span class="fl">0.8</span>,</span>
+<span id="cb23-12"><a href="#cb23-12"></a>      <span class="at">Correction =</span> <span class="st">"None"</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a>    ),</span>
+<span id="cb23-14"><a href="#cb23-14"></a>    <span class="at">diversity_q1_sp =</span> <span class="fu">Diversity</span>(count,</span>
+<span id="cb23-15"><a href="#cb23-15"></a>      <span class="at">q =</span> <span class="dv">1</span>, <span class="at">SampleCoverage =</span> <span class="fl">0.8</span>,</span>
+<span id="cb23-16"><a href="#cb23-16"></a>      <span class="at">Correction =</span> <span class="st">"None"</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a>    ),</span>
+<span id="cb23-18"><a href="#cb23-18"></a>    <span class="at">diversity_q2_sp =</span> <span class="fu">Diversity</span>(count,</span>
+<span id="cb23-19"><a href="#cb23-19"></a>      <span class="at">q =</span> <span class="dv">2</span>, <span class="at">SampleCoverage =</span> <span class="fl">0.8</span>,</span>
+<span id="cb23-20"><a href="#cb23-20"></a>      <span class="at">Correction =</span> <span class="st">"None"</span></span>
+<span id="cb23-21"><a href="#cb23-21"></a>    ),</span>
+<span id="cb23-22"><a href="#cb23-22"></a>    <span class="at">evenness_sp =</span> <span class="fu">Shannon</span>(count, <span class="at">SampleCoverage =</span> <span class="fl">0.8</span>, <span class="at">Correction =</span> <span class="st">"None"</span>) <span class="sc">/</span></span>
+<span id="cb23-23"><a href="#cb23-23"></a>      <span class="fu">log</span>(<span class="fu">n_distinct</span>(ScientificName)),</span>
+<span id="cb23-24"><a href="#cb23-24"></a>    <span class="at">coverage_sp =</span> <span class="fu">Coverage</span>(count)</span>
+<span id="cb23-25"><a href="#cb23-25"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-26"><a href="#cb23-26"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb23-27"><a href="#cb23-27"></a>    <span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"_sp"</span>),</span>
+<span id="cb23-28"><a href="#cb23-28"></a>    <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
+<span id="cb23-29"><a href="#cb23-29"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb23-30"><a href="#cb23-30"></a>  )</span>
+<span id="cb23-31"><a href="#cb23-31"></a></span>
+<span id="cb23-32"><a href="#cb23-32"></a><span class="co"># genera</span></span>
+<span id="cb23-33"><a href="#cb23-33"></a>neutral_div_gen <span class="ot">&lt;-</span> data_cor <span class="sc">%&gt;%</span></span>
+<span id="cb23-34"><a href="#cb23-34"></a>  <span class="fu">subset</span>(<span class="sc">!</span><span class="fu">is.na</span>(Genus)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-35"><a href="#cb23-35"></a>  <span class="fu">group_by</span>(UMF, Site, <span class="at">Year =</span> Year, <span class="at">genus =</span> Genus) <span class="sc">%&gt;%</span></span>
+<span id="cb23-36"><a href="#cb23-36"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-37"><a href="#cb23-37"></a>  <span class="fu">group_by</span>(UMF, Site, Year) <span class="sc">%&gt;%</span></span>
+<span id="cb23-38"><a href="#cb23-38"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb23-39"><a href="#cb23-39"></a>    <span class="at">diversity_q0_gen =</span> <span class="fu">Diversity</span>(count,</span>
+<span id="cb23-40"><a href="#cb23-40"></a>      <span class="at">q =</span> <span class="dv">0</span>, <span class="at">SampleCoverage =</span> <span class="fl">0.9</span>,</span>
+<span id="cb23-41"><a href="#cb23-41"></a>      <span class="at">Correction =</span> <span class="st">"None"</span></span>
+<span id="cb23-42"><a href="#cb23-42"></a>    ),</span>
+<span id="cb23-43"><a href="#cb23-43"></a>    <span class="at">diversity_q1_gen =</span> <span class="fu">Diversity</span>(count,</span>
+<span id="cb23-44"><a href="#cb23-44"></a>      <span class="at">q =</span> <span class="dv">1</span>, <span class="at">SampleCoverage =</span> <span class="fl">0.9</span>,</span>
+<span id="cb23-45"><a href="#cb23-45"></a>      <span class="at">Correction =</span> <span class="st">"None"</span></span>
+<span id="cb23-46"><a href="#cb23-46"></a>    ),</span>
+<span id="cb23-47"><a href="#cb23-47"></a>    <span class="at">diversity_q2_gen =</span> <span class="fu">Diversity</span>(count,</span>
+<span id="cb23-48"><a href="#cb23-48"></a>      <span class="at">q =</span> <span class="dv">2</span>, <span class="at">SampleCoverage =</span> <span class="fl">0.9</span>,</span>
+<span id="cb23-49"><a href="#cb23-49"></a>      <span class="at">Correction =</span> <span class="st">"None"</span></span>
+<span id="cb23-50"><a href="#cb23-50"></a>    ),</span>
+<span id="cb23-51"><a href="#cb23-51"></a>    <span class="at">evenness_gen =</span> <span class="fu">Shannon</span>(count, <span class="at">SampleCoverage =</span> <span class="fl">0.9</span>, <span class="at">Correction =</span> <span class="st">"None"</span>) <span class="sc">/</span></span>
+<span id="cb23-52"><a href="#cb23-52"></a>      <span class="fu">log</span>(<span class="fu">n_distinct</span>(genus)),</span>
+<span id="cb23-53"><a href="#cb23-53"></a>    <span class="at">coverage_gen =</span> <span class="fu">Coverage</span>(count)</span>
+<span id="cb23-54"><a href="#cb23-54"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-55"><a href="#cb23-55"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb23-56"><a href="#cb23-56"></a>    <span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"_gen"</span>),</span>
+<span id="cb23-57"><a href="#cb23-57"></a>    <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
+<span id="cb23-58"><a href="#cb23-58"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb23-59"><a href="#cb23-59"></a>  )</span>
+<span id="cb23-60"><a href="#cb23-60"></a></span>
+<span id="cb23-61"><a href="#cb23-61"></a><span class="co"># Add to main dataframe with aggregatd data</span></span>
+<span id="cb23-62"><a href="#cb23-62"></a>data_aggr <span class="ot">&lt;-</span> data_aggr <span class="sc">%&gt;%</span></span>
+<span id="cb23-63"><a href="#cb23-63"></a>  <span class="fu">rbind</span>(neutral_div_sp) <span class="sc">%&gt;%</span></span>
+<span id="cb23-64"><a href="#cb23-64"></a>  <span class="fu">rbind</span>(neutral_div_gen)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>aggr_fig <span class="ot">&lt;-</span> <span class="cf">function</span>(data, vars_names, <span class="at">title_fig =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  g <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="fu">subset</span>(variable <span class="sc">%in%</span> <span class="fu">names</span>(var_names)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, </span>
+<span id="cb24-5"><a href="#cb24-5"></a>               <span class="at">y =</span> value, </span>
+<span id="cb24-6"><a href="#cb24-6"></a>               <span class="at">color =</span> <span class="fu">paste</span>(UMF,Site))) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="co">#    geom_boxplot(aes(x = Year,</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="co">#                     y = value,</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="co">#                     group = Year),</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a><span class="co">#    inherit.aes = FALSE,</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="co">#    alpha = 0.2,</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="co">#    width = 0.5</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="co">#  ) +</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb24-15"><a href="#cb24-15"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, </span>
+<span id="cb24-16"><a href="#cb24-16"></a>             <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
+<span id="cb24-17"><a href="#cb24-17"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">variable =</span> var_names)) <span class="sc">+</span></span>
+<span id="cb24-18"><a href="#cb24-18"></a>    <span class="fu">labs</span>(</span>
+<span id="cb24-19"><a href="#cb24-19"></a>      <span class="at">title =</span> title_fig,</span>
+<span id="cb24-20"><a href="#cb24-20"></a>      <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">color =</span> <span class="cn">NULL</span></span>
+<span id="cb24-21"><a href="#cb24-21"></a>    ) <span class="sc">+</span></span>
+<span id="cb24-22"><a href="#cb24-22"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb24-23"><a href="#cb24-23"></a>    <span class="cf">if</span> (<span class="fu">length</span>(var_names) <span class="sc">==</span> <span class="dv">5</span>) {</span>
+<span id="cb24-24"><a href="#cb24-24"></a>    g <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.82</span>, <span class="fl">0.17</span>),</span>
+<span id="cb24-25"><a href="#cb24-25"></a>              <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>),</span>
+<span id="cb24-26"><a href="#cb24-26"></a>              <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb24-27"><a href="#cb24-27"></a>        <span class="fu">guides</span>(<span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">ncol=</span><span class="dv">2</span>))</span>
+<span id="cb24-28"><a href="#cb24-28"></a>  } <span class="cf">else</span> {</span>
+<span id="cb24-29"><a href="#cb24-29"></a>    g</span>
+<span id="cb24-30"><a href="#cb24-30"></a>  }</span>
+<span id="cb24-31"><a href="#cb24-31"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Plot temporal trajectories of different indices across plots</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="cf">if</span> (<span class="fu">isTRUE</span>(params<span class="sc">$</span>print)) {</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  var_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb25-4"><a href="#cb25-4"></a>    <span class="at">coverage =</span> <span class="st">"Coverage"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="at">diversity_q0 =</span> <span class="st">"Richness"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6"></a>    <span class="at">diversity_q1 =</span> <span class="st">"Shannon Diversity"</span>,</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="at">diversity_q2 =</span> <span class="st">"Simpson Diversity"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    <span class="at">evenness =</span> <span class="st">"Evenness"</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>  )</span>
+<span id="cb25-10"><a href="#cb25-10"></a></span>
+<span id="cb25-11"><a href="#cb25-11"></a>  data_aggr <span class="sc">%&gt;%</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a>    <span class="fu">subset</span>(variable <span class="sc">%in%</span> neutral_div_sp<span class="sc">$</span>variable) <span class="sc">%&gt;%</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a>    <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">factor</span>(<span class="fu">gsub</span>(<span class="st">"_sp"</span>, <span class="st">""</span>, variable),</span>
+<span id="cb25-14"><a href="#cb25-14"></a>      <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb25-15"><a href="#cb25-15"></a>        <span class="fu">paste0</span>(<span class="st">"diversity_q"</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>),</span>
+<span id="cb25-16"><a href="#cb25-16"></a>        <span class="st">"evenness"</span>, <span class="st">"coverage"</span></span>
+<span id="cb25-17"><a href="#cb25-17"></a>      )</span>
+<span id="cb25-18"><a href="#cb25-18"></a>    )) <span class="sc">%&gt;%</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a>    <span class="fu">aggr_fig</span>(var_names,</span>
+<span id="cb25-20"><a href="#cb25-20"></a>      <span class="at">title_fig =</span> <span class="fu">paste</span>(</span>
+<span id="cb25-21"><a href="#cb25-21"></a>        <span class="st">"Diversity Indices Across Plots and Years"</span>,</span>
+<span id="cb25-22"><a href="#cb25-22"></a>        <span class="st">"(Species level)"</span></span>
+<span id="cb25-23"><a href="#cb25-23"></a>      )</span>
+<span id="cb25-24"><a href="#cb25-24"></a>    )</span>
+<span id="cb25-25"><a href="#cb25-25"></a></span>
+<span id="cb25-26"><a href="#cb25-26"></a>  data_aggr <span class="sc">%&gt;%</span></span>
+<span id="cb25-27"><a href="#cb25-27"></a>    <span class="fu">subset</span>(variable <span class="sc">%in%</span> neutral_div_gen<span class="sc">$</span>variable) <span class="sc">%&gt;%</span></span>
+<span id="cb25-28"><a href="#cb25-28"></a>    <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">factor</span>(<span class="fu">gsub</span>(<span class="st">"_gen"</span>, <span class="st">""</span>, variable),</span>
+<span id="cb25-29"><a href="#cb25-29"></a>      <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb25-30"><a href="#cb25-30"></a>        <span class="fu">paste0</span>(<span class="st">"diversity_q"</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>),</span>
+<span id="cb25-31"><a href="#cb25-31"></a>        <span class="st">"evenness"</span>, <span class="st">"coverage"</span></span>
+<span id="cb25-32"><a href="#cb25-32"></a>      )</span>
+<span id="cb25-33"><a href="#cb25-33"></a>    )) <span class="sc">%&gt;%</span></span>
+<span id="cb25-34"><a href="#cb25-34"></a>    <span class="fu">aggr_fig</span>(var_names,</span>
+<span id="cb25-35"><a href="#cb25-35"></a>      <span class="at">title_fig =</span> <span class="fu">paste</span>(</span>
+<span id="cb25-36"><a href="#cb25-36"></a>        <span class="st">"Diversity Indices Across APUs and Years"</span>,</span>
+<span id="cb25-37"><a href="#cb25-37"></a>        <span class="st">"(Genus level)"</span></span>
+<span id="cb25-38"><a href="#cb25-38"></a>      )</span>
+<span id="cb25-39"><a href="#cb25-39"></a>    )</span>
+<span id="cb25-40"><a href="#cb25-40"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_harmonizing_pps_data_files/figure-html/neutral-diversity-fig-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./11_pps_prep.html" class="pagination-link" aria-label="Preparation of Permament Plots data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation of Permament Plots data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./13_merge_if100_romaneio.html" class="pagination-link" aria-label="Merging IF100 + logbook data">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

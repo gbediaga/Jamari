@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Estimate biomass with different total height estimations – Phd scripts book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./34_modelling_H.html" rel="next">
+<link href="./32_tree_height_from_lidar_all_apus.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./30_data_analisys.html">Data Analisys</a></li><li class="breadcrumb-item"><a href="./33_estimate_biomass.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Phd scripts book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./10_data_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data preparation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_pps_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation of Permament Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_harmonizing_pps_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_merge_if100_romaneio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./20_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Exploration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_wood_density_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./30_data_analisys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Analisys</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31_tree_height_from_lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./32_tree_height_from_lidar_all_apus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./33_estimate_biomass.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./34_modelling_H.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modelling DBH x Height</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
+  <li><a href="#lecture" id="toc-lecture" class="nav-link" data-scroll-target="#lecture"><span class="header-section-number">8.2</span> Lecture</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">8.3</span> Setup</a></li>
+  <li><a href="#allometric-equations-parameters" id="toc-allometric-equations-parameters" class="nav-link" data-scroll-target="#allometric-equations-parameters"><span class="header-section-number">8.4</span> Allometric equations parameters</a></li>
+  <li><a href="#load-the-inventory" id="toc-load-the-inventory" class="nav-link" data-scroll-target="#load-the-inventory"><span class="header-section-number">8.5</span> Load the Inventory</a></li>
+  <li><a href="#retrieving-height-from-biomass" id="toc-retrieving-height-from-biomass" class="nav-link" data-scroll-target="#retrieving-height-from-biomass"><span class="header-section-number">8.6</span> Retrieving height from <code>BIOMASS</code></a></li>
+  <li><a href="#retrieving-wood-density" id="toc-retrieving-wood-density" class="nav-link" data-scroll-target="#retrieving-wood-density"><span class="header-section-number">8.7</span> Retrieving wood density</a></li>
+  <li><a href="#estimating-biomass" id="toc-estimating-biomass" class="nav-link" data-scroll-target="#estimating-biomass"><span class="header-section-number">8.8</span> Estimating biomass</a></li>
+  <li><a href="#comparing-biomass-estimates-using-only-dbh-and-using-dbh-height" id="toc-comparing-biomass-estimates-using-only-dbh-and-using-dbh-height" class="nav-link" data-scroll-target="#comparing-biomass-estimates-using-only-dbh-and-using-dbh-height"><span class="header-section-number">8.9</span> Comparing biomass estimates using only DBH and using DBH + Height</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./30_data_analisys.html">Data Analisys</a></li><li class="breadcrumb-item"><a href="./33_estimate_biomass.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-estimate_biomass" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
+<p>This script estimates Above-Ground Biomass (AGB) for a given Annual Production Unit in the Jamari Forest Concession using two different total height estimates: one derived from LiDAR (see <a href="32_tree_height_from_lidar_all_apus.html" class="quarto-xref"><span>Chapter 7</span></a>), and the other obtained via the <code>rerieveH</code> function from <code>BIOMASS</code> package (<span class="citation" data-cites="Rjou-Mchain2017">Réjou-Méchain et al. (<a href="99_references.html#ref-Rjou-Mchain2017" role="doc-biblioref">2017</a>)</span>).</p>
+<p>We also estimate biomass with only DBH using three different equations: <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="Nogueira2008">Nogueira et al. (<a href="99_references.html#ref-Nogueira2008" role="doc-biblioref">2008</a>)</span> and <span class="citation" data-cites="Melo2024">Melo et al. (<a href="99_references.html#ref-Melo2024" role="doc-biblioref">2024</a>)</span>.</p>
+<p>Finally, the results from these approaches are compared to assess the impact of height estimation and equation choice on biomass estimates.</p>
+</section>
+<section id="lecture" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="lecture"><span class="header-section-number">8.2</span> Lecture</h2>
+<ul>
+<li>CHM generation: <span class="citation" data-cites="Fischer2024">Fischer et al. (<a href="99_references.html#ref-Fischer2024" role="doc-biblioref">2024</a>)</span>.</li>
+<li>BIOMASS package: <span class="citation" data-cites="Rjou-Mchain2017">Réjou-Méchain et al. (<a href="99_references.html#ref-Rjou-Mchain2017" role="doc-biblioref">2017</a>)</span>.</li>
+<li>Chave’s allometric equation: <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span>.</li>
+<li>Nogueira’s allometric equation: <span class="citation" data-cites="Nogueira2008">Nogueira et al. (<a href="99_references.html#ref-Nogueira2008" role="doc-biblioref">2008</a>)</span>.</li>
+<li>Melo’s allometric equation: <span class="citation" data-cites="Melo2024">Melo et al. (<a href="99_references.html#ref-Melo2024" role="doc-biblioref">2024</a>)</span>.</li>
+</ul>
+</section>
+<section id="setup" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">8.3</span> Setup</h2>
+<p>You need <code>BIOMASS</code> package to estimate the biomass, <code>dplyr</code> and <code>tidyr</code> to manipulate tabular data and <code>ggplot</code> to visualization.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(BIOMASS) </span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr) </span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyr) </span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="allometric-equations-parameters" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="allometric-equations-parameters"><span class="header-section-number">8.4</span> Allometric equations parameters</h2>
+<p>Some parameters used to build the allometric equations used in this workflow. It is important to see if the allometric equation is suitable for the data.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>allo_equations <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(<span class="st">"data/allometric_eq/Equações alométricas.xlsx"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2"></a>                                     <span class="at">rows =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">20</span>, <span class="dv">22</span>),</span>
+<span id="cb2-3"><a href="#cb2-3"></a>                                     <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>allo_equations <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>   kableExtra<span class="sc">::</span><span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Allometric equations parameters"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>   kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small">
+<caption>Allometric equations parameters</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Study</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Region</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Phytophysiognomy</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Number.of.measured.trees</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Minimum.DBH</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Maximum.DBH</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">AGB.equation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Nogueira et al., 2008</td>
+<td style="text-align: left;">Southern amazonia</td>
+<td style="text-align: left;">FOA</td>
+<td style="text-align: left;">300</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">124</td>
+<td style="text-align: left;">ln(Dry weight)=-1.716 (±0.079) + 2.413 (±0.029) × ln(Diameter)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Melo et al., 2024</td>
+<td style="text-align: left;">Floresta Estadual do Antimary</td>
+<td style="text-align: left;">FOA com palmeiras</td>
+<td style="text-align: left;">190</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">90</td>
+<td style="text-align: left;">DMtw = 0,064 * DBH2,671 + 3,69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chave et al., 2014</td>
+<td style="text-align: left;">Pantropical</td>
+<td style="text-align: left;">53 undisturbed and 5 secondary</td>
+<td style="text-align: left;">4004</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">212</td>
+<td style="text-align: left;">AGBest = 0,0673 x (q * D2 * H)0,976</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chave et al., 2014 without height, modified by Réjou-Méchain et al., 2017</td>
+<td style="text-align: left;">_</td>
+<td style="text-align: left;">_</td>
+<td style="text-align: left;">_</td>
+<td style="text-align: left;">_</td>
+<td style="text-align: left;">_</td>
+<td style="text-align: left;">AGB = exp(-2,024 - 0,896 * E + 0,920 * ln(WD) + 2,795 * ln(DAP) - 0,0461 * [ln(DAP)2])</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="load-the-inventory" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="load-the-inventory"><span class="header-section-number">8.5</span> Load the Inventory</h2>
+<p>Let’s load the Commercial Forest Inventory with the different height estimations.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>if100 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/tree_height/all_tables.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Making sure what Annual Production Unit and Forest Management Unit we are working with.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(if100<span class="sc">$</span>flona[<span class="dv">1</span>],</span>
+<span id="cb4-2"><a href="#cb4-2"></a>             <span class="st">" UMF "</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>             if100<span class="sc">$</span>umf[<span class="dv">1</span>],</span>
+<span id="cb4-4"><a href="#cb4-4"></a>             <span class="st">" UPA "</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>             if100<span class="sc">$</span>upa[<span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Jamari UMF 1 UPA 10"</code></pre>
+</div>
+</div>
+</section>
+<section id="retrieving-height-from-biomass" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="retrieving-height-from-biomass"><span class="header-section-number">8.6</span> Retrieving height from <code>BIOMASS</code></h2>
+<p><code>retriveH</code> function in <code>`BIOMASS</code> package estimates tree total height using allometric equation from <span class="citation" data-cites="Feldpausch2011">Feldpausch et al. (<a href="99_references.html#ref-Feldpausch2011" role="doc-biblioref">2011</a>)</span>, based on the location of the trees. It uses a Weibull function to estimate height from the diameter of the tree, based on a large number of plots.</p>
+<p>The coordinates in this script refer to Jamari National Forest.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>altura_feld <span class="ot">&lt;-</span> <span class="fu">retrieveH</span>(<span class="at">D =</span> if100<span class="sc">$</span>DAP,</span>
+<span id="cb6-2"><a href="#cb6-2"></a>                         <span class="at">coord =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">62.99</span>,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>                                   <span class="sc">-</span><span class="fl">9.11</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>                                   ))</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>if100<span class="sc">$</span>altura_feld <span class="ot">&lt;-</span> altura_feld<span class="sc">$</span>H</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>See relation between height from <code>retrieveH</code> and obtained with Lidar.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(if100, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> z_lidar, </span>
+<span id="cb7-3"><a href="#cb7-3"></a>           <span class="at">y =</span> altura_feld)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, </span>
+<span id="cb7-5"><a href="#cb7-5"></a>             <span class="fu">aes</span>(<span class="at">color =</span> nome_florabr)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>             ) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb7-8"><a href="#cb7-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb7-9"><a href="#cb7-9"></a>              <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>              <span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="at">title =</span> <span class="st">"Lidar height x Feldpausch height"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    <span class="at">x =</span> <span class="st">"Lidar height (m)"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="at">y =</span> <span class="st">"Feldpausch height (m)"</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#    ,color = "Species"</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-19"><a href="#cb7-19"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb7-20"><a href="#cb7-20"></a>                              <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb7-21"><a href="#cb7-21"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22"></a>    ,<span class="at">legend.position=</span><span class="st">"none"</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a> <span class="co">#   ,legend.title = element_text(face = "bold")</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>  <span class="fu">geom_abline</span>() <span class="sc">+</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33_estimate_biomass_files/figure-html/h_x_h-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="retrieving-wood-density" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="retrieving-wood-density"><span class="header-section-number">8.7</span> Retrieving wood density</h2>
+<p>Then we correct scientific names in the table. For this we will use <code>correctTaxo</code> from <code>BIOMASS</code>. This function needs a “genus” and a “species” column.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># </span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>if100 <span class="ot">&lt;-</span> if100 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>              <span class="fu">separate</span>(nome_florabr,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>                      <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"genus"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>                               <span class="st">"epithet"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6"></a>                      <span class="at">sep =</span> <span class="st">" "</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>                      <span class="at">extra =</span> <span class="st">"merge"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>                      <span class="at">remove =</span> F)</span>
+<span id="cb8-9"><a href="#cb8-9"></a></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#taxo &lt;- correctTaxo(genus=if100$genus,</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#                    species=if100$epithet,</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#                    useCache = T)</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a>w_density <span class="ot">&lt;-</span> <span class="fu">getWoodDensity</span>(<span class="at">genus =</span> if100<span class="sc">$</span>genus,</span>
+<span id="cb8-15"><a href="#cb8-15"></a>                            <span class="at">species =</span> if100<span class="sc">$</span>epithet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="estimating-biomass" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="estimating-biomass"><span class="header-section-number">8.8</span> Estimating biomass</h2>
+<section id="estimating-biomass-with-total-height" class="level3" data-number="8.8.1">
+<h3 data-number="8.8.1" class="anchored" data-anchor-id="estimating-biomass-with-total-height"><span class="header-section-number">8.8.1</span> Estimating biomass with total height</h3>
+<p>We estimated only some of the commercial species tree height using Lidar. We will remove all trees without Lidar estimated height, so we can compare AGB estimates. We need a new <em>taxo</em> for the reduced data frame.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>if100.red <span class="ot">&lt;-</span> if100[<span class="sc">!</span><span class="fu">is.na</span>(if100<span class="sc">$</span>z_lidar), ]</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#taxo.red &lt;- correctTaxo(genus=if100.red$genus,</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#                        species=if100.red$epithet,</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#                        useCache = F)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Then we get the wood density of each species.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>w_density.red <span class="ot">&lt;-</span> <span class="fu">getWoodDensity</span>(<span class="at">genus =</span> if100.red<span class="sc">$</span>genus,</span>
+<span id="cb10-2"><a href="#cb10-2"></a>                                <span class="at">species =</span> if100.red<span class="sc">$</span>epithet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Compute AGB with <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span> equation and <span class="citation" data-cites="Feldpausch2011">Feldpausch et al. (<a href="99_references.html#ref-Feldpausch2011" role="doc-biblioref">2011</a>)</span> height.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>if100.red<span class="sc">$</span>AGB_chave_feld <span class="ot">&lt;-</span> <span class="fu">computeAGB</span>(<span class="at">D =</span> if100.red<span class="sc">$</span>DAP,</span>
+<span id="cb11-2"><a href="#cb11-2"></a>                                       <span class="at">WD =</span> w_density.red<span class="sc">$</span>meanWD,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>                                       <span class="at">H =</span> if100.red<span class="sc">$</span>altura_feld)</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># AGB = 0.0673 * (WD * H * D^2)^0.976</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Compute AGB with <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span> equation and Lidar height.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>if100.red<span class="sc">$</span>AGB_chave_lidar <span class="ot">&lt;-</span> <span class="fu">computeAGB</span>(<span class="at">D =</span> if100.red<span class="sc">$</span>DAP,</span>
+<span id="cb12-2"><a href="#cb12-2"></a>                                        <span class="at">WD =</span> w_density.red<span class="sc">$</span>meanWD,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>                                        <span class="at">H =</span> if100.red<span class="sc">$</span>z_lidar)</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># AGB = 0.0673 * (WD * H * D^2)^0.976</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Now let’s compare the different AGB estimates.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(if100.red, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AGB_chave_feld, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>           <span class="at">y =</span> AGB_chave_lidar)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, </span>
+<span id="cb13-5"><a href="#cb13-5"></a>             <span class="fu">aes</span>(<span class="at">color =</span> nome_florabr)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb13-7"><a href="#cb13-7"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb13-8"><a href="#cb13-8"></a>              <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>              <span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-12"><a href="#cb13-12"></a>    <span class="at">title =</span> <span class="st">"AGB with Feldpausch height x AGB with Lidar height"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13"></a>    <span class="at">x =</span> <span class="st">"Feldpausch AGB (Mg)"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="at">y =</span> <span class="st">"Lidar AGB (Mg)"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    <span class="at">color =</span> <span class="st">"Species"</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb13-19"><a href="#cb13-19"></a>                              <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb13-20"><a href="#cb13-20"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb13-21"><a href="#cb13-21"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb13-22"><a href="#cb13-22"></a>    ,<span class="at">legend.position=</span><span class="st">"none"</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33_estimate_biomass_files/figure-html/agb_x_agb-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Is the difference between the biomass estimates different across the DBHs? Comparing AGB estimates with different heights estimates across DBHs.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>if100.red<span class="sc">$</span>diff_agbs_h <span class="ot">&lt;-</span> if100.red<span class="sc">$</span>AGB_chave_feld <span class="sc">-</span> if100.red<span class="sc">$</span>AGB_chave_lidar</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">ggplot</span>(if100.red, </span>
+<span id="cb14-4"><a href="#cb14-4"></a>       <span class="fu">aes</span>(<span class="at">x =</span> DAP, </span>
+<span id="cb14-5"><a href="#cb14-5"></a>           <span class="at">y =</span> diff_agbs_h)) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb14-7"><a href="#cb14-7"></a>             <span class="fu">aes</span>(<span class="at">color =</span> nome_florabr)) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, </span>
+<span id="cb14-9"><a href="#cb14-9"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">theme</span>(,<span class="at">legend.position=</span><span class="st">"none"</span>)<span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"DAP"</span>, <span class="at">y =</span> <span class="st">"Difference (AGB with H by Feldpausch − AGB with H by Lidar)"</span>,</span>
+<span id="cb14-13"><a href="#cb14-13"></a>       <span class="at">title =</span> <span class="st">"AGB estimations difference by DBH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33_estimate_biomass_files/figure-html/agb_height-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="estimating-biomass-using-only-dbh" class="level3" data-number="8.8.2">
+<h3 data-number="8.8.2" class="anchored" data-anchor-id="estimating-biomass-using-only-dbh"><span class="header-section-number">8.8.2</span> Estimating biomass using only DBH</h3>
+<p>We will use <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="Nogueira2008">Nogueira et al. (<a href="99_references.html#ref-Nogueira2008" role="doc-biblioref">2008</a>)</span> e <span class="citation" data-cites="Melo2024">Melo et al. (<a href="99_references.html#ref-Melo2024" role="doc-biblioref">2024</a>)</span> equations to estimate AGB using only DBH.</p>
+<p>It is important to point out that <span class="citation" data-cites="Nogueira2008">Nogueira et al. (<a href="99_references.html#ref-Nogueira2008" role="doc-biblioref">2008</a>)</span> and <span class="citation" data-cites="Melo2024">Melo et al. (<a href="99_references.html#ref-Melo2024" role="doc-biblioref">2024</a>)</span> uses only DBH, whereas <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span> uses, in addition to DBH, wood density and a variable representing environmental stress (see <span class="citation" data-cites="Rjou-Mchain2017">Réjou-Méchain et al. (<a href="99_references.html#ref-Rjou-Mchain2017" role="doc-biblioref">2017</a>)</span> for the minor modification in <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span> equation used in <code>BIOMASS</code>).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>if100<span class="sc">$</span>AGB_chave_dbh <span class="ot">&lt;-</span> <span class="fu">computeAGB</span>(<span class="at">D =</span> if100<span class="sc">$</span>DAP,</span>
+<span id="cb15-2"><a href="#cb15-2"></a>                                  <span class="at">WD =</span> w_density<span class="sc">$</span>meanWD,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>                                  <span class="at">coord =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">62.99</span>,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>                                            <span class="sc">-</span><span class="fl">9.11</span>))</span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co"># AGB =  exp(-2,024 - 0,896 * E + 0,920 * ln(WD) + 2,795 * ln(DAP) - 0,0461 * [ln(DAP)^2])</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a>if100<span class="sc">$</span>AGB_nog_dbh <span class="ot">&lt;-</span> (<span class="fu">exp</span>(<span class="sc">-</span><span class="fl">1.716</span> <span class="sc">+</span> <span class="fl">2.413</span> <span class="sc">*</span> <span class="fu">log</span>(if100<span class="sc">$</span>DAP))) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co"># We have to divide results by 1000 because equation gives AGB in kg</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a>if100<span class="sc">$</span>AGB_melo_dbh <span class="ot">&lt;-</span> (<span class="fl">0.064</span> <span class="sc">*</span> (if100<span class="sc">$</span>DAP<span class="sc">^</span><span class="fl">2.671</span>) <span class="sc">+</span> <span class="fl">3.69</span>) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co"># We have to divide results by 1000 because equation gives AGB in kg</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>To plot the three equations results in the same graph, we must convert data to LONG format.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>df_long <span class="ot">&lt;-</span> if100 <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="at">cols =</span> <span class="fu">c</span>(AGB_chave_dbh, AGB_nog_dbh, AGB_melo_dbh),</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="at">names_to =</span> <span class="st">"equation"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    <span class="at">values_to =</span> <span class="st">"biomass"</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Now let’s plot them.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(df_long, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> DAP, </span>
+<span id="cb17-3"><a href="#cb17-3"></a>           <span class="at">y =</span> biomass, </span>
+<span id="cb17-4"><a href="#cb17-4"></a>           <span class="at">color =</span> equation)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span>            <span class="co"># pontos opcionais</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb17-8"><a href="#cb17-8"></a>              <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
+<span id="cb17-9"><a href="#cb17-9"></a>              <span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>) <span class="sc">+</span> <span class="co"># linhas das equações</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-12"><a href="#cb17-12"></a>    <span class="at">title =</span> <span class="st">"Biomass–DBH Relationships Derived from Multiple Allometric Models"</span>,</span>
+<span id="cb17-13"><a href="#cb17-13"></a>    <span class="at">x =</span> <span class="st">"DBH (cm)"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14"></a>    <span class="at">y =</span> <span class="st">"Biomass (Mg)"</span>,</span>
+<span id="cb17-15"><a href="#cb17-15"></a>    <span class="at">color =</span> <span class="st">"Equation"</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33_estimate_biomass_files/figure-html/plot_3_eqs-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now let’s compare the different AGB estimates.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(if100, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AGB_chave_dbh, </span>
+<span id="cb18-3"><a href="#cb18-3"></a>           <span class="at">y =</span> AGB_nog_dbh)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, </span>
+<span id="cb18-5"><a href="#cb18-5"></a>             <span class="fu">aes</span>(<span class="at">color =</span> nome_florabr)) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb18-7"><a href="#cb18-7"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb18-8"><a href="#cb18-8"></a>              <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9"></a>              <span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-12"><a href="#cb18-12"></a>    <span class="at">title =</span> <span class="st">"AGB Chave eq. (DBH) x AGB Nogueira eq. (DBH)"</span>,</span>
+<span id="cb18-13"><a href="#cb18-13"></a>    <span class="at">x =</span> <span class="st">"Chave eq AGB (Mg)"</span>,</span>
+<span id="cb18-14"><a href="#cb18-14"></a>    <span class="at">y =</span> <span class="st">"Nogueira eq AGB (Mg)"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15"></a>    <span class="at">color =</span> <span class="st">"Species"</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>  <span class="fu">theme</span>(</span>
+<span id="cb18-18"><a href="#cb18-18"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb18-19"><a href="#cb18-19"></a>                              <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb18-20"><a href="#cb18-20"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb18-21"><a href="#cb18-21"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb18-22"><a href="#cb18-22"></a>    ,<span class="at">legend.position=</span><span class="st">"none"</span></span>
+<span id="cb18-23"><a href="#cb18-23"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-24"><a href="#cb18-24"></a>  ggpubr<span class="sc">::</span><span class="fu">stat_regline_equation</span>(<span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33_estimate_biomass_files/figure-html/agb_x_agb_2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Is the difference between the biomass estimates different across the DBHs? Comparing <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span> x <span class="citation" data-cites="Nogueira2008">Nogueira et al. (<a href="99_references.html#ref-Nogueira2008" role="doc-biblioref">2008</a>)</span> equations estimates across DBHs.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>if100<span class="sc">$</span>diff_agbs <span class="ot">&lt;-</span> if100<span class="sc">$</span>AGB_chave_dbh <span class="sc">-</span> if100<span class="sc">$</span>AGB_nog_dbh</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">ggplot</span>(if100, </span>
+<span id="cb19-4"><a href="#cb19-4"></a>       <span class="fu">aes</span>(<span class="at">x =</span> DAP, </span>
+<span id="cb19-5"><a href="#cb19-5"></a>           <span class="at">y =</span> diff_agbs)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb19-7"><a href="#cb19-7"></a>             <span class="fu">aes</span>(<span class="at">color =</span> nome_florabr)) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, </span>
+<span id="cb19-9"><a href="#cb19-9"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)<span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"DAP"</span>, <span class="at">y =</span> <span class="st">"Difference (Chave − Nogueira)"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13"></a>       <span class="at">title =</span> <span class="st">"AGB estimations difference by DBH"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33_estimate_biomass_files/figure-html/agb_dbh-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="comparing-biomass-estimates-using-only-dbh-and-using-dbh-height" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="comparing-biomass-estimates-using-only-dbh-and-using-dbh-height"><span class="header-section-number">8.9</span> Comparing biomass estimates using only DBH and using DBH + Height</h2>
+<p>Comparing AGB estimate using only DBH and using DBH + height obtained by Lidar. We will use results from <span class="citation" data-cites="Chave2014">Chave et al. (<a href="99_references.html#ref-Chave2014" role="doc-biblioref">2014</a>)</span> equations (with and without height).</p>
+<p>To plot the equations results in the same graph, we must convert data to LONG format.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>if100.red <span class="ot">&lt;-</span> <span class="fu">left_join</span>(</span>
+<span id="cb20-2"><a href="#cb20-2"></a>                      if100.red,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>                      if100 <span class="sc">%&gt;%</span> <span class="fu">select</span>(id_arv,</span>
+<span id="cb20-4"><a href="#cb20-4"></a>                                       AGB_chave_dbh, </span>
+<span id="cb20-5"><a href="#cb20-5"></a>                                       AGB_nog_dbh, </span>
+<span id="cb20-6"><a href="#cb20-6"></a>                                       AGB_melo_dbh),</span>
+<span id="cb20-7"><a href="#cb20-7"></a>                      <span class="at">by =</span> <span class="st">"id_arv"</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>                      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in left_join(if100.red, if100 %&gt;% select(id_arv, AGB_chave_dbh, : Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 531 of `x` matches multiple rows in `y`.
+ℹ Row 2661 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>if100.red_long <span class="ot">&lt;-</span> if100.red <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>                  <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-3"><a href="#cb22-3"></a>                              <span class="at">cols =</span> <span class="fu">c</span>(AGB_chave_dbh, </span>
+<span id="cb22-4"><a href="#cb22-4"></a>                                       AGB_nog_dbh, </span>
+<span id="cb22-5"><a href="#cb22-5"></a>                                       AGB_melo_dbh,</span>
+<span id="cb22-6"><a href="#cb22-6"></a>                                       AGB_chave_feld,</span>
+<span id="cb22-7"><a href="#cb22-7"></a>                                       AGB_chave_lidar),</span>
+<span id="cb22-8"><a href="#cb22-8"></a>                              <span class="at">names_to =</span> <span class="st">"equation"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9"></a>                              <span class="at">values_to =</span> <span class="st">"biomass"</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>                              )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Now let’s plot</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(if100.red_long, </span>
+<span id="cb23-2"><a href="#cb23-2"></a>                <span class="fu">aes</span>(<span class="at">x =</span> DAP, </span>
+<span id="cb23-3"><a href="#cb23-3"></a>                    <span class="at">y =</span> biomass, </span>
+<span id="cb23-4"><a href="#cb23-4"></a>                    <span class="at">color =</span> equation)) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span>            <span class="co"># pontos opcionais</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb23-8"><a href="#cb23-8"></a>              <span class="at">linewidth =</span> <span class="fl">1.2</span>,</span>
+<span id="cb23-9"><a href="#cb23-9"></a>              <span class="at">formula =</span> <span class="st">'y ~ 0 + x'</span>) <span class="sc">+</span> <span class="co"># linhas das equações</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-12"><a href="#cb23-12"></a>    <span class="at">title =</span> <span class="st">"Biomass–DBH Relationships Derived from Multiple Allometric Models"</span>,</span>
+<span id="cb23-13"><a href="#cb23-13"></a>    <span class="at">x =</span> <span class="st">"DBH (cm)"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14"></a>    <span class="at">y =</span> <span class="st">"Biomass (Mg)"</span>,</span>
+<span id="cb23-15"><a href="#cb23-15"></a>    <span class="at">color =</span> <span class="st">"Equation"</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33_estimate_biomass_files/figure-html/dbh_x_dbh_H-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Chave2014" class="csl-entry" role="listitem">
+Chave, Jérôme, Maxime Réjou-Méchain, Alberto Búrquez, Emmanuel Chidumayo, Matthew S. Colgan, Welington B. C. Delitti, Alvaro Duque, et al. 2014. <span>“Improved Allometric Models to Estimate the Aboveground Biomass of Tropical Trees.”</span> <em>Global Change Biology</em> 20: 3177–90. <a href="https://doi.org/10.1111/gcb.12629">https://doi.org/10.1111/gcb.12629</a>.
+</div>
+<div id="ref-Feldpausch2011" class="csl-entry" role="listitem">
+Feldpausch, T. R., L. Banin, O. L. Phillips, T. R. Baker, S. L. Lewis, C. A. Quesada, K. Affum-Baffoe, et al. 2011. <span>“Height-Diameter Allometry of Tropical Forest Trees.”</span> <em>Biogeosciences</em> 8: 1081–1106. <a href="https://doi.org/10.5194/bg-8-1081-2011">https://doi.org/10.5194/bg-8-1081-2011</a>.
+</div>
+<div id="ref-Fischer2024" class="csl-entry" role="listitem">
+Fischer, Fabian Jörg, Toby Jackson, Grégoire Vincent, and Tommaso Jucker. 2024. <span>“Robust Characterisation of Forest Structure from Airborne Laser Scanning—a Systematic Assessment and Sample Workflow for Ecologists.”</span> <em>Methods in Ecology and Evolution</em> 15 (October): 1873–88. <a href="https://doi.org/10.1111/2041-210X.14416">https://doi.org/10.1111/2041-210X.14416</a>.
+</div>
+<div id="ref-Melo2024" class="csl-entry" role="listitem">
+Melo, Antonio Willian Flores de, Adriano José Nogueira Lima, Marcus Vinicio Neves d’Oliveira, Joaquim dos Santos, I. Foster Brown, Eufran Ferreira do Amaral, Sonaira Souza da Silva, Igor Oliveira, Plínio Barbosa de Camargo, and Niro Higuchi. 2024. <span>“To Improve Estimates of Neotropical Forest Carbon Stocks More Direct Measurements Are Needed: An Example from the Southwestern Amazon.”</span> <em>Forest Ecology and Management</em> 570 (October). <a href="https://doi.org/10.1016/j.foreco.2024.122195">https://doi.org/10.1016/j.foreco.2024.122195</a>.
+</div>
+<div id="ref-Nogueira2008" class="csl-entry" role="listitem">
+Nogueira, Euler Melo, Philip Martin Fearnside, Bruce Walker Nelson, Reinaldo Imbrozio Barbosa, and Edwin Willem Hermanus Keizer. 2008. <span>“Estimates of Forest Biomass in the Brazilian Amazon: New Allometric Equations and Adjustments to Biomass from Wood-Volume Inventories.”</span> <em>Forest Ecology and Management</em> 256 (November): 1853–67. <a href="https://doi.org/10.1016/j.foreco.2008.07.022">https://doi.org/10.1016/j.foreco.2008.07.022</a>.
+</div>
+<div id="ref-Rjou-Mchain2017" class="csl-entry" role="listitem">
+Réjou-Méchain, Maxime, Ariane Tanguy, Camille Piponiot, Jérôme Chave, and Bruno Hérault. 2017. <span>“Biomass: An r Package for Estimating Above-Ground Biomass and Its Uncertainty in Tropical Forests.”</span> <em>Methods in Ecology and Evolution</em> 8 (September): 1163–67. <a href="https://doi.org/10.1111/2041-210X.12753">https://doi.org/10.1111/2041-210X.12753</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./32_tree_height_from_lidar_all_apus.html" class="pagination-link" aria-label="Workflow to extract tree height from Lidar CHM">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./34_modelling_H.html" class="pagination-link" aria-label="Modelling DBH x Height">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modelling DBH x Height</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,3 @@
+# Data Analisys {.unnumbered}
+
+We now proceed to the analysis. We estimate biomass using different approaches and develop a site-specific allometric equation, calibrated with data from additional forest inventories conducted in the Jamari National Forest.

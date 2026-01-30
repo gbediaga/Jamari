@@ -1,0 +1,341 @@
+# Comparing wood density databases {#sec-wood_databases}
+
+## Introduction
+
+This script compares biomass estimates derived from different wood density databases. We use the Global Wood Database [@Chave2009], available through the `BIOMASS` package, and the Brazilian Woods Database (<https://lpf.florestal.gov.br/en-us/brazilian-woods>) from Brazilian Forest Service.
+
+## Setup
+
+```{r libraries}
+#| message: false
+#| warning: false
+library(dplyr)
+library(sf)
+library(ggplot2)
+library(ggrepel)
+library(readr)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(BIOMASS)
+library(kableExtra)
+```
+
+## Comparing different wood databases
+
+BWD has many samples collected in Jamari Forest, as we can see below. We obtained the basic wood density information (g/m³) and the sample collection location for each species from the BWD website. There is no specific coordinate for the sampling location; therefore, we assigned a central coordinate to each collection location in order to determine the geographic region of origin of the sample.
+
+```{r bwd_map}
+#| warning: false
+bwd <- read.csv("data/wood_density/tabela_densidade_coordenadas.csv")
+
+bwd_clean <- bwd %>%
+  filter(!is.na(long), !is.na(lat))
+
+pts_bwd <- st_as_sf(
+  bwd_clean,
+  coords = c("long", "lat"),
+  crs = 4326   # WGS84 (graus decimais)
+)
+
+pts_bwd_count <- pts_bwd %>%
+  st_coordinates() %>%
+  as.data.frame() %>%
+  group_by(X, Y) %>%
+  summarise(n = n()) %>%
+  ungroup() %>%
+  st_as_sf(coords = c("X", "Y"), crs = st_crs(pts_bwd))
+
+brasil <- ne_countries(
+  scale = "medium",
+  country = "Brazil",
+  returnclass = "sf"
+)
+
+ggplot() +
+  geom_sf(data = brasil, 
+          fill = "gray95", 
+          color = "gray40") +
+  geom_sf(data = pts_bwd_count, 
+          aes(size = n), 
+          color = "red", 
+          alpha = 0.7) +
+  geom_text_repel(
+    data = pts_bwd_count,
+    aes(label = n, 
+        geometry = geometry),
+    stat = "sf_coordinates",
+    size = 3,
+    min.segment.length = 0
+  ) +
+  scale_size_continuous(name = "Number of samples") +
+  coord_sf() +
+  theme_minimal() +
+  labs(
+    title = paste("Brazilian woods database samples locations (",
+                  nrow(pts_bwd),
+                  "samples )."),
+            x = "Longitude",
+            y = "Latitude"
+  )
+```
+
+## Estimating biomass with BWD
+
+We will use permanent plots measurements from Jamari National Forest. The Wood density estimates presented here are only for species the species present in the permanent plots.
+
+In BWD there are multiple samples for the same species. We calculated mean basic wood density for each species with multiple samples. Then we converted bwd table to `BIOMASS` wood density table format.
+
+We retrieved wood density from Gobal Wood Database [@Chave2009] using `BIOMASS`.
+
+```{r comparing_dbs}
+
+pps <- read.csv("output/pps/tabelao_pps.csv")
+
+message("Permanent plots of APUs: \n",paste(unique(paste(pps$UMF,
+                                                         pps$UPA)),
+                                                         collapse = "\n"
+                                                         ))
+
+message("Years of measurement:\n",paste(unique(pps$p23_cdmedicao),
+                                         collapse = "\n"))
+
+
+bwd <- bwd %>%
+  group_by(nome_cientifico) %>%
+  summarise(mean_wd = mean(densidade_basica), 
+            .groups = "drop")
+
+bwd_biomass <- bwd %>%
+  tidyr::separate("nome_cientifico",
+                  c("genero","epiteto"),
+                  " ")
+names(bwd_biomass) <- c("genus","species","wd")
+
+taxo <- data.frame(
+  genusCorrected   = pps$genero,
+  speciesCorrected = pps$epiteto,
+  stringsAsFactors = FALSE
+)
+
+w_density <- getWoodDensity(genus = taxo$genusCorrected,
+                            species = taxo$speciesCorrected)
+
+densidades <- bwd_biomass %>%
+                  inner_join(w_density,
+                  by = c("genus",
+                         "species")) %>%
+                  select(genus,
+                         species,
+                         WD_global = meanWD,
+                         WD_brazil = wd)
+
+densidades <- unique(densidades)
+
+ggplot(densidades, aes(x = WD_global, 
+                       y = WD_brazil)) +
+  geom_point(alpha = 0.7) +
+  geom_abline(slope = 1, 
+              intercept = 0, 
+              linetype = "dashed") +
+  labs(
+    x = "Global Wood density database",
+    y = "Brazilian Woods density database",
+    title = paste("Comparison of wood density estimates for",
+                  nrow(densidades),
+                  "species between BWD and GWD")
+  ) +
+  theme_minimal()
+
+text <- paste("BWD has wood density of",
+              length(unique(bwd$nome_cientifico)),
+              "species.",
+              "BWD and GWD share", 
+              nrow(densidades),
+              "species in common.")
+
+```
+
+::: callout-note
+`r text`
+:::
+
+We can use Bland-Altman graphic to see differences between wood density databases. I will highlight species that are out of limits of agreement.
+
+```{r Bland-altman}
+#| warning: false
+
+densidades$mean_density <- (densidades$WD_global + densidades$WD_brazil) / 2
+densidades$diff_density <- densidades$WD_global - densidades$WD_brazil
+
+bias <- mean(densidades$diff_density, 
+             na.rm = TRUE)
+sd_diff <- sd(densidades$diff_density, 
+              na.rm = TRUE)
+
+loa_inf <- bias - 1.96 * sd_diff
+loa_sup <- bias + 1.96 * sd_diff
+
+densidades <- densidades %>%
+                 mutate(fora_loa = diff_density < loa_inf | diff_density > loa_sup)
+
+densidades$especie <- paste(densidades$genus,
+                            densidades$species,
+                            sep = " ")
+
+ggplot(densidades, aes(x = mean_density, 
+                       y = diff_density,
+                       color = especie)) +
+  geom_point(alpha = 0.7) +
+  geom_hline(yintercept = mean(densidades$diff_density,
+                               na.rm = TRUE),
+             linetype = "dashed") +
+  geom_hline(yintercept = mean(densidades$diff_density,
+                               na.rm = TRUE) +
+                           1.96 * sd(densidades$diff_density,
+                                     na.rm = TRUE),
+             linetype = "dotted") +
+  geom_hline(yintercept = mean(densidades$diff_density,
+                               na.rm = TRUE) -
+                           1.96 * sd(densidades$diff_density,
+                                     na.rm = TRUE),
+             linetype = "dotted") +
+    geom_text_repel(
+    data = subset(densidades, fora_loa),
+    aes(label = especie),
+    size = 3,
+    show.legend = FALSE
+  ) +
+  labs(
+    x = "Mean wood density",
+    y = "Difference between methods",
+    title = "Bland–Altman: wood density databases"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+Let's see the difference in biomass estimation.
+
+Total tree height was obtained using the `retrieveH` function from the `BIOMASS` package, based on the central coordinates of the Jamari National Forest (Flona de Jamari). Biomass was estimated using the `computeAGB` function from the `BIOMASS` package, using the total height derived from `retrieveH` and the two wood density databases (the Global Wood Density Database and the Brazilian Wood Density Database). The BWD does not provide estimates of basic wood density for all species. When species-level values are unavailable, estimates from Global Wood Database will be used.
+
+Each point represents one year of measurement for a plot. I will highlight plots with biomass estimation out of limits of agreement.
+
+```{r biomass_wds}
+#| warning: false
+
+w_density_BR <- left_join(w_density, 
+                          bwd_biomass, 
+                          by = c("species",
+                                 "genus"), 
+                          multiple = "any") %>% 
+                
+                mutate(wd = ifelse(!is.na(wd), 
+                                   wd, 
+                                   meanWD)) %>% 
+                select(family, 
+                       genus, 
+                       species, 
+                       wd)
+
+
+altura <- retrieveH(D = pps$diametrocm,
+                    coord = c(-62.99,
+                                   -9.11
+                                   ))
+
+
+pps$altura <- altura$H
+
+pps$AGB_Global <- computeAGB(D = pps$diametrocm,
+                             WD = w_density$meanWD,
+                             H = pps$altura)
+
+pps$AGB_Brazilian <- computeAGB(D = pps$diametrocm,
+                                WD = w_density_BR$wd,
+                                H = pps$altura)
+
+pps$plot <- paste(pps$UMF,pps$UPA,
+                  "plot",
+                  pps$p23_cdparcela,
+                  pps$p23_cdmedicao)
+
+
+pps_plots <- pps %>% 
+              group_by(plot,
+                       p23_cdmedicao) %>% 
+              summarise("AGB_Global" = sum(AGB_Global),
+                        "AGB_Brazilian" = sum(AGB_Brazilian))
+
+pps_plots$mean_density <- (pps_plots$AGB_Global + pps_plots$AGB_Brazilian) / 2
+pps_plots$diff_density <- pps_plots$AGB_Global - pps_plots$AGB_Brazilian
+
+bias <- mean(pps_plots$diff_density, 
+             na.rm = TRUE)
+sd_diff <- sd(pps_plots$diff_density, 
+              na.rm = TRUE)
+
+loa_inf <- bias - 1.96 * sd_diff
+loa_sup <- bias + 1.96 * sd_diff
+
+pps_plots <- pps_plots %>%
+            mutate(fora_loa = diff_density < loa_inf | diff_density > loa_sup)
+
+
+ggplot(pps_plots, aes(x = mean_density, 
+                      y = diff_density,
+                      color = plot)) +
+  geom_point(alpha = 0.7) +
+  geom_hline(yintercept = mean(pps_plots$diff_density,
+                               na.rm = TRUE),
+             linetype = "dashed") +
+  geom_hline(yintercept = mean(pps_plots$diff_density,
+                               na.rm = TRUE) +
+                           1.96 * sd(pps_plots$diff_density,
+                                     na.rm = TRUE),
+             linetype = "dotted") +
+  geom_hline(yintercept = mean(pps_plots$diff_density,
+                               na.rm = TRUE) -
+                           1.96 * sd(pps_plots$diff_density,
+                                     na.rm = TRUE),
+             linetype = "dotted") +
+    geom_text_repel(
+    data = subset(pps_plots, 
+                  fora_loa),
+    aes(label = plot),
+    size = 3,
+    show.legend = FALSE
+  ) +
+  labs(
+    x = "Mean plot AGB",
+    y = "Difference between methods",
+    title = "Bland-Altman: Plot AGB estimates with different wood density databases"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+dif_AGBs <- pps_plots %>%
+  mutate(
+    diff = abs(AGB_Global - AGB_Brazilian),
+    diff_perc = (diff / AGB_Global) * 100
+  ) %>%
+  select(plot, AGB_Global, AGB_Brazilian, diff, diff_perc) %>%
+  arrange(desc(diff_perc)) %>%
+  mutate(diff_perc = round(diff_perc, 2))
+
+
+  kable(dif_AGBs,
+    caption = "Absolute and relative difference between AGBs",
+    col.names = c("Plot", "AGB Global", "AGB Brazilian", "Difference", "Difference (%)")
+  ) %>%
+  kable_styling(full_width = FALSE, position = "center") %>%
+    kableExtra::scroll_box(height = "400px", width = "100%")
+
+
+text <- max(dif_AGBs$diff_perc)
+
+```
+
+::: callout-important
+We can see as much as `r text` % difference in biomass estimation due to the different wood density databases.
+:::

@@ -1,8 +1,12 @@
-# PPS prep {.unnumbered}
+# Preparation of Permament Plots data {#sec-pps_prep}
 
 ## Introduction
 
-This is a script to merge all Permanent Plots (PP) tables from Floresta Nacional do Jamari (Flona do Jamari) used in my Phd project. Those PPs are within Annual Production Units (APU) from Flona do Jamari that had at least three Lidar flights. PPs tables were provided by Madeflona. There is a xlsx file for each year measurement on each APU. We organized the files in subdirectories following this scheme: *./data/tables/FMU_NAME/APU_NAME/xlxs files*.
+This script merges all Permanent Plot (PP) tables from the Jamari National Forest (Flona do Jamari) used in my PhD project. These PPs are located within Annual Production Units (APUs) that have been covered by at least three LiDAR flights.
+
+The PP tables were provided by Madeflona. For each APU and each measurement year, there is a corresponding Excel (.xlsx) file. The files were organized into subdirectories following the structure:
+
+*./data/pps/tables/FMU_NAME/APU_NAME/xlxs files*.
 
 ## Setup
 
@@ -16,6 +20,7 @@ library(readxl)
 library(stringr)
 library(kableExtra)
 library(openxlsx)
+library(florabr)
 ```
 
 ## Permanent plots information
@@ -28,16 +33,20 @@ All PPs have 2,500 m^2^ (50 x 50 mts). Below you can see PPs distribution in the
 #| message: false
 #| warning: false
 
-flona_jamari <- st_read("data/pps/geo/flona_jamari.shp")
+flona_jamari <- st_read("data/pps/geo/flona_jamari.shp",
+                        quiet = TRUE)
 st_crs(flona_jamari) <- 4674
 
-umfs <- st_read("data/pps/geo/umfs_RO.shp")
+umfs <- st_read("data/pps/geo/umfs_RO.shp",
+                quiet = TRUE)
 umfs <- umfs[2:3, ]
 
 st_crs(umfs) <- 4674
 
-pps_umf1 <- st_read("data/pps/geo/handheld_gps/JAM1_PP.shp")
-pps_umf4 <- st_read("data/pps/geo/handheld_gps/JAM4_U15_PP.shp")
+pps_umf1 <- st_read("data/pps/geo/handheld_gps/JAM1_PP.shp",
+                    quiet = TRUE)
+pps_umf4 <- st_read("data/pps/geo/handheld_gps/JAM4_U15_PP.shp",
+                    quiet = TRUE)
 
 st_crs(pps_umf1) <- 31980
 st_crs(pps_umf4) <- 31980
@@ -145,11 +154,18 @@ lista.pps <- list.files(".",
 We have xlsx and xls files. We will do a *loop* to:
 
 1.  Use `read.excel` to read the file;
+
 2.  Retrieve the APU and FMU information from the directories and add corresponding columns;
+
 3.  Add a DBH column in cm (by dividing `diametromm` by ten);
+
 4.  Add a column with the species' common name (retrieved in the `Especie` column);
+
 5.  Add separate columns for the epithet and genus extracted from the scientific name (retrieved in the `Especie` column);
-6.  Add a unique individual numeric code column in the final table.
+
+6.  Add information about exploitation in the APU (year, total area, exploited area, cutting intensity, authorized volume);
+
+7.  Add a unique individual numeric code column in the final table.
 
 ```{r loop}
 #| message: false 
@@ -172,19 +188,54 @@ for(i in 1:length(lista.pps)) {
   upa.table$nome_pop <- str_extract(upa.table$Especie, 
                                     ".+?(?=\\s)")
   
-  # Separa o nome científico  
-  upa.table <- upa.table %>%
-    mutate(Especie =  str_extract(upa.table$Especie, 
-                                  "(?<=\\[).+?(?=\\])")) %>%
-    tidyr::separate(`Especie`,
-                    c("genero",
-                      "epiteto"),
-                      " ")
-  
+   # Separa o nome científico  
+   upa.table <- upa.table %>%
+                      mutate(Especie =  str_extract(upa.table$Especie, 
+                                                    "(?<=\\[).+?(?=\\])")) %>%
+                      tidyr::separate(`Especie`,
+                                      c("genero",
+                                        "epiteto"),
+                                        " ")
+   
   tabelao.pps <<- rbind(tabelao.pps,
                         upa.table)
   
 }
+
+tabelao.pps$cod_upa <- paste(tabelao.pps$UMF,
+                             tabelao.pps$UPA,
+                             sep="_")
+
+concessions <- read_excel("data/pps/tables/UPAs_concessoes_planilha.xlsx")
+
+# Mudar para código da UMF para algarismos romanos
+concessions$UMF <- as.roman(concessions$UMF)
+
+
+concessions <- concessions %>%
+                      filter(Imóvel == "Flona do Jamari") %>%
+                      mutate("cod_upa" = paste("UMF",
+                                              UMF,
+                                              "UPA",
+                                              UPA,
+                                              sep = "_"))
+
+tabelao.pps <- tabelao.pps %>%
+                    left_join(concessions %>%
+                                select(cod_upa,
+                                        Ano,
+                                       `Área Tota`,
+                                       `Área Efet`,
+                                       Intensidad,
+                                       `Volume Tor`),
+                                by = "cod_upa") %>%
+                    rename(exploit_year = Ano,
+                           apu_area_ha = `Área Tota`,
+                           authorized_area_ha = `Área Efet`,
+                           cutting_intens_m3_ha = Intensidad,
+                           authorized_vol_m3 = `Volume Tor`)
+
+
 
 tabelao.pps$cod_indiv <- paste(tabelao.pps$UMF,
                                tabelao.pps$UPA,
@@ -192,11 +243,154 @@ tabelao.pps$cod_indiv <- paste(tabelao.pps$UMF,
                                tabelao.pps$p23_cdsubparcela,
                                tabelao.pps$p23_nrindividuo,
                                sep="_")
+```
+
+Correct scientific names
+
+```{r correct_names}
+###########################################################################################
+
+#Corrige o nome científico
+###########################################################################################
+
+###########################################################################################
+
+
+# Clean scientific names: 
+  # 1. Remove "cf."
+  # 2. Remove anything under parentheses.
+  tabelao.pps$nome_corrigido <- trimws(
+                                  gsub("\\s*cf\\.\\s*|\\([^)]*\\)",
+                                       " ",
+                                       paste(tabelao.pps$genero,
+                                             tabelao.pps$epiteto),
+                                       ignore.case = T
+                                       )
+                                     )
+# Função para limpar caracteres do excel
+ # get_binomial não estava funcionando para "Chrysophyllum lucentifolium var. pachycarpa"
+
+limpa_nome <- function(x) {
+  x <- as.character(x)
+  x <- iconv(x, from = "", to = "UTF-8")
+  x <- gsub("\u00A0", " ", x)              # NBSP
+  x <- gsub("[[:space:]]+", " ", x)        # múltiplos espaços
+  trimws(x)
+}
+
+
+
+  # Get the binomial name (epithet + genus)
+  
+  tabelao.pps$nome_corrigido <-  get_binomial(limpa_nome(tabelao.pps$nome_corrigido),
+                                              include_subspecies = FALSE,
+                                              include_variety = FALSE)
+
+
+#sub("^((\\S+)\\s+(\\S+)).*$", "\\1", "Chrysophyllum lucentifolium var. pachycarpa")
+
+
+
+tabelao.pps$nome_corrigido <- sub(
+  "^((\\S+)\\s+(\\S+)).*$",
+  "\\1",
+  gsub("[[:space:]]+", " ",
+       trimws(as.character(tabelao.pps$nome_corrigido)))
+)
+
+
+
+if (!file.exists("data/taxo/pps_florabr_taxo.rds")) {
+   
+  
+  
+  # Check names with florabr
+  
+  floraBR <- load_florabr("C:/Gustavo/Doutorado/Dados/Taxo_databases/florabr")
+
+   res_florabr <- check_names(data = floraBR,
+                                     max_distance = 0.1,
+                                     species = tabelao.pps$nome_corrigido,
+                                     parallel = T,
+                                     ncores = 12,
+                                     progress_bar = T
+                                       )
+   
+   # Resolve some species mannualy
+
+  write.csv(res_florabr$input_name[res_florabr$Spelling == "Not_found"],
+             file = "data/taxo/manually_corrected_species_pps.csv")
+   
+   
+      # Pouteria pachycarpa
+   # https://lpf.florestal.gov.br/pt-br/?option=com_madeirasbrasileiras&view=especieestudada&especieestudadaid=206
+ #  res_florabr$acceptedName[res_florabr$input_name == "Chrysophyllum lucentifolium var. pachycarpa"] <- "Chrysophyllum lucentifolium"
+   # não funciona por causa de caracteres do excel
+   
+   # Ni 
+   # Non identified species
+   res_florabr$acceptedName[res_florabr$input_name == "Ni"] <- "NI"
+   res_florabr$acceptedName[res_florabr$input_name == "Ni ni"] <- "NI"
+   res_florabr$acceptedName[res_florabr$input_name == "Ni sp."] <- "NI"
+   
+   
+  saveRDS(res_florabr, "data/taxo/pps_florabr_taxo.rds")
+                                                } else {
+   res_florabr <- readRDS("data/taxo/pps_florabr_taxo.rds")
+                                                      }
+
+  
+res_florabr_unique <- res_florabr %>%
+  distinct(input_name, .keep_all = TRUE)
+
+tabelao.pps <- tabelao.pps %>%
+  left_join(
+    res_florabr_unique %>%
+      select(input_name, acceptedName),
+    by = c("nome_corrigido" = "input_name")
+  ) %>%
+  mutate(
+    nome_florabr = case_when(
+      # keep name when second word is "sp.", since florabr assign a random name in these cases
+      str_detect(nome_corrigido, "^\\S+\\s+sp\\.$") ~ nome_corrigido,
+      TRUE ~ acceptedName
+    )
+  ) %>%
+  select(-acceptedName)
+
+# Get corrected Genus and Epithet
+
+tabelao.pps$genero <- sub("^([^ ]+).*$", "\\1", tabelao.pps$nome_florabr)
+
+tabelao.pps$epiteto <- sub("^\\S+\\s+(\\S+).*$", "\\1", tabelao.pps$nome_florabr)
 
 write.csv(tabelao.pps,
           "output/pps/tabelao_pps.csv")
 
+
+sp <- read.csv("data/taxo/manually_corrected_species_pps.csv",
+stringsAsFactors = FALSE)
+
+text <- {
+species <- sp$x
+species <- species[!is.na(species)]
+
+if (length(species) > 0) {
+paste(
+"Species corrected manually (n =",
+length(species),
+"):",
+paste(species, collapse = ", ")
+)
+} else {
+"No species required manual correction."
+}
+}
 ```
+
+::: callout-warning
+`r text`
+:::
 
 Now we have all PPs data merged in one main table (*tabelao.pps*). Let's take a look at the data.
 
@@ -214,8 +408,7 @@ tabelao.pps %>%
 sp_indiv <- tabelao.pps %>%
     group_by(UMF, 
              UPA) %>%
-    summarise("Number of species" = n_distinct(paste0(genero,
-                                                      epiteto)),
+    summarise("Number of species" = n_distinct(nome_florabr),
               "Number of individuals" = n(),
               .groups = "drop")
 
@@ -223,8 +416,7 @@ sp_indiv_total <- tabelao.pps %>%
   summarise(
     UMF = "Total",
     UPA = "-",
-    "Number of species" = n_distinct(paste0(genero, 
-                                            epiteto)),
+    "Number of species" = n_distinct(nome_florabr),
     "Number of individuals" = n()
             )
 

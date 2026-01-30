@@ -1,0 +1,373 @@
+# Estimate biomass with different total height estimations {#sec-estimate_biomass}
+
+## Introduction
+
+This script estimates Above-Ground Biomass (AGB) for a given Annual Production Unit in the Jamari Forest Concession using two different total height estimates: one derived from LiDAR (see @sec-height_from_lidar), and the other obtained via the `rerieveH` function from `BIOMASS` package (@Rjou-Mchain2017).
+
+We also estimate biomass with only DBH using three different equations: @Chave2014, @Nogueira2008 and @Melo2024.
+
+Finally, the results from these approaches are compared to assess the impact of height estimation and equation choice on biomass estimates.
+
+## Lecture
+
+-   CHM generation: @Fischer2024.
+-   BIOMASS package: @Rjou-Mchain2017.
+-   Chave's allometric equation: @Chave2014.
+-   Nogueira's allometric equation: @Nogueira2008.
+-   Melo's allometric equation: @Melo2024.
+
+## Setup
+
+You need `BIOMASS` package to estimate the biomass, `dplyr` and `tidyr` to manipulate tabular data and `ggplot` to visualization.
+
+```{r libs}
+#| message: false 
+#| warning: false 
+
+library(BIOMASS) 
+library(dplyr) 
+library(tidyr) 
+library(ggplot2)
+```
+
+## Allometric equations parameters
+
+Some parameters used to build the allometric equations used in this workflow. It is important to see if the allometric equation is suitable for the data.
+
+```{r allometric_table}
+allo_equations <- openxlsx::read.xlsx("data/allometric_eq/Equações alométricas.xlsx",
+                                     rows = c(1, 3, 8, 20, 22),
+                                     cols = 1:7)
+
+allo_equations %>%
+   kableExtra::kbl(caption = "Allometric equations parameters") %>%
+   kableExtra::kable_classic(full_width = FALSE)
+```
+
+## Load the Inventory
+
+Let's load the Commercial Forest Inventory with the different height estimations.
+
+```{r if100}
+if100 <- read.csv("output/tree_height/all_tables.csv")
+```
+
+Making sure what Annual Production Unit and Forest Management Unit we are working with.
+
+```{r which_apu}
+print(paste0(if100$flona[1],
+             " UMF ",
+             if100$umf[1],
+             " UPA ",
+             if100$upa[1]))
+```
+
+## Retrieving height from `BIOMASS`
+
+`retriveH` function in `` `BIOMASS `` package estimates tree total height using allometric equation from @Feldpausch2011, based on the location of the trees. It uses a Weibull function to estimate height from the diameter of the tree, based on a large number of plots.
+
+The coordinates in this script refer to Jamari National Forest.
+
+```{r retrieveH}
+altura_feld <- retrieveH(D = if100$DAP,
+                         coord = c(-62.99,
+                                   -9.11
+                                   ))
+
+if100$altura_feld <- altura_feld$H
+```
+
+See relation between height from `retrieveH` and obtained with Lidar.
+
+```{r h_x_h}
+#| warning: false
+
+ggplot(if100, 
+       aes(x = z_lidar, 
+           y = altura_feld)) +
+  geom_point(alpha = 0.7, 
+             aes(color = nome_florabr)
+             ) +
+  geom_smooth(method = "lm", 
+              se = FALSE, 
+              color = "black",
+              formula = 'y ~ 0 + x') +
+  theme_minimal() +
+  labs(
+    title = "Lidar height x Feldpausch height",
+    x = "Lidar height (m)",
+    y = "Feldpausch height (m)"
+#    ,color = "Species"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5, 
+                              size = 14, 
+                              face = "bold")
+    ,legend.position="none"
+ #   ,legend.title = element_text(face = "bold")
+  ) +
+  geom_abline() +
+  ggpubr::stat_regline_equation(formula = 'y ~ 0 + x')
+```
+
+## Retrieving wood density
+
+Then we correct scientific names in the table. For this we will use `correctTaxo` from `BIOMASS`. This function needs a "genus" and a "species" column.
+
+```{r wd}
+#| output: false
+# 
+if100 <- if100 %>% 
+              separate(nome_florabr,
+                      into = c("genus",
+                               "epithet"),
+                      sep = " ",
+                      extra = "merge",
+                      remove = F)
+
+#taxo <- correctTaxo(genus=if100$genus,
+#                    species=if100$epithet,
+#                    useCache = T)
+
+w_density <- getWoodDensity(genus = if100$genus,
+                            species = if100$epithet)
+```
+
+## Estimating biomass
+
+### Estimating biomass with total height
+
+We estimated only some of the commercial species tree height using Lidar. We will remove all trees without Lidar estimated height, so we can compare AGB estimates. We need a new *taxo* for the reduced data frame.
+
+```{r taxo}
+#| output: false
+
+if100.red <- if100[!is.na(if100$z_lidar), ]
+
+#taxo.red <- correctTaxo(genus=if100.red$genus,
+#                        species=if100.red$epithet,
+#                        useCache = F)
+```
+
+Then we get the wood density of each species.
+
+```{r wd.red}
+#| message: false
+#| warning: false
+w_density.red <- getWoodDensity(genus = if100.red$genus,
+                                species = if100.red$epithet)
+```
+
+Compute AGB with @Chave2014 equation and @Feldpausch2011 height.
+
+```{r chave_feld}
+if100.red$AGB_chave_feld <- computeAGB(D = if100.red$DAP,
+                                       WD = w_density.red$meanWD,
+                                       H = if100.red$altura_feld)
+# AGB = 0.0673 * (WD * H * D^2)^0.976
+```
+
+Compute AGB with @Chave2014 equation and Lidar height.
+
+```{r chave_lidar}
+if100.red$AGB_chave_lidar <- computeAGB(D = if100.red$DAP,
+                                        WD = w_density.red$meanWD,
+                                        H = if100.red$z_lidar)
+# AGB = 0.0673 * (WD * H * D^2)^0.976
+```
+
+Now let's compare the different AGB estimates.
+
+```{r agb_x_agb}
+ggplot(if100.red, 
+       aes(x = AGB_chave_feld, 
+           y = AGB_chave_lidar)) +
+  geom_point(alpha = 0.7, 
+             aes(color = nome_florabr)) +
+  geom_smooth(method = "lm", 
+              se = FALSE, 
+              color = "black",
+              formula = 'y ~ 0 + x') +
+  theme_minimal() +
+  labs(
+    title = "AGB with Feldpausch height x AGB with Lidar height",
+    x = "Feldpausch AGB (Mg)",
+    y = "Lidar AGB (Mg)",
+    color = "Species"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5, 
+                              size = 14, 
+                              face = "bold"),
+    legend.title = element_text(face = "bold")
+    ,legend.position="none"
+  ) +
+  ggpubr::stat_regline_equation(formula = 'y ~ 0 + x')
+```
+
+Is the difference between the biomass estimates different across the DBHs? Comparing AGB estimates with different heights estimates across DBHs.
+
+```{r agb_height}
+if100.red$diff_agbs_h <- if100.red$AGB_chave_feld - if100.red$AGB_chave_lidar
+
+ggplot(if100.red, 
+       aes(x = DAP, 
+           y = diff_agbs_h)) +
+  geom_point(alpha = 0.5, 
+             aes(color = nome_florabr)) +
+  geom_hline(yintercept = 0, 
+             linetype = "dashed") +
+  theme_minimal() +
+  theme(,legend.position="none")+
+  labs(x = "DAP", y = "Difference (AGB with H by Feldpausch − AGB with H by Lidar)",
+       title = "AGB estimations difference by DBH")
+```
+
+### Estimating biomass using only DBH
+
+We will use @Chave2014, @Nogueira2008 e @Melo2024 equations to estimate AGB using only DBH.
+
+It is important to point out that @Nogueira2008 and @Melo2024 uses only DBH, whereas @Chave2014 uses, in addition to DBH, wood density and a variable representing environmental stress (see @Rjou-Mchain2017 for the minor modification in @Chave2014 equation used in `BIOMASS`).
+
+```{r only_dbh}
+if100$AGB_chave_dbh <- computeAGB(D = if100$DAP,
+                                  WD = w_density$meanWD,
+                                  coord = c(-62.99,
+                                            -9.11))
+# AGB =  exp(-2,024 - 0,896 * E + 0,920 * ln(WD) + 2,795 * ln(DAP) - 0,0461 * [ln(DAP)^2])
+
+if100$AGB_nog_dbh <- (exp(-1.716 + 2.413 * log(if100$DAP))) / 1000
+# We have to divide results by 1000 because equation gives AGB in kg
+
+if100$AGB_melo_dbh <- (0.064 * (if100$DAP^2.671) + 3.69) / 1000
+# We have to divide results by 1000 because equation gives AGB in kg
+```
+
+To plot the three equations results in the same graph, we must convert data to LONG format.
+
+```{r to_long}
+df_long <- if100 |>
+  pivot_longer(
+    cols = c(AGB_chave_dbh, AGB_nog_dbh, AGB_melo_dbh),
+    names_to = "equation",
+    values_to = "biomass"
+  )
+```
+
+Now let's plot them.
+
+```{r plot_3_eqs}
+ggplot(df_long, 
+       aes(x = DAP, 
+           y = biomass, 
+           color = equation)) +
+  geom_point(alpha = 0.3) +            # pontos opcionais
+  geom_smooth(method = "lm",
+              se = FALSE, 
+              linewidth = 1.2,
+              formula = 'y ~ 0 + x') + # linhas das equações
+  theme_minimal() +
+  labs(
+    title = "Biomass–DBH Relationships Derived from Multiple Allometric Models",
+    x = "DBH (cm)",
+    y = "Biomass (Mg)",
+    color = "Equation"
+  )
+```
+
+Now let's compare the different AGB estimates.
+
+```{r agb_x_agb_2}
+ggplot(if100, 
+       aes(x = AGB_chave_dbh, 
+           y = AGB_nog_dbh)) +
+  geom_point(alpha = 0.7, 
+             aes(color = nome_florabr)) +
+  geom_smooth(method = "lm", 
+              se = FALSE, 
+              color = "black",
+              formula = 'y ~ 0 + x') +
+  theme_minimal() +
+  labs(
+    title = "AGB Chave eq. (DBH) x AGB Nogueira eq. (DBH)",
+    x = "Chave eq AGB (Mg)",
+    y = "Nogueira eq AGB (Mg)",
+    color = "Species"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5, 
+                              size = 14, 
+                              face = "bold"),
+    legend.title = element_text(face = "bold")
+    ,legend.position="none"
+  ) +
+  ggpubr::stat_regline_equation(formula = 'y ~ 0 + x')
+```
+
+Is the difference between the biomass estimates different across the DBHs? Comparing @Chave2014 x @Nogueira2008 equations estimates across DBHs.
+
+```{r agb_dbh}
+if100$diff_agbs <- if100$AGB_chave_dbh - if100$AGB_nog_dbh
+
+ggplot(if100, 
+       aes(x = DAP, 
+           y = diff_agbs)) +
+  geom_point(alpha = 0.5, 
+             aes(color = nome_florabr)) +
+  geom_hline(yintercept = 0, 
+             linetype = "dashed") +
+  theme_minimal() +
+  theme(legend.position="none")+
+  labs(x = "DAP", y = "Difference (Chave − Nogueira)",
+       title = "AGB estimations difference by DBH")
+```
+
+## Comparing biomass estimates using only DBH and using DBH + Height
+
+Comparing AGB estimate using only DBH and using DBH + height obtained by Lidar. We will use results from @Chave2014 equations (with and without height).
+
+To plot the equations results in the same graph, we must convert data to LONG format.
+
+```{r to_long2}
+if100.red <- left_join(
+                      if100.red,
+                      if100 %>% select(id_arv,
+                                       AGB_chave_dbh, 
+                                       AGB_nog_dbh, 
+                                       AGB_melo_dbh),
+                      by = "id_arv"
+                      )
+
+if100.red_long <- if100.red |>
+                  pivot_longer(
+                              cols = c(AGB_chave_dbh, 
+                                       AGB_nog_dbh, 
+                                       AGB_melo_dbh,
+                                       AGB_chave_feld,
+                                       AGB_chave_lidar),
+                              names_to = "equation",
+                              values_to = "biomass"
+                              )
+```
+
+Now let's plot
+
+```{r dbh_x_dbh_H}
+ggplot(if100.red_long, 
+                aes(x = DAP, 
+                    y = biomass, 
+                    color = equation)) +
+  geom_point(alpha = 0.3) +            # pontos opcionais
+  geom_smooth(method = "lm",
+              se = FALSE, 
+              linewidth = 1.2,
+              formula = 'y ~ 0 + x') + # linhas das equações
+  theme_minimal() +
+  labs(
+    title = "Biomass–DBH Relationships Derived from Multiple Allometric Models",
+    x = "DBH (cm)",
+    y = "Biomass (Mg)",
+    color = "Equation"
+  )
+
+```

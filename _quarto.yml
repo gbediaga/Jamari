@@ -11,19 +11,20 @@ book:
     - part: 10_data_prep.qmd
       chapters: 
         - 11_pps_prep.qmd
+        - 12_harmonizing_pps_data.qmd
+        - 13_merge_if100_romaneio.qmd
+    - part: 20_data_exploration.qmd
+      chapters: 
+        - 21_data_exploration.qmd
+        - 22_wood_density_databases.qmd
+    - part: 30_data_analisys.qmd
+      chapters: 
+        - 31_tree_height_from_lidar.qmd
+        - 32_tree_height_from_lidar_all_apus.qmd
+        - 33_estimate_biomass.qmd
+        - 34_modelling_H.qmd
   appendices:
     - 99_references.qmd
-    
-    #     - 12_if100_prep.qmd
-    # - part: 20_data_exp.qmd
-    #   chapters: 
-    #     - 21_wd_exp.qmd
-    # - part: 30_data_analisys.qmd
-    #   chapters: 
-    #     - 31_tree_height_from_lidar.qmd
-    #     - 32_tree_height_from_lidar_all_apus.qmd
-    #     - 33_estimate_biomass.qmd
-    #     - 34_gustavo_with_Lidar_H.qmd
 
 bibliography: mendeley.bib
 
@@ -38,6 +39,6 @@ format:
     
   # pdf:
   #   documentclass: scrreprt
+engine: knitr
 
 editor: visual
-

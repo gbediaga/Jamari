@@ -1,1 +1,3 @@
-# Data prep {.unnumbered}
+# Data preparation {.unnumbered}
+
+The study area is located within the [Forest Concession of the Jamari National Forest](https://www.gov.br/florestal/pt-br/assuntos/concessoes-e-monitoramento/concessoes-florestais-em-andamento/floresta-nacional-do-jamari-ro-2/floresta-nacional-do-jamari-ro-1). We use data from permanent plots, commercial forest inventories, and airborne LiDAR surveys. In this section, we describe how these datasets were harmonized and corrected prior to analysis.

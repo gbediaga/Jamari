@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="G. Bediaga">
-<meta name="dcterms.date" content="2026-01-19">
+<meta name="dcterms.date" content="2026-01-30">
 
 <title>Phd scripts book</title>
 <style>
@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -121,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./10_data_prep.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data prep</span></a>
+ <span class="menu-text">Data preparation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -130,20 +150,90 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11_pps_prep.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PPS prep</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation of Permament Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_harmonizing_pps_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_merge_if100_romaneio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+            <a href="./20_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Exploration</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_wood_density_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./30_data_analisys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Analisys</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31_tree_height_from_lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./32_tree_height_from_lidar_all_apus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./33_estimate_biomass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./34_modelling_H.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modelling DBH x Height</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./99_references.html" class="sidebar-item-text sidebar-link">
@@ -188,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 19, 2026</p>
+      <p class="date">January 30, 2026</p>
     </div>
   </div>
   
@@ -202,16 +292,49 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level1 unnumbered">
 <h1 class="unnumbered">Overview</h1>
-<p>This book This book brings together the scripts developed within the PhD project “Evaluation of above-ground carbon dynamics in Sustainable Forest Management in the Amazon: providing support to Brazil’s climate commitments”, carried out by Gustavo Bediaga in the Graduate Program in Ecology at the University of Brasília.</p>
-<p>The project is supervised by Dr.&nbsp;Mercedes Bustamante and developed in partnership with CIRAD, with the collaboration of researchers Plinio Sist, Sylvain Schmmit and Géraldine Derroire.</p>
-<p>The scripts address the following topics:</p>
-<p>- Forest structure;</p>
-<p>- LiDAR-derived metrics;</p>
-<p>- Wood density databases;</p>
-<p>- Biomass estimation.</p>
-<p>All scripts were written in RStudio 2025.09.2+418 as Quarto files, and were subsequently rendered into the HTML documents available here.</p>
+<p>This book compiles the scripts developed as part of the PhD project “Evaluation of above-ground carbon dynamics in Sustainable Forest Management in the Amazon: providing support to Brazil’s climate commitments”, carried out by Gustavo Bediaga within the Graduate Program in Ecology at the University of Brasília.</p>
+<p>The project is supervised by Dr.&nbsp;Mercedes Bustamante and conducted in partnership with CIRAD, with the collaboration of Drs. Plinio Sist, Sylvain Schmidt, and Géraldine Derroire.</p>
+<p>The scripts were developed during a research mobility at CIRAD, from October 2025 to January 2026, with support from the <a href="https://www.pepr-forestt.org/">PEPR FORESTT program</a>. During this period, the following activities were carried out:</p>
+<ul>
+<li><p><strong>Learning Quarto:</strong><br>
+</p>
+<p>Acquired proficiency in Quarto to ensure that all data processing and analyses performed during the PhD are <strong>reproducible and transparent</strong>.</p></li>
+<li><p><strong>Data harmonization and standardization:</strong><br>
+</p>
+<p>All datasets were prepared and translated into Quarto, with a full step-by-step description. Permanent plots data were <strong>standardized</strong> (<a href="11_pps_prep.html" class="quarto-xref"><span>1&nbsp; Preparation of Permament Plots data</span></a>) and <strong>harmonized</strong> (<a href="12_harmonizing_pps_data.html" class="quarto-xref"><span>2&nbsp; Harmonizing Permanent Plots data</span></a>) following the methodology of the BioForest project. Commercial forest inventories were also prepared (<a href="13_merge_if100_romaneio.html" class="quarto-xref"><span>3&nbsp; Merging IF100 + logbook data</span></a>) and merged with logbook datasets.</p></li>
+<li><p><strong>Data exploration:</strong><br>
+</p>
+<p>Performed exploratory (<a href="21_data_exploration.html" class="quarto-xref"><span>4&nbsp; Exploring data</span></a>) and comparative analyses (<a href="22_wood_density_databases.html" class="quarto-xref"><span>5&nbsp; Comparing wood density databases</span></a>) to understand patterns and behavior in the data.</p></li>
+<li><p><strong>Data processing and analyses:</strong></p>
+<ul>
+<li><p>Developed a workflow (<a href="31_tree_height_from_lidar.html" class="quarto-xref"><span>6&nbsp; Workflow to extract tree height from Lidar CHM</span></a> to retrieve total tree height from <strong>Canopy Height Models (CHMs)</strong> derived from LiDAR (<a href="32_tree_height_from_lidar_all_apus.html" class="quarto-xref"><span>7&nbsp; Workflow to extract tree height from Lidar CHM</span></a>).</p></li>
+<li><p>Estimated tree biomass using multiple approaches (<a href="33_estimate_biomass.html" class="quarto-xref"><span>8&nbsp; Estimate biomass with different total height estimations</span></a>).</p></li>
+<li><p>Initiated tree height modeling with various datasets from the same study site (<a href="34_modelling_H.html" class="quarto-xref"><span>9&nbsp; Modelling DBH x Height</span></a>).</p></li>
+</ul></li>
+</ul>
+<p>During the mobility, we established contact with researcher <strong>Fabian Fischer</strong>, author of <span class="citation" data-cites="Fischer2024">Fischer et al. (<a href="99_references.html#ref-Fischer2024" role="doc-biblioref">2024</a>)</span>, who processed the CHMs for the entire study area using his published methodology and made the data available for this PhD project.</p>
+<p>We also discussed the project methodology with CIRAD partners and delivered a <a href="https://ur-forets-societes.cirad.fr/publications-et-communication/lundis-forestiers/(year)/2025/(month)/12">presentation</a> on Brazilian Forest Concessions at the Unit of <em>Forêts et Sociétés</em> at CIRAD.</p>
+<p>Overall, this mobility was highly beneficial, providing valuable skills, methodological insights for the PhD project, and strengthening collaboration with CIRAD.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All scripts were written in <strong>RStudio 2025.09.2+418</strong> as Quarto files and were subsequently rendered into the HTML documents made available here.</p>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Fischer2024" class="csl-entry" role="listitem">
+Fischer, Fabian Jörg, Toby Jackson, Grégoire Vincent, and Tommaso Jucker. 2024. <span>“Robust Characterisation of Forest Structure from Airborne Laser Scanning—a Systematic Assessment and Sample Workflow for Ecologists.”</span> <em>Methods in Ecology and Evolution</em> 15 (October): 1873–88. <a href="https://doi.org/10.1111/2041-210X.14416">https://doi.org/10.1111/2041-210X.14416</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -619,8 +742,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./10_data_prep.html" class="pagination-link" aria-label="Data prep">
-        <span class="nav-page-text">Data prep</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./10_data_prep.html" class="pagination-link" aria-label="Data preparation">
+        <span class="nav-page-text">Data preparation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

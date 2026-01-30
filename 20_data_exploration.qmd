@@ -1,0 +1,3 @@
+# Data Exploration {.unnumbered}
+
+With all datasets harmonized, we proceed to explore and extract information to support subsequent analyses. Our primary focus is **above-ground biomass**, and we therefore investigate approaches to obtain the most accurate biomass estimates.

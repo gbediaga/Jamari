@@ -1,17 +1,37 @@
 # Overview {.unnumbered}
 
-This book This book brings together the scripts developed within the PhD project “Evaluation of above-ground carbon dynamics in Sustainable Forest Management in the Amazon: providing support to Brazil’s climate commitments”, carried out by Gustavo Bediaga in the Graduate Program in Ecology at the University of Brasília.
+This book compiles the scripts developed as part of the PhD project “Evaluation of above-ground carbon dynamics in Sustainable Forest Management in the Amazon: providing support to Brazil’s climate commitments”, carried out by Gustavo Bediaga within the Graduate Program in Ecology at the University of Brasília.
 
-The project is supervised by Dr. Mercedes Bustamante and developed in partnership with CIRAD, with the collaboration of researchers Plinio Sist, Sylvain Schmmit and Géraldine Derroire.
+The project is supervised by Dr. Mercedes Bustamante and conducted in partnership with CIRAD, with the collaboration of Drs. Plinio Sist, Sylvain Schmidt, and Géraldine Derroire.
 
-The scripts address the following topics:
+The scripts were developed during a research mobility at CIRAD, from October 2025 to January 2026, with support from the [PEPR FORESTT program](https://www.pepr-forestt.org/). During this period, the following activities were carried out:
 
-\- Forest structure;
+-   **Learning Quarto:**\
 
-\- LiDAR-derived metrics;
+    Acquired proficiency in Quarto to ensure that all data processing and analyses performed during the PhD are **reproducible and transparent**.
 
-\- Wood density databases;
+-   **Data harmonization and standardization:**\
 
-\- Biomass estimation.
+    All datasets were prepared and translated into Quarto, with a full step-by-step description. Permanent plots data were **standardized** (@sec-pps_prep) and **harmonized** (@sec-pps-harm) following the methodology of the BioForest project. Commercial forest inventories were also prepared (@sec-merge_if100) and merged with logbook datasets.
 
-All scripts were written in RStudio 2025.09.2+418 as Quarto files, and were subsequently rendered into the HTML documents available here.
+-   **Data exploration:**\
+
+    Performed exploratory (@sec-data_exploration) and comparative analyses (@sec-wood_databases) to understand patterns and behavior in the data.
+
+-   **Data processing and analyses:**
+
+    -   Developed a workflow (@sec-workflow_tree_height to retrieve total tree height from **Canopy Height Models (CHMs)** derived from LiDAR (@sec-height_from_lidar).
+
+    -   Estimated tree biomass using multiple approaches (@sec-estimate_biomass).
+
+    -   Initiated tree height modeling with various datasets from the same study site (@sec-model_dbh_h).
+
+During the mobility, we established contact with researcher **Fabian Fischer**, author of @Fischer2024, who processed the CHMs for the entire study area using his published methodology and made the data available for this PhD project.
+
+We also discussed the project methodology with CIRAD partners and delivered a [presentation](https://ur-forets-societes.cirad.fr/publications-et-communication/lundis-forestiers/(year)/2025/(month)/12) on Brazilian Forest Concessions at the Unit of *Forêts et Sociétés* at CIRAD.
+
+Overall, this mobility was highly beneficial, providing valuable skills, methodological insights for the PhD project, and strengthening collaboration with CIRAD.
+
+::: callout-note
+All scripts were written in **RStudio 2025.09.2+418** as Quarto files and were subsequently rendered into the HTML documents made available here.
+:::

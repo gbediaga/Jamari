@@ -1,0 +1,3476 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Comparing wood density databases – Phd scripts book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./30_data_analisys.html" rel="next">
+<link href="./21_data_exploration.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20_data_exploration.html">Data Exploration</a></li><li class="breadcrumb-item"><a href="./22_wood_density_databases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Phd scripts book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./10_data_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data preparation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_pps_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation of Permament Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_harmonizing_pps_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_merge_if100_romaneio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./20_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Exploration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_wood_density_databases.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./30_data_analisys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Analisys</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31_tree_height_from_lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./32_tree_height_from_lidar_all_apus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./33_estimate_biomass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./34_modelling_H.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modelling DBH x Height</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5.1</span> Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">5.2</span> Setup</a></li>
+  <li><a href="#comparing-different-wood-databases" id="toc-comparing-different-wood-databases" class="nav-link" data-scroll-target="#comparing-different-wood-databases"><span class="header-section-number">5.3</span> Comparing different wood databases</a></li>
+  <li><a href="#estimating-biomass-with-bwd" id="toc-estimating-biomass-with-bwd" class="nav-link" data-scroll-target="#estimating-biomass-with-bwd"><span class="header-section-number">5.4</span> Estimating biomass with BWD</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20_data_exploration.html">Data Exploration</a></li><li class="breadcrumb-item"><a href="./22_wood_density_databases.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-wood_databases" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
+<p>This script compares biomass estimates derived from different wood density databases. We use the Global Wood Database <span class="citation" data-cites="Chave2009">(<a href="99_references.html#ref-Chave2009" role="doc-biblioref">Chave et al. 2009</a>)</span>, available through the <code>BIOMASS</code> package, and the Brazilian Woods Database (<a href="https://lpf.florestal.gov.br/en-us/brazilian-woods" class="uri">https://lpf.florestal.gov.br/en-us/brazilian-woods</a>) from Brazilian Forest Service.</p>
+</section>
+<section id="setup" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">5.2</span> Setup</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(rnaturalearthdata)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(BIOMASS)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="comparing-different-wood-databases" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="comparing-different-wood-databases"><span class="header-section-number">5.3</span> Comparing different wood databases</h2>
+<p>BWD has many samples collected in Jamari Forest, as we can see below. We obtained the basic wood density information (g/m³) and the sample collection location for each species from the BWD website. There is no specific coordinate for the sampling location; therefore, we assigned a central coordinate to each collection location in order to determine the geographic region of origin of the sample.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>bwd <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/wood_density/tabela_densidade_coordenadas.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>bwd_clean <span class="ot">&lt;-</span> bwd <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(long), <span class="sc">!</span><span class="fu">is.na</span>(lat))</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>pts_bwd <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  bwd_clean,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"long"</span>, <span class="st">"lat"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="at">crs =</span> <span class="dv">4326</span>   <span class="co"># WGS84 (graus decimais)</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>pts_bwd_count <span class="ot">&lt;-</span> pts_bwd <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">st_coordinates</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">group_by</span>(X, Y) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"X"</span>, <span class="st">"Y"</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(pts_bwd))</span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a>brasil <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="at">scale =</span> <span class="st">"medium"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="at">country =</span> <span class="st">"Brazil"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="at">returnclass =</span> <span class="st">"sf"</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> brasil, </span>
+<span id="cb2-28"><a href="#cb2-28"></a>          <span class="at">fill =</span> <span class="st">"gray95"</span>, </span>
+<span id="cb2-29"><a href="#cb2-29"></a>          <span class="at">color =</span> <span class="st">"gray40"</span>) <span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> pts_bwd_count, </span>
+<span id="cb2-31"><a href="#cb2-31"></a>          <span class="fu">aes</span>(<span class="at">size =</span> n), </span>
+<span id="cb2-32"><a href="#cb2-32"></a>          <span class="at">color =</span> <span class="st">"red"</span>, </span>
+<span id="cb2-33"><a href="#cb2-33"></a>          <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb2-35"><a href="#cb2-35"></a>    <span class="at">data =</span> pts_bwd_count,</span>
+<span id="cb2-36"><a href="#cb2-36"></a>    <span class="fu">aes</span>(<span class="at">label =</span> n, </span>
+<span id="cb2-37"><a href="#cb2-37"></a>        <span class="at">geometry =</span> geometry),</span>
+<span id="cb2-38"><a href="#cb2-38"></a>    <span class="at">stat =</span> <span class="st">"sf_coordinates"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb2-40"><a href="#cb2-40"></a>    <span class="at">min.segment.length =</span> <span class="dv">0</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">"Number of samples"</span>) <span class="sc">+</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a>  <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-46"><a href="#cb2-46"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Brazilian woods database samples locations ("</span>,</span>
+<span id="cb2-47"><a href="#cb2-47"></a>                  <span class="fu">nrow</span>(pts_bwd),</span>
+<span id="cb2-48"><a href="#cb2-48"></a>                  <span class="st">"samples )."</span>),</span>
+<span id="cb2-49"><a href="#cb2-49"></a>            <span class="at">x =</span> <span class="st">"Longitude"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50"></a>            <span class="at">y =</span> <span class="st">"Latitude"</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_wood_density_databases_files/figure-html/bwd_map-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="estimating-biomass-with-bwd" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="estimating-biomass-with-bwd"><span class="header-section-number">5.4</span> Estimating biomass with BWD</h2>
+<p>We will use permanent plots measurements from Jamari National Forest. The Wood density estimates presented here are only for species the species present in the permanent plots.</p>
+<p>In BWD there are multiple samples for the same species. We calculated mean basic wood density for each species with multiple samples. Then we converted bwd table to <code>BIOMASS</code> wood density table format.</p>
+<p>We retrieved wood density from Gobal Wood Database <span class="citation" data-cites="Chave2009">(<a href="99_references.html#ref-Chave2009" role="doc-biblioref">Chave et al. 2009</a>)</span> using <code>BIOMASS</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>pps <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/pps/tabelao_pps.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">message</span>(<span class="st">"Permanent plots of APUs: </span><span class="sc">\n</span><span class="st">"</span>,<span class="fu">paste</span>(<span class="fu">unique</span>(<span class="fu">paste</span>(pps<span class="sc">$</span>UMF,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>                                                         pps<span class="sc">$</span>UPA)),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>                                                         <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>                                                         ))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Permanent plots of APUs: 
+UMF_I UPA_1
+UMF_I UPA_10
+UMF_I UPA_13
+UMF_I UPA_2
+UMF_I UPA_3
+UMF_I UPA_4
+UMF_I UPA_5
+UMF_I UPA_6
+UMF_I UPA_7
+UMF_I UPA_8
+UMF_I UPA_9
+UMF_IV UPA_15</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">message</span>(<span class="st">"Years of measurement:</span><span class="sc">\n</span><span class="st">"</span>,<span class="fu">paste</span>(<span class="fu">unique</span>(pps<span class="sc">$</span>p23_cdmedicao),</span>
+<span id="cb5-2"><a href="#cb5-2"></a>                                         <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Years of measurement:
+2010
+2013
+2016
+2018
+2021
+2015
+2017
+2023
+2020
+2022
+2011
+2012
+2014
+2019</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>bwd <span class="ot">&lt;-</span> bwd <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">group_by</span>(nome_cientifico) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">summarise</span>(<span class="at">mean_wd =</span> <span class="fu">mean</span>(densidade_basica), </span>
+<span id="cb7-4"><a href="#cb7-4"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>bwd_biomass <span class="ot">&lt;-</span> bwd <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="st">"nome_cientifico"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>                  <span class="fu">c</span>(<span class="st">"genero"</span>,<span class="st">"epiteto"</span>),</span>
+<span id="cb7-9"><a href="#cb7-9"></a>                  <span class="st">" "</span>)</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="fu">names</span>(bwd_biomass) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"genus"</span>,<span class="st">"species"</span>,<span class="st">"wd"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a>taxo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="at">genusCorrected   =</span> pps<span class="sc">$</span>genero,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="at">speciesCorrected =</span> pps<span class="sc">$</span>epiteto,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>)</span>
+<span id="cb7-17"><a href="#cb7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18"></a>w_density <span class="ot">&lt;-</span> <span class="fu">getWoodDensity</span>(<span class="at">genus =</span> taxo<span class="sc">$</span>genusCorrected,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>                            <span class="at">species =</span> taxo<span class="sc">$</span>speciesCorrected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>The reference dataset contains 16467 wood density values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Your taxonomic table contains 104 taxa</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>densidades <span class="ot">&lt;-</span> bwd_biomass <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>                  <span class="fu">inner_join</span>(w_density,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>                  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"genus"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>                         <span class="st">"species"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>                  <span class="fu">select</span>(genus,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>                         species,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>                         <span class="at">WD_global =</span> meanWD,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>                         <span class="at">WD_brazil =</span> wd)</span>
+<span id="cb10-9"><a href="#cb10-9"></a></span>
+<span id="cb10-10"><a href="#cb10-10"></a>densidades <span class="ot">&lt;-</span> <span class="fu">unique</span>(densidades)</span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="fu">ggplot</span>(densidades, <span class="fu">aes</span>(<span class="at">x =</span> WD_global, </span>
+<span id="cb10-13"><a href="#cb10-13"></a>                       <span class="at">y =</span> WD_brazil)) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, </span>
+<span id="cb10-16"><a href="#cb10-16"></a>              <span class="at">intercept =</span> <span class="dv">0</span>, </span>
+<span id="cb10-17"><a href="#cb10-17"></a>              <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="at">x =</span> <span class="st">"Global Wood density database"</span>,</span>
+<span id="cb10-20"><a href="#cb10-20"></a>    <span class="at">y =</span> <span class="st">"Brazilian Woods density database"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Comparison of wood density estimates for"</span>,</span>
+<span id="cb10-22"><a href="#cb10-22"></a>                  <span class="fu">nrow</span>(densidades),</span>
+<span id="cb10-23"><a href="#cb10-23"></a>                  <span class="st">"species between BWD and GWD"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_wood_density_databases_files/figure-html/comparing_dbs-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>text <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"BWD has wood density of"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2"></a>              <span class="fu">length</span>(<span class="fu">unique</span>(bwd<span class="sc">$</span>nome_cientifico)),</span>
+<span id="cb11-3"><a href="#cb11-3"></a>              <span class="st">"species."</span>,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>              <span class="st">"BWD and GWD share"</span>, </span>
+<span id="cb11-5"><a href="#cb11-5"></a>              <span class="fu">nrow</span>(densidades),</span>
+<span id="cb11-6"><a href="#cb11-6"></a>              <span class="st">"species in common."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>BWD has wood density of 275 species. BWD and GWD share 55 species in common.</p>
+</div>
+</div>
+<p>We can use Bland-Altman graphic to see differences between wood density databases. I will highlight species that are out of limits of agreement.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>densidades<span class="sc">$</span>mean_density <span class="ot">&lt;-</span> (densidades<span class="sc">$</span>WD_global <span class="sc">+</span> densidades<span class="sc">$</span>WD_brazil) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>densidades<span class="sc">$</span>diff_density <span class="ot">&lt;-</span> densidades<span class="sc">$</span>WD_global <span class="sc">-</span> densidades<span class="sc">$</span>WD_brazil</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a>bias <span class="ot">&lt;-</span> <span class="fu">mean</span>(densidades<span class="sc">$</span>diff_density, </span>
+<span id="cb12-5"><a href="#cb12-5"></a>             <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>sd_diff <span class="ot">&lt;-</span> <span class="fu">sd</span>(densidades<span class="sc">$</span>diff_density, </span>
+<span id="cb12-7"><a href="#cb12-7"></a>              <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-8"><a href="#cb12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9"></a>loa_inf <span class="ot">&lt;-</span> bias <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> sd_diff</span>
+<span id="cb12-10"><a href="#cb12-10"></a>loa_sup <span class="ot">&lt;-</span> bias <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> sd_diff</span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a>densidades <span class="ot">&lt;-</span> densidades <span class="sc">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>                 <span class="fu">mutate</span>(<span class="at">fora_loa =</span> diff_density <span class="sc">&lt;</span> loa_inf <span class="sc">|</span> diff_density <span class="sc">&gt;</span> loa_sup)</span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a>densidades<span class="sc">$</span>especie <span class="ot">&lt;-</span> <span class="fu">paste</span>(densidades<span class="sc">$</span>genus,</span>
+<span id="cb12-16"><a href="#cb12-16"></a>                            densidades<span class="sc">$</span>species,</span>
+<span id="cb12-17"><a href="#cb12-17"></a>                            <span class="at">sep =</span> <span class="st">" "</span>)</span>
+<span id="cb12-18"><a href="#cb12-18"></a></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="fu">ggplot</span>(densidades, <span class="fu">aes</span>(<span class="at">x =</span> mean_density, </span>
+<span id="cb12-20"><a href="#cb12-20"></a>                       <span class="at">y =</span> diff_density,</span>
+<span id="cb12-21"><a href="#cb12-21"></a>                       <span class="at">color =</span> especie)) <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(densidades<span class="sc">$</span>diff_density,</span>
+<span id="cb12-24"><a href="#cb12-24"></a>                               <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-25"><a href="#cb12-25"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(densidades<span class="sc">$</span>diff_density,</span>
+<span id="cb12-27"><a href="#cb12-27"></a>                               <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb12-28"><a href="#cb12-28"></a>                           <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(densidades<span class="sc">$</span>diff_density,</span>
+<span id="cb12-29"><a href="#cb12-29"></a>                                     <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-30"><a href="#cb12-30"></a>             <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(densidades<span class="sc">$</span>diff_density,</span>
+<span id="cb12-32"><a href="#cb12-32"></a>                               <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a>                           <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(densidades<span class="sc">$</span>diff_density,</span>
+<span id="cb12-34"><a href="#cb12-34"></a>                                     <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-35"><a href="#cb12-35"></a>             <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb12-36"><a href="#cb12-36"></a>    <span class="fu">geom_text_repel</span>(</span>
+<span id="cb12-37"><a href="#cb12-37"></a>    <span class="at">data =</span> <span class="fu">subset</span>(densidades, fora_loa),</span>
+<span id="cb12-38"><a href="#cb12-38"></a>    <span class="fu">aes</span>(<span class="at">label =</span> especie),</span>
+<span id="cb12-39"><a href="#cb12-39"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb12-40"><a href="#cb12-40"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb12-41"><a href="#cb12-41"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-42"><a href="#cb12-42"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-43"><a href="#cb12-43"></a>    <span class="at">x =</span> <span class="st">"Mean wood density"</span>,</span>
+<span id="cb12-44"><a href="#cb12-44"></a>    <span class="at">y =</span> <span class="st">"Difference between methods"</span>,</span>
+<span id="cb12-45"><a href="#cb12-45"></a>    <span class="at">title =</span> <span class="st">"Bland–Altman: wood density databases"</span></span>
+<span id="cb12-46"><a href="#cb12-46"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-48"><a href="#cb12-48"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_wood_density_databases_files/figure-html/Bland-altman-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s see the difference in biomass estimation.</p>
+<p>Total tree height was obtained using the <code>retrieveH</code> function from the <code>BIOMASS</code> package, based on the central coordinates of the Jamari National Forest (Flona de Jamari). Biomass was estimated using the <code>computeAGB</code> function from the <code>BIOMASS</code> package, using the total height derived from <code>retrieveH</code> and the two wood density databases (the Global Wood Density Database and the Brazilian Wood Density Database). The BWD does not provide estimates of basic wood density for all species. When species-level values are unavailable, estimates from Global Wood Database will be used.</p>
+<p>Each point represents one year of measurement for a plot. I will highlight plots with biomass estimation out of limits of agreement.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>w_density_BR <span class="ot">&lt;-</span> <span class="fu">left_join</span>(w_density, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>                          bwd_biomass, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>                          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"species"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>                                 <span class="st">"genus"</span>), </span>
+<span id="cb13-5"><a href="#cb13-5"></a>                          <span class="at">multiple =</span> <span class="st">"any"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6"></a>                </span>
+<span id="cb13-7"><a href="#cb13-7"></a>                <span class="fu">mutate</span>(<span class="at">wd =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(wd), </span>
+<span id="cb13-8"><a href="#cb13-8"></a>                                   wd, </span>
+<span id="cb13-9"><a href="#cb13-9"></a>                                   meanWD)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-10"><a href="#cb13-10"></a>                <span class="fu">select</span>(family, </span>
+<span id="cb13-11"><a href="#cb13-11"></a>                       genus, </span>
+<span id="cb13-12"><a href="#cb13-12"></a>                       species, </span>
+<span id="cb13-13"><a href="#cb13-13"></a>                       wd)</span>
+<span id="cb13-14"><a href="#cb13-14"></a></span>
+<span id="cb13-15"><a href="#cb13-15"></a></span>
+<span id="cb13-16"><a href="#cb13-16"></a>altura <span class="ot">&lt;-</span> <span class="fu">retrieveH</span>(<span class="at">D =</span> pps<span class="sc">$</span>diametrocm,</span>
+<span id="cb13-17"><a href="#cb13-17"></a>                    <span class="at">coord =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">62.99</span>,</span>
+<span id="cb13-18"><a href="#cb13-18"></a>                                   <span class="sc">-</span><span class="fl">9.11</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>                                   ))</span>
+<span id="cb13-20"><a href="#cb13-20"></a></span>
+<span id="cb13-21"><a href="#cb13-21"></a></span>
+<span id="cb13-22"><a href="#cb13-22"></a>pps<span class="sc">$</span>altura <span class="ot">&lt;-</span> altura<span class="sc">$</span>H</span>
+<span id="cb13-23"><a href="#cb13-23"></a></span>
+<span id="cb13-24"><a href="#cb13-24"></a>pps<span class="sc">$</span>AGB_Global <span class="ot">&lt;-</span> <span class="fu">computeAGB</span>(<span class="at">D =</span> pps<span class="sc">$</span>diametrocm,</span>
+<span id="cb13-25"><a href="#cb13-25"></a>                             <span class="at">WD =</span> w_density<span class="sc">$</span>meanWD,</span>
+<span id="cb13-26"><a href="#cb13-26"></a>                             <span class="at">H =</span> pps<span class="sc">$</span>altura)</span>
+<span id="cb13-27"><a href="#cb13-27"></a></span>
+<span id="cb13-28"><a href="#cb13-28"></a>pps<span class="sc">$</span>AGB_Brazilian <span class="ot">&lt;-</span> <span class="fu">computeAGB</span>(<span class="at">D =</span> pps<span class="sc">$</span>diametrocm,</span>
+<span id="cb13-29"><a href="#cb13-29"></a>                                <span class="at">WD =</span> w_density_BR<span class="sc">$</span>wd,</span>
+<span id="cb13-30"><a href="#cb13-30"></a>                                <span class="at">H =</span> pps<span class="sc">$</span>altura)</span>
+<span id="cb13-31"><a href="#cb13-31"></a></span>
+<span id="cb13-32"><a href="#cb13-32"></a>pps<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">paste</span>(pps<span class="sc">$</span>UMF,pps<span class="sc">$</span>UPA,</span>
+<span id="cb13-33"><a href="#cb13-33"></a>                  <span class="st">"plot"</span>,</span>
+<span id="cb13-34"><a href="#cb13-34"></a>                  pps<span class="sc">$</span>p23_cdparcela,</span>
+<span id="cb13-35"><a href="#cb13-35"></a>                  pps<span class="sc">$</span>p23_cdmedicao)</span>
+<span id="cb13-36"><a href="#cb13-36"></a></span>
+<span id="cb13-37"><a href="#cb13-37"></a></span>
+<span id="cb13-38"><a href="#cb13-38"></a>pps_plots <span class="ot">&lt;-</span> pps <span class="sc">%&gt;%</span> </span>
+<span id="cb13-39"><a href="#cb13-39"></a>              <span class="fu">group_by</span>(plot,</span>
+<span id="cb13-40"><a href="#cb13-40"></a>                       p23_cdmedicao) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-41"><a href="#cb13-41"></a>              <span class="fu">summarise</span>(<span class="st">"AGB_Global"</span> <span class="ot">=</span> <span class="fu">sum</span>(AGB_Global),</span>
+<span id="cb13-42"><a href="#cb13-42"></a>                        <span class="st">"AGB_Brazilian"</span> <span class="ot">=</span> <span class="fu">sum</span>(AGB_Brazilian))</span>
+<span id="cb13-43"><a href="#cb13-43"></a></span>
+<span id="cb13-44"><a href="#cb13-44"></a>pps_plots<span class="sc">$</span>mean_density <span class="ot">&lt;-</span> (pps_plots<span class="sc">$</span>AGB_Global <span class="sc">+</span> pps_plots<span class="sc">$</span>AGB_Brazilian) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb13-45"><a href="#cb13-45"></a>pps_plots<span class="sc">$</span>diff_density <span class="ot">&lt;-</span> pps_plots<span class="sc">$</span>AGB_Global <span class="sc">-</span> pps_plots<span class="sc">$</span>AGB_Brazilian</span>
+<span id="cb13-46"><a href="#cb13-46"></a></span>
+<span id="cb13-47"><a href="#cb13-47"></a>bias <span class="ot">&lt;-</span> <span class="fu">mean</span>(pps_plots<span class="sc">$</span>diff_density, </span>
+<span id="cb13-48"><a href="#cb13-48"></a>             <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-49"><a href="#cb13-49"></a>sd_diff <span class="ot">&lt;-</span> <span class="fu">sd</span>(pps_plots<span class="sc">$</span>diff_density, </span>
+<span id="cb13-50"><a href="#cb13-50"></a>              <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-51"><a href="#cb13-51"></a></span>
+<span id="cb13-52"><a href="#cb13-52"></a>loa_inf <span class="ot">&lt;-</span> bias <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> sd_diff</span>
+<span id="cb13-53"><a href="#cb13-53"></a>loa_sup <span class="ot">&lt;-</span> bias <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> sd_diff</span>
+<span id="cb13-54"><a href="#cb13-54"></a></span>
+<span id="cb13-55"><a href="#cb13-55"></a>pps_plots <span class="ot">&lt;-</span> pps_plots <span class="sc">%&gt;%</span></span>
+<span id="cb13-56"><a href="#cb13-56"></a>            <span class="fu">mutate</span>(<span class="at">fora_loa =</span> diff_density <span class="sc">&lt;</span> loa_inf <span class="sc">|</span> diff_density <span class="sc">&gt;</span> loa_sup)</span>
+<span id="cb13-57"><a href="#cb13-57"></a></span>
+<span id="cb13-58"><a href="#cb13-58"></a></span>
+<span id="cb13-59"><a href="#cb13-59"></a><span class="fu">ggplot</span>(pps_plots, <span class="fu">aes</span>(<span class="at">x =</span> mean_density, </span>
+<span id="cb13-60"><a href="#cb13-60"></a>                      <span class="at">y =</span> diff_density,</span>
+<span id="cb13-61"><a href="#cb13-61"></a>                      <span class="at">color =</span> plot)) <span class="sc">+</span></span>
+<span id="cb13-62"><a href="#cb13-62"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb13-63"><a href="#cb13-63"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(pps_plots<span class="sc">$</span>diff_density,</span>
+<span id="cb13-64"><a href="#cb13-64"></a>                               <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-65"><a href="#cb13-65"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb13-66"><a href="#cb13-66"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(pps_plots<span class="sc">$</span>diff_density,</span>
+<span id="cb13-67"><a href="#cb13-67"></a>                               <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb13-68"><a href="#cb13-68"></a>                           <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(pps_plots<span class="sc">$</span>diff_density,</span>
+<span id="cb13-69"><a href="#cb13-69"></a>                                     <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-70"><a href="#cb13-70"></a>             <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb13-71"><a href="#cb13-71"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(pps_plots<span class="sc">$</span>diff_density,</span>
+<span id="cb13-72"><a href="#cb13-72"></a>                               <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span></span>
+<span id="cb13-73"><a href="#cb13-73"></a>                           <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(pps_plots<span class="sc">$</span>diff_density,</span>
+<span id="cb13-74"><a href="#cb13-74"></a>                                     <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-75"><a href="#cb13-75"></a>             <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb13-76"><a href="#cb13-76"></a>    <span class="fu">geom_text_repel</span>(</span>
+<span id="cb13-77"><a href="#cb13-77"></a>    <span class="at">data =</span> <span class="fu">subset</span>(pps_plots, </span>
+<span id="cb13-78"><a href="#cb13-78"></a>                  fora_loa),</span>
+<span id="cb13-79"><a href="#cb13-79"></a>    <span class="fu">aes</span>(<span class="at">label =</span> plot),</span>
+<span id="cb13-80"><a href="#cb13-80"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb13-81"><a href="#cb13-81"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb13-82"><a href="#cb13-82"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-83"><a href="#cb13-83"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-84"><a href="#cb13-84"></a>    <span class="at">x =</span> <span class="st">"Mean plot AGB"</span>,</span>
+<span id="cb13-85"><a href="#cb13-85"></a>    <span class="at">y =</span> <span class="st">"Difference between methods"</span>,</span>
+<span id="cb13-86"><a href="#cb13-86"></a>    <span class="at">title =</span> <span class="st">"Bland-Altman: Plot AGB estimates with different wood density databases"</span></span>
+<span id="cb13-87"><a href="#cb13-87"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-88"><a href="#cb13-88"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-89"><a href="#cb13-89"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_wood_density_databases_files/figure-html/biomass_wds-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dif_AGBs <span class="ot">&lt;-</span> pps_plots <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="at">diff =</span> <span class="fu">abs</span>(AGB_Global <span class="sc">-</span> AGB_Brazilian),</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">diff_perc =</span> (diff <span class="sc">/</span> AGB_Global) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">select</span>(plot, AGB_Global, AGB_Brazilian, diff, diff_perc) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(diff_perc)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">mutate</span>(<span class="at">diff_perc =</span> <span class="fu">round</span>(diff_perc, <span class="dv">2</span>))</span>
+<span id="cb14-9"><a href="#cb14-9"></a></span>
+<span id="cb14-10"><a href="#cb14-10"></a></span>
+<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">kable</span>(dif_AGBs,</span>
+<span id="cb14-12"><a href="#cb14-12"></a>    <span class="at">caption =</span> <span class="st">"Absolute and relative difference between AGBs"</span>,</span>
+<span id="cb14-13"><a href="#cb14-13"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Plot"</span>, <span class="st">"AGB Global"</span>, <span class="st">"AGB Brazilian"</span>, <span class="st">"Difference"</span>, <span class="st">"Difference (%)"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a>    kableExtra<span class="sc">::</span><span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"400px"</span>, <span class="at">width =</span> <span class="st">"100%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table caption-top table-sm table-striped small">
+<caption>Absolute and relative difference between AGBs</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Plot</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">AGB Global</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">AGB Brazilian</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Difference</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Difference (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 8 2011</td>
+<td style="text-align: right;">49.78417</td>
+<td style="text-align: right;">45.76349</td>
+<td style="text-align: right;">4.0206756</td>
+<td style="text-align: right;">8.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 8 2013</td>
+<td style="text-align: right;">55.63526</td>
+<td style="text-align: right;">51.35464</td>
+<td style="text-align: right;">4.2806251</td>
+<td style="text-align: right;">7.69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 8 2016</td>
+<td style="text-align: right;">61.40135</td>
+<td style="text-align: right;">56.92133</td>
+<td style="text-align: right;">4.4800279</td>
+<td style="text-align: right;">7.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 9 2019</td>
+<td style="text-align: right;">109.08370</td>
+<td style="text-align: right;">101.74244</td>
+<td style="text-align: right;">7.3412640</td>
+<td style="text-align: right;">6.73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 8 2021</td>
+<td style="text-align: right;">73.91046</td>
+<td style="text-align: right;">69.07685</td>
+<td style="text-align: right;">4.8336139</td>
+<td style="text-align: right;">6.54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 4 2020</td>
+<td style="text-align: right;">88.43654</td>
+<td style="text-align: right;">93.77966</td>
+<td style="text-align: right;">5.3431237</td>
+<td style="text-align: right;">6.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_7 plot 4 2019</td>
+<td style="text-align: right;">88.39637</td>
+<td style="text-align: right;">93.73296</td>
+<td style="text-align: right;">5.3365841</td>
+<td style="text-align: right;">6.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 9 2013</td>
+<td style="text-align: right;">111.49535</td>
+<td style="text-align: right;">104.78220</td>
+<td style="text-align: right;">6.7131586</td>
+<td style="text-align: right;">6.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 9 2015</td>
+<td style="text-align: right;">112.98623</td>
+<td style="text-align: right;">106.31004</td>
+<td style="text-align: right;">6.6761913</td>
+<td style="text-align: right;">5.91</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 1 2017</td>
+<td style="text-align: right;">124.77302</td>
+<td style="text-align: right;">117.94769</td>
+<td style="text-align: right;">6.8253253</td>
+<td style="text-align: right;">5.47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 1 2017</td>
+<td style="text-align: right;">124.77302</td>
+<td style="text-align: right;">117.94769</td>
+<td style="text-align: right;">6.8253253</td>
+<td style="text-align: right;">5.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 1 2019</td>
+<td style="text-align: right;">126.01309</td>
+<td style="text-align: right;">119.18066</td>
+<td style="text-align: right;">6.8324362</td>
+<td style="text-align: right;">5.42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 1 2019</td>
+<td style="text-align: right;">126.01309</td>
+<td style="text-align: right;">119.18066</td>
+<td style="text-align: right;">6.8324362</td>
+<td style="text-align: right;">5.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 9 2012</td>
+<td style="text-align: right;">140.66985</td>
+<td style="text-align: right;">133.49095</td>
+<td style="text-align: right;">7.1788979</td>
+<td style="text-align: right;">5.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 1 2014</td>
+<td style="text-align: right;">175.80782</td>
+<td style="text-align: right;">166.87583</td>
+<td style="text-align: right;">8.9319891</td>
+<td style="text-align: right;">5.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 4 2023</td>
+<td style="text-align: right;">62.14742</td>
+<td style="text-align: right;">65.22646</td>
+<td style="text-align: right;">3.0790489</td>
+<td style="text-align: right;">4.95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 9 2014</td>
+<td style="text-align: right;">143.46225</td>
+<td style="text-align: right;">136.38440</td>
+<td style="text-align: right;">7.0778559</td>
+<td style="text-align: right;">4.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 2 2016</td>
+<td style="text-align: right;">71.63603</td>
+<td style="text-align: right;">75.05387</td>
+<td style="text-align: right;">3.4178394</td>
+<td style="text-align: right;">4.77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 5 2010</td>
+<td style="text-align: right;">55.47410</td>
+<td style="text-align: right;">58.11771</td>
+<td style="text-align: right;">2.6436094</td>
+<td style="text-align: right;">4.77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 2 2021</td>
+<td style="text-align: right;">80.44123</td>
+<td style="text-align: right;">84.21434</td>
+<td style="text-align: right;">3.7731018</td>
+<td style="text-align: right;">4.69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 8 2019</td>
+<td style="text-align: right;">99.86790</td>
+<td style="text-align: right;">104.50618</td>
+<td style="text-align: right;">4.6382782</td>
+<td style="text-align: right;">4.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 4 2015</td>
+<td style="text-align: right;">63.31582</td>
+<td style="text-align: right;">66.16888</td>
+<td style="text-align: right;">2.8530553</td>
+<td style="text-align: right;">4.51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 4 2017</td>
+<td style="text-align: right;">65.12840</td>
+<td style="text-align: right;">68.05299</td>
+<td style="text-align: right;">2.9245835</td>
+<td style="text-align: right;">4.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 3 2015</td>
+<td style="text-align: right;">56.63193</td>
+<td style="text-align: right;">59.12236</td>
+<td style="text-align: right;">2.4904342</td>
+<td style="text-align: right;">4.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 3 2017</td>
+<td style="text-align: right;">58.55062</td>
+<td style="text-align: right;">61.02998</td>
+<td style="text-align: right;">2.4793597</td>
+<td style="text-align: right;">4.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_13 plot 3 2020</td>
+<td style="text-align: right;">62.05757</td>
+<td style="text-align: right;">64.55164</td>
+<td style="text-align: right;">2.4940658</td>
+<td style="text-align: right;">4.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 3 2022</td>
+<td style="text-align: right;">64.53398</td>
+<td style="text-align: right;">67.12730</td>
+<td style="text-align: right;">2.5933256</td>
+<td style="text-align: right;">4.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 8 2013</td>
+<td style="text-align: right;">94.08163</td>
+<td style="text-align: right;">97.77032</td>
+<td style="text-align: right;">3.6886900</td>
+<td style="text-align: right;">3.92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 8 2015</td>
+<td style="text-align: right;">96.84418</td>
+<td style="text-align: right;">100.61929</td>
+<td style="text-align: right;">3.7751154</td>
+<td style="text-align: right;">3.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 1 2016</td>
+<td style="text-align: right;">131.47873</td>
+<td style="text-align: right;">126.41455</td>
+<td style="text-align: right;">5.0641793</td>
+<td style="text-align: right;">3.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 1 2011</td>
+<td style="text-align: right;">98.18137</td>
+<td style="text-align: right;">94.53309</td>
+<td style="text-align: right;">3.6482772</td>
+<td style="text-align: right;">3.72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 1 2016</td>
+<td style="text-align: right;">108.69576</td>
+<td style="text-align: right;">104.71439</td>
+<td style="text-align: right;">3.9813761</td>
+<td style="text-align: right;">3.66</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 1 2021</td>
+<td style="text-align: right;">121.96488</td>
+<td style="text-align: right;">117.51318</td>
+<td style="text-align: right;">4.4516999</td>
+<td style="text-align: right;">3.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 1 2013</td>
+<td style="text-align: right;">105.35751</td>
+<td style="text-align: right;">101.52762</td>
+<td style="text-align: right;">3.8298872</td>
+<td style="text-align: right;">3.64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 3 2019</td>
+<td style="text-align: right;">48.23569</td>
+<td style="text-align: right;">49.90397</td>
+<td style="text-align: right;">1.6682865</td>
+<td style="text-align: right;">3.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 9 2014</td>
+<td style="text-align: right;">67.70705</td>
+<td style="text-align: right;">70.03345</td>
+<td style="text-align: right;">2.3264038</td>
+<td style="text-align: right;">3.44</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_8 plot 4 2017</td>
+<td style="text-align: right;">78.54076</td>
+<td style="text-align: right;">75.87703</td>
+<td style="text-align: right;">2.6637348</td>
+<td style="text-align: right;">3.39</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_9 plot 4 2017</td>
+<td style="text-align: right;">78.54076</td>
+<td style="text-align: right;">75.87703</td>
+<td style="text-align: right;">2.6637348</td>
+<td style="text-align: right;">3.39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 9 2016</td>
+<td style="text-align: right;">71.71043</td>
+<td style="text-align: right;">74.10109</td>
+<td style="text-align: right;">2.3906627</td>
+<td style="text-align: right;">3.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 4 2019</td>
+<td style="text-align: right;">80.51725</td>
+<td style="text-align: right;">77.86603</td>
+<td style="text-align: right;">2.6512117</td>
+<td style="text-align: right;">3.29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 4 2019</td>
+<td style="text-align: right;">80.51725</td>
+<td style="text-align: right;">77.86603</td>
+<td style="text-align: right;">2.6512117</td>
+<td style="text-align: right;">3.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 7 2019</td>
+<td style="text-align: right;">41.30085</td>
+<td style="text-align: right;">42.60685</td>
+<td style="text-align: right;">1.3060015</td>
+<td style="text-align: right;">3.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_8 plot 6 2019</td>
+<td style="text-align: right;">92.84010</td>
+<td style="text-align: right;">95.71768</td>
+<td style="text-align: right;">2.8775724</td>
+<td style="text-align: right;">3.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_9 plot 6 2019</td>
+<td style="text-align: right;">92.84010</td>
+<td style="text-align: right;">95.71768</td>
+<td style="text-align: right;">2.8775724</td>
+<td style="text-align: right;">3.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_IV UPA_15 plot 3 2020</td>
+<td style="text-align: right;">50.75750</td>
+<td style="text-align: right;">52.32646</td>
+<td style="text-align: right;">1.5689553</td>
+<td style="text-align: right;">3.09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 6 2017</td>
+<td style="text-align: right;">89.49599</td>
+<td style="text-align: right;">92.23748</td>
+<td style="text-align: right;">2.7414901</td>
+<td style="text-align: right;">3.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 6 2017</td>
+<td style="text-align: right;">89.49599</td>
+<td style="text-align: right;">92.23748</td>
+<td style="text-align: right;">2.7414901</td>
+<td style="text-align: right;">3.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_IV UPA_15 plot 3 2022</td>
+<td style="text-align: right;">52.16722</td>
+<td style="text-align: right;">53.76304</td>
+<td style="text-align: right;">1.5958216</td>
+<td style="text-align: right;">3.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 3 2012</td>
+<td style="text-align: right;">40.24498</td>
+<td style="text-align: right;">41.46130</td>
+<td style="text-align: right;">1.2163188</td>
+<td style="text-align: right;">3.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 2 2020</td>
+<td style="text-align: right;">46.42593</td>
+<td style="text-align: right;">47.78968</td>
+<td style="text-align: right;">1.3637562</td>
+<td style="text-align: right;">2.94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 5 2013</td>
+<td style="text-align: right;">60.07885</td>
+<td style="text-align: right;">61.83601</td>
+<td style="text-align: right;">1.7571584</td>
+<td style="text-align: right;">2.92</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 1 2020</td>
+<td style="text-align: right;">117.53119</td>
+<td style="text-align: right;">114.16292</td>
+<td style="text-align: right;">3.3682747</td>
+<td style="text-align: right;">2.87</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 3 2014</td>
+<td style="text-align: right;">43.32220</td>
+<td style="text-align: right;">44.56010</td>
+<td style="text-align: right;">1.2378913</td>
+<td style="text-align: right;">2.86</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 7 2012</td>
+<td style="text-align: right;">83.91347</td>
+<td style="text-align: right;">81.52543</td>
+<td style="text-align: right;">2.3880359</td>
+<td style="text-align: right;">2.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 1 2010</td>
+<td style="text-align: right;">141.59067</td>
+<td style="text-align: right;">137.59897</td>
+<td style="text-align: right;">3.9916962</td>
+<td style="text-align: right;">2.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 2 2019</td>
+<td style="text-align: right;">46.62393</td>
+<td style="text-align: right;">47.92261</td>
+<td style="text-align: right;">1.2986812</td>
+<td style="text-align: right;">2.79</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 5 2015</td>
+<td style="text-align: right;">38.72413</td>
+<td style="text-align: right;">37.64722</td>
+<td style="text-align: right;">1.0769117</td>
+<td style="text-align: right;">2.78</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 6 2010</td>
+<td style="text-align: right;">65.29853</td>
+<td style="text-align: right;">67.08520</td>
+<td style="text-align: right;">1.7866696</td>
+<td style="text-align: right;">2.74</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 7 2015</td>
+<td style="text-align: right;">70.60840</td>
+<td style="text-align: right;">72.53069</td>
+<td style="text-align: right;">1.9222901</td>
+<td style="text-align: right;">2.72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 1 2013</td>
+<td style="text-align: right;">148.99734</td>
+<td style="text-align: right;">144.96700</td>
+<td style="text-align: right;">4.0303350</td>
+<td style="text-align: right;">2.70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 7 2014</td>
+<td style="text-align: right;">87.17371</td>
+<td style="text-align: right;">84.84377</td>
+<td style="text-align: right;">2.3299357</td>
+<td style="text-align: right;">2.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 7 2013</td>
+<td style="text-align: right;">68.70582</td>
+<td style="text-align: right;">70.53507</td>
+<td style="text-align: right;">1.8292548</td>
+<td style="text-align: right;">2.66</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 6 2012</td>
+<td style="text-align: right;">69.67803</td>
+<td style="text-align: right;">67.83784</td>
+<td style="text-align: right;">1.8401950</td>
+<td style="text-align: right;">2.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 5 2017</td>
+<td style="text-align: right;">40.46484</td>
+<td style="text-align: right;">39.40227</td>
+<td style="text-align: right;">1.0625623</td>
+<td style="text-align: right;">2.63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 2 2022</td>
+<td style="text-align: right;">70.29663</td>
+<td style="text-align: right;">72.12250</td>
+<td style="text-align: right;">1.8258754</td>
+<td style="text-align: right;">2.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 6 2013</td>
+<td style="text-align: right;">73.11365</td>
+<td style="text-align: right;">71.21718</td>
+<td style="text-align: right;">1.8964629</td>
+<td style="text-align: right;">2.59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 6 2023</td>
+<td style="text-align: right;">77.08552</td>
+<td style="text-align: right;">75.09241</td>
+<td style="text-align: right;">1.9931084</td>
+<td style="text-align: right;">2.59</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 3 2018</td>
+<td style="text-align: right;">48.82881</td>
+<td style="text-align: right;">50.08417</td>
+<td style="text-align: right;">1.2553580</td>
+<td style="text-align: right;">2.57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 2 2020</td>
+<td style="text-align: right;">68.37757</td>
+<td style="text-align: right;">70.09773</td>
+<td style="text-align: right;">1.7201612</td>
+<td style="text-align: right;">2.52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 6 2017</td>
+<td style="text-align: right;">73.11969</td>
+<td style="text-align: right;">71.28398</td>
+<td style="text-align: right;">1.8357061</td>
+<td style="text-align: right;">2.51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 5 2018</td>
+<td style="text-align: right;">78.34285</td>
+<td style="text-align: right;">80.30077</td>
+<td style="text-align: right;">1.9579185</td>
+<td style="text-align: right;">2.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 9 2020</td>
+<td style="text-align: right;">65.41002</td>
+<td style="text-align: right;">67.04035</td>
+<td style="text-align: right;">1.6303362</td>
+<td style="text-align: right;">2.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 4 2010</td>
+<td style="text-align: right;">78.28289</td>
+<td style="text-align: right;">80.22775</td>
+<td style="text-align: right;">1.9448626</td>
+<td style="text-align: right;">2.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 3 2023</td>
+<td style="text-align: right;">53.59144</td>
+<td style="text-align: right;">54.91902</td>
+<td style="text-align: right;">1.3275800</td>
+<td style="text-align: right;">2.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 5 2014</td>
+<td style="text-align: right;">71.53291</td>
+<td style="text-align: right;">73.28962</td>
+<td style="text-align: right;">1.7567086</td>
+<td style="text-align: right;">2.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 7 2018</td>
+<td style="text-align: right;">93.20928</td>
+<td style="text-align: right;">90.92654</td>
+<td style="text-align: right;">2.2827417</td>
+<td style="text-align: right;">2.45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 3 2015</td>
+<td style="text-align: right;">63.98371</td>
+<td style="text-align: right;">65.54751</td>
+<td style="text-align: right;">1.5638015</td>
+<td style="text-align: right;">2.44</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 2 2011</td>
+<td style="text-align: right;">138.44420</td>
+<td style="text-align: right;">141.81538</td>
+<td style="text-align: right;">3.3711764</td>
+<td style="text-align: right;">2.44</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 5 2012</td>
+<td style="text-align: right;">68.39018</td>
+<td style="text-align: right;">70.05366</td>
+<td style="text-align: right;">1.6634802</td>
+<td style="text-align: right;">2.43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 3 2016</td>
+<td style="text-align: right;">103.81550</td>
+<td style="text-align: right;">106.34005</td>
+<td style="text-align: right;">2.5245486</td>
+<td style="text-align: right;">2.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 4 2018</td>
+<td style="text-align: right;">73.86184</td>
+<td style="text-align: right;">75.63370</td>
+<td style="text-align: right;">1.7718551</td>
+<td style="text-align: right;">2.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 3 2020</td>
+<td style="text-align: right;">56.57611</td>
+<td style="text-align: right;">57.92632</td>
+<td style="text-align: right;">1.3502119</td>
+<td style="text-align: right;">2.39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 2 2013</td>
+<td style="text-align: right;">144.59019</td>
+<td style="text-align: right;">147.97494</td>
+<td style="text-align: right;">3.3847444</td>
+<td style="text-align: right;">2.34</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 4 2021</td>
+<td style="text-align: right;">74.88661</td>
+<td style="text-align: right;">76.63932</td>
+<td style="text-align: right;">1.7527131</td>
+<td style="text-align: right;">2.34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 3 2013</td>
+<td style="text-align: right;">61.97244</td>
+<td style="text-align: right;">63.41857</td>
+<td style="text-align: right;">1.4461294</td>
+<td style="text-align: right;">2.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 7 2023</td>
+<td style="text-align: right;">89.55115</td>
+<td style="text-align: right;">87.47834</td>
+<td style="text-align: right;">2.0728058</td>
+<td style="text-align: right;">2.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 7 2017</td>
+<td style="text-align: right;">83.44802</td>
+<td style="text-align: right;">81.54640</td>
+<td style="text-align: right;">1.9016255</td>
+<td style="text-align: right;">2.28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 9 2023</td>
+<td style="text-align: right;">64.19795</td>
+<td style="text-align: right;">62.73879</td>
+<td style="text-align: right;">1.4591629</td>
+<td style="text-align: right;">2.27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 2 2010</td>
+<td style="text-align: right;">53.79504</td>
+<td style="text-align: right;">55.01628</td>
+<td style="text-align: right;">1.2212372</td>
+<td style="text-align: right;">2.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 8 2021</td>
+<td style="text-align: right;">61.87745</td>
+<td style="text-align: right;">63.27444</td>
+<td style="text-align: right;">1.3969969</td>
+<td style="text-align: right;">2.26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 8 2023</td>
+<td style="text-align: right;">83.69963</td>
+<td style="text-align: right;">85.58468</td>
+<td style="text-align: right;">1.8850439</td>
+<td style="text-align: right;">2.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 5 2019</td>
+<td style="text-align: right;">34.47048</td>
+<td style="text-align: right;">35.23482</td>
+<td style="text-align: right;">0.7643388</td>
+<td style="text-align: right;">2.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 5 2019</td>
+<td style="text-align: right;">34.47048</td>
+<td style="text-align: right;">35.23482</td>
+<td style="text-align: right;">0.7643388</td>
+<td style="text-align: right;">2.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 3 2010</td>
+<td style="text-align: right;">99.65737</td>
+<td style="text-align: right;">101.84870</td>
+<td style="text-align: right;">2.1913247</td>
+<td style="text-align: right;">2.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 8 2016</td>
+<td style="text-align: right;">56.88342</td>
+<td style="text-align: right;">58.12381</td>
+<td style="text-align: right;">1.2403869</td>
+<td style="text-align: right;">2.18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 8 2018</td>
+<td style="text-align: right;">59.28152</td>
+<td style="text-align: right;">60.56873</td>
+<td style="text-align: right;">1.2872083</td>
+<td style="text-align: right;">2.17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 4 2023</td>
+<td style="text-align: right;">79.33470</td>
+<td style="text-align: right;">77.61907</td>
+<td style="text-align: right;">1.7156268</td>
+<td style="text-align: right;">2.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 3 2013</td>
+<td style="text-align: right;">105.75754</td>
+<td style="text-align: right;">108.03683</td>
+<td style="text-align: right;">2.2792864</td>
+<td style="text-align: right;">2.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 6 2018</td>
+<td style="text-align: right;">62.57151</td>
+<td style="text-align: right;">63.91201</td>
+<td style="text-align: right;">1.3404997</td>
+<td style="text-align: right;">2.14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 4 2016</td>
+<td style="text-align: right;">76.24741</td>
+<td style="text-align: right;">77.87986</td>
+<td style="text-align: right;">1.6324443</td>
+<td style="text-align: right;">2.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 9 2010</td>
+<td style="text-align: right;">90.62348</td>
+<td style="text-align: right;">92.55793</td>
+<td style="text-align: right;">1.9344442</td>
+<td style="text-align: right;">2.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 7 2012</td>
+<td style="text-align: right;">82.01588</td>
+<td style="text-align: right;">80.26592</td>
+<td style="text-align: right;">1.7499671</td>
+<td style="text-align: right;">2.13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 7 2013</td>
+<td style="text-align: right;">85.42467</td>
+<td style="text-align: right;">83.60381</td>
+<td style="text-align: right;">1.8208562</td>
+<td style="text-align: right;">2.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 3 2018</td>
+<td style="text-align: right;">105.37675</td>
+<td style="text-align: right;">107.62059</td>
+<td style="text-align: right;">2.2438437</td>
+<td style="text-align: right;">2.13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 3 2021</td>
+<td style="text-align: right;">110.20383</td>
+<td style="text-align: right;">112.51870</td>
+<td style="text-align: right;">2.3148729</td>
+<td style="text-align: right;">2.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 4 2017</td>
+<td style="text-align: right;">77.02731</td>
+<td style="text-align: right;">75.41305</td>
+<td style="text-align: right;">1.6142586</td>
+<td style="text-align: right;">2.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_8 plot 3 2017</td>
+<td style="text-align: right;">91.84758</td>
+<td style="text-align: right;">93.75445</td>
+<td style="text-align: right;">1.9068729</td>
+<td style="text-align: right;">2.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_9 plot 3 2017</td>
+<td style="text-align: right;">91.84758</td>
+<td style="text-align: right;">93.75445</td>
+<td style="text-align: right;">1.9068729</td>
+<td style="text-align: right;">2.08</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_8 plot 3 2019</td>
+<td style="text-align: right;">93.68835</td>
+<td style="text-align: right;">95.62978</td>
+<td style="text-align: right;">1.9414310</td>
+<td style="text-align: right;">2.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_9 plot 3 2019</td>
+<td style="text-align: right;">93.68835</td>
+<td style="text-align: right;">95.62978</td>
+<td style="text-align: right;">1.9414310</td>
+<td style="text-align: right;">2.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 7 2023</td>
+<td style="text-align: right;">85.31005</td>
+<td style="text-align: right;">83.55186</td>
+<td style="text-align: right;">1.7581920</td>
+<td style="text-align: right;">2.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 5 2017</td>
+<td style="text-align: right;">30.83416</td>
+<td style="text-align: right;">31.46883</td>
+<td style="text-align: right;">0.6346720</td>
+<td style="text-align: right;">2.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 5 2017</td>
+<td style="text-align: right;">30.83416</td>
+<td style="text-align: right;">31.46883</td>
+<td style="text-align: right;">0.6346720</td>
+<td style="text-align: right;">2.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_13 plot 6 2022</td>
+<td style="text-align: right;">86.40409</td>
+<td style="text-align: right;">88.18142</td>
+<td style="text-align: right;">1.7773310</td>
+<td style="text-align: right;">2.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 6 2020</td>
+<td style="text-align: right;">84.81513</td>
+<td style="text-align: right;">86.55165</td>
+<td style="text-align: right;">1.7365152</td>
+<td style="text-align: right;">2.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 1 2017</td>
+<td style="text-align: right;">93.58411</td>
+<td style="text-align: right;">91.68251</td>
+<td style="text-align: right;">1.9015995</td>
+<td style="text-align: right;">2.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 5 2023</td>
+<td style="text-align: right;">82.27265</td>
+<td style="text-align: right;">83.93260</td>
+<td style="text-align: right;">1.6599519</td>
+<td style="text-align: right;">2.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 7 2020</td>
+<td style="text-align: right;">64.48849</td>
+<td style="text-align: right;">65.78338</td>
+<td style="text-align: right;">1.2948954</td>
+<td style="text-align: right;">2.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 1 2013</td>
+<td style="text-align: right;">92.12634</td>
+<td style="text-align: right;">90.34460</td>
+<td style="text-align: right;">1.7817429</td>
+<td style="text-align: right;">1.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 6 2021</td>
+<td style="text-align: right;">88.92697</td>
+<td style="text-align: right;">87.20792</td>
+<td style="text-align: right;">1.7190527</td>
+<td style="text-align: right;">1.93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 1 2012</td>
+<td style="text-align: right;">89.74763</td>
+<td style="text-align: right;">88.01856</td>
+<td style="text-align: right;">1.7290652</td>
+<td style="text-align: right;">1.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 1 2023</td>
+<td style="text-align: right;">98.74674</td>
+<td style="text-align: right;">96.84718</td>
+<td style="text-align: right;">1.8995586</td>
+<td style="text-align: right;">1.92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 8 2023</td>
+<td style="text-align: right;">62.91237</td>
+<td style="text-align: right;">64.11419</td>
+<td style="text-align: right;">1.2018205</td>
+<td style="text-align: right;">1.91</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 4 2013</td>
+<td style="text-align: right;">84.71152</td>
+<td style="text-align: right;">86.32938</td>
+<td style="text-align: right;">1.6178511</td>
+<td style="text-align: right;">1.91</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 6 2013</td>
+<td style="text-align: right;">72.39286</td>
+<td style="text-align: right;">71.01508</td>
+<td style="text-align: right;">1.3777797</td>
+<td style="text-align: right;">1.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 6 2016</td>
+<td style="text-align: right;">79.88236</td>
+<td style="text-align: right;">78.36775</td>
+<td style="text-align: right;">1.5146101</td>
+<td style="text-align: right;">1.90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_7 plot 3 2020</td>
+<td style="text-align: right;">37.75361</td>
+<td style="text-align: right;">38.46851</td>
+<td style="text-align: right;">0.7148984</td>
+<td style="text-align: right;">1.89</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 3 2019</td>
+<td style="text-align: right;">37.58997</td>
+<td style="text-align: right;">38.30057</td>
+<td style="text-align: right;">0.7106029</td>
+<td style="text-align: right;">1.89</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 6 2018</td>
+<td style="text-align: right;">79.22584</td>
+<td style="text-align: right;">77.73220</td>
+<td style="text-align: right;">1.4936418</td>
+<td style="text-align: right;">1.89</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 6 2020</td>
+<td style="text-align: right;">76.84243</td>
+<td style="text-align: right;">78.26924</td>
+<td style="text-align: right;">1.4268055</td>
+<td style="text-align: right;">1.86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_7 plot 6 2019</td>
+<td style="text-align: right;">76.45739</td>
+<td style="text-align: right;">77.87579</td>
+<td style="text-align: right;">1.4183963</td>
+<td style="text-align: right;">1.86</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 4 2020</td>
+<td style="text-align: right;">55.27042</td>
+<td style="text-align: right;">56.29516</td>
+<td style="text-align: right;">1.0247416</td>
+<td style="text-align: right;">1.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 6 2014</td>
+<td style="text-align: right;">57.15729</td>
+<td style="text-align: right;">58.20641</td>
+<td style="text-align: right;">1.0491145</td>
+<td style="text-align: right;">1.84</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 8 2014</td>
+<td style="text-align: right;">80.01950</td>
+<td style="text-align: right;">81.47478</td>
+<td style="text-align: right;">1.4552807</td>
+<td style="text-align: right;">1.82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 4 2011</td>
+<td style="text-align: right;">96.16023</td>
+<td style="text-align: right;">94.41840</td>
+<td style="text-align: right;">1.7418342</td>
+<td style="text-align: right;">1.81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 6 2011</td>
+<td style="text-align: right;">66.75033</td>
+<td style="text-align: right;">65.54787</td>
+<td style="text-align: right;">1.2024664</td>
+<td style="text-align: right;">1.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 4 2013</td>
+<td style="text-align: right;">100.56273</td>
+<td style="text-align: right;">98.77820</td>
+<td style="text-align: right;">1.7845297</td>
+<td style="text-align: right;">1.77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 9 2021</td>
+<td style="text-align: right;">108.15476</td>
+<td style="text-align: right;">110.06666</td>
+<td style="text-align: right;">1.9118998</td>
+<td style="text-align: right;">1.77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 6 2012</td>
+<td style="text-align: right;">53.90106</td>
+<td style="text-align: right;">54.85001</td>
+<td style="text-align: right;">0.9489575</td>
+<td style="text-align: right;">1.76</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 8 2015</td>
+<td style="text-align: right;">76.60485</td>
+<td style="text-align: right;">77.95310</td>
+<td style="text-align: right;">1.3482513</td>
+<td style="text-align: right;">1.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 6 2016</td>
+<td style="text-align: right;">77.12099</td>
+<td style="text-align: right;">75.76869</td>
+<td style="text-align: right;">1.3523052</td>
+<td style="text-align: right;">1.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 8 2017</td>
+<td style="text-align: right;">78.26024</td>
+<td style="text-align: right;">79.62969</td>
+<td style="text-align: right;">1.3694572</td>
+<td style="text-align: right;">1.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 9 2018</td>
+<td style="text-align: right;">103.01691</td>
+<td style="text-align: right;">104.81830</td>
+<td style="text-align: right;">1.8013842</td>
+<td style="text-align: right;">1.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 8 2016</td>
+<td style="text-align: right;">82.73919</td>
+<td style="text-align: right;">84.18556</td>
+<td style="text-align: right;">1.4463757</td>
+<td style="text-align: right;">1.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 2 2023</td>
+<td style="text-align: right;">87.55731</td>
+<td style="text-align: right;">86.05718</td>
+<td style="text-align: right;">1.5001349</td>
+<td style="text-align: right;">1.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 9 2018</td>
+<td style="text-align: right;">63.08077</td>
+<td style="text-align: right;">62.01486</td>
+<td style="text-align: right;">1.0659035</td>
+<td style="text-align: right;">1.69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 8 2012</td>
+<td style="text-align: right;">76.48495</td>
+<td style="text-align: right;">77.77480</td>
+<td style="text-align: right;">1.2898512</td>
+<td style="text-align: right;">1.69</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 8 2018</td>
+<td style="text-align: right;">61.43267</td>
+<td style="text-align: right;">62.45680</td>
+<td style="text-align: right;">1.0241310</td>
+<td style="text-align: right;">1.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 2 2017</td>
+<td style="text-align: right;">84.48085</td>
+<td style="text-align: right;">83.08389</td>
+<td style="text-align: right;">1.3969600</td>
+<td style="text-align: right;">1.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 2 2016</td>
+<td style="text-align: right;">65.67454</td>
+<td style="text-align: right;">66.75800</td>
+<td style="text-align: right;">1.0834597</td>
+<td style="text-align: right;">1.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 9 2013</td>
+<td style="text-align: right;">95.79155</td>
+<td style="text-align: right;">97.35707</td>
+<td style="text-align: right;">1.5655202</td>
+<td style="text-align: right;">1.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 5 2015</td>
+<td style="text-align: right;">64.84191</td>
+<td style="text-align: right;">65.89449</td>
+<td style="text-align: right;">1.0525843</td>
+<td style="text-align: right;">1.62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 5 2013</td>
+<td style="text-align: right;">63.19198</td>
+<td style="text-align: right;">64.21549</td>
+<td style="text-align: right;">1.0235017</td>
+<td style="text-align: right;">1.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 10 2015</td>
+<td style="text-align: right;">69.19741</td>
+<td style="text-align: right;">70.31497</td>
+<td style="text-align: right;">1.1175542</td>
+<td style="text-align: right;">1.62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 7 2016</td>
+<td style="text-align: right;">70.90359</td>
+<td style="text-align: right;">69.76314</td>
+<td style="text-align: right;">1.1404425</td>
+<td style="text-align: right;">1.61</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 8 2013</td>
+<td style="text-align: right;">79.42413</td>
+<td style="text-align: right;">80.69837</td>
+<td style="text-align: right;">1.2742404</td>
+<td style="text-align: right;">1.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 1 2022</td>
+<td style="text-align: right;">78.01820</td>
+<td style="text-align: right;">79.26652</td>
+<td style="text-align: right;">1.2483240</td>
+<td style="text-align: right;">1.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 6 2023</td>
+<td style="text-align: right;">64.34666</td>
+<td style="text-align: right;">65.37483</td>
+<td style="text-align: right;">1.0281715</td>
+<td style="text-align: right;">1.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 2 2021</td>
+<td style="text-align: right;">67.56413</td>
+<td style="text-align: right;">68.64286</td>
+<td style="text-align: right;">1.0787234</td>
+<td style="text-align: right;">1.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_13 plot 5 2020</td>
+<td style="text-align: right;">45.56140</td>
+<td style="text-align: right;">46.28546</td>
+<td style="text-align: right;">0.7240602</td>
+<td style="text-align: right;">1.59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 8 2022</td>
+<td style="text-align: right;">52.23611</td>
+<td style="text-align: right;">53.06279</td>
+<td style="text-align: right;">0.8266777</td>
+<td style="text-align: right;">1.58</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 10 2013</td>
+<td style="text-align: right;">66.57363</td>
+<td style="text-align: right;">67.62568</td>
+<td style="text-align: right;">1.0520450</td>
+<td style="text-align: right;">1.58</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 1 2020</td>
+<td style="text-align: right;">76.25764</td>
+<td style="text-align: right;">77.45406</td>
+<td style="text-align: right;">1.1964251</td>
+<td style="text-align: right;">1.57</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 6 2013</td>
+<td style="text-align: right;">71.46023</td>
+<td style="text-align: right;">70.34148</td>
+<td style="text-align: right;">1.1187464</td>
+<td style="text-align: right;">1.57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 5 2022</td>
+<td style="text-align: right;">47.39914</td>
+<td style="text-align: right;">48.13703</td>
+<td style="text-align: right;">0.7378831</td>
+<td style="text-align: right;">1.56</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 4 2014</td>
+<td style="text-align: right;">59.50858</td>
+<td style="text-align: right;">60.43472</td>
+<td style="text-align: right;">0.9261397</td>
+<td style="text-align: right;">1.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 8 2020</td>
+<td style="text-align: right;">50.98947</td>
+<td style="text-align: right;">51.78075</td>
+<td style="text-align: right;">0.7912733</td>
+<td style="text-align: right;">1.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 8 2017</td>
+<td style="text-align: right;">81.09508</td>
+<td style="text-align: right;">82.33227</td>
+<td style="text-align: right;">1.2371862</td>
+<td style="text-align: right;">1.53</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 4 2012</td>
+<td style="text-align: right;">56.87086</td>
+<td style="text-align: right;">57.73384</td>
+<td style="text-align: right;">0.8629793</td>
+<td style="text-align: right;">1.52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 10 2019</td>
+<td style="text-align: right;">72.95890</td>
+<td style="text-align: right;">74.05974</td>
+<td style="text-align: right;">1.1008397</td>
+<td style="text-align: right;">1.51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 8 2023</td>
+<td style="text-align: right;">73.56025</td>
+<td style="text-align: right;">74.66892</td>
+<td style="text-align: right;">1.1086706</td>
+<td style="text-align: right;">1.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 9 2016</td>
+<td style="text-align: right;">104.66734</td>
+<td style="text-align: right;">106.23096</td>
+<td style="text-align: right;">1.5636226</td>
+<td style="text-align: right;">1.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 3 2016</td>
+<td style="text-align: right;">70.50813</td>
+<td style="text-align: right;">69.46436</td>
+<td style="text-align: right;">1.0437755</td>
+<td style="text-align: right;">1.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 7 2021</td>
+<td style="text-align: right;">76.13251</td>
+<td style="text-align: right;">75.00818</td>
+<td style="text-align: right;">1.1243280</td>
+<td style="text-align: right;">1.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_IV UPA_15 plot 2 2022</td>
+<td style="text-align: right;">98.74045</td>
+<td style="text-align: right;">97.28317</td>
+<td style="text-align: right;">1.4572871</td>
+<td style="text-align: right;">1.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_IV UPA_15 plot 2 2020</td>
+<td style="text-align: right;">97.45259</td>
+<td style="text-align: right;">96.01660</td>
+<td style="text-align: right;">1.4359886</td>
+<td style="text-align: right;">1.47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 2 2018</td>
+<td style="text-align: right;">68.20128</td>
+<td style="text-align: right;">69.20472</td>
+<td style="text-align: right;">1.0034468</td>
+<td style="text-align: right;">1.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 3 2021</td>
+<td style="text-align: right;">81.37186</td>
+<td style="text-align: right;">80.18205</td>
+<td style="text-align: right;">1.1898072</td>
+<td style="text-align: right;">1.46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 3 2013</td>
+<td style="text-align: right;">69.79904</td>
+<td style="text-align: right;">68.78026</td>
+<td style="text-align: right;">1.0187847</td>
+<td style="text-align: right;">1.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 2 2013</td>
+<td style="text-align: right;">61.88458</td>
+<td style="text-align: right;">62.78657</td>
+<td style="text-align: right;">0.9019917</td>
+<td style="text-align: right;">1.46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 7 2016</td>
+<td style="text-align: right;">68.70774</td>
+<td style="text-align: right;">69.70901</td>
+<td style="text-align: right;">1.0012759</td>
+<td style="text-align: right;">1.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 7 2013</td>
+<td style="text-align: right;">70.89011</td>
+<td style="text-align: right;">69.85988</td>
+<td style="text-align: right;">1.0302270</td>
+<td style="text-align: right;">1.45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 7 2014</td>
+<td style="text-align: right;">67.47663</td>
+<td style="text-align: right;">68.44021</td>
+<td style="text-align: right;">0.9635778</td>
+<td style="text-align: right;">1.43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 1 2019</td>
+<td style="text-align: right;">90.86566</td>
+<td style="text-align: right;">92.16302</td>
+<td style="text-align: right;">1.2973597</td>
+<td style="text-align: right;">1.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 7 2011</td>
+<td style="text-align: right;">65.49202</td>
+<td style="text-align: right;">64.56168</td>
+<td style="text-align: right;">0.9303363</td>
+<td style="text-align: right;">1.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 4 2016</td>
+<td style="text-align: right;">62.23487</td>
+<td style="text-align: right;">63.11545</td>
+<td style="text-align: right;">0.8805732</td>
+<td style="text-align: right;">1.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 4 2014</td>
+<td style="text-align: right;">57.61442</td>
+<td style="text-align: right;">58.41779</td>
+<td style="text-align: right;">0.8033667</td>
+<td style="text-align: right;">1.39</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 7 2017</td>
+<td style="text-align: right;">64.17284</td>
+<td style="text-align: right;">65.06394</td>
+<td style="text-align: right;">0.8910982</td>
+<td style="text-align: right;">1.39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 4 2018</td>
+<td style="text-align: right;">65.74774</td>
+<td style="text-align: right;">66.65737</td>
+<td style="text-align: right;">0.9096273</td>
+<td style="text-align: right;">1.38</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 3 2011</td>
+<td style="text-align: right;">61.81673</td>
+<td style="text-align: right;">60.96325</td>
+<td style="text-align: right;">0.8534875</td>
+<td style="text-align: right;">1.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 7 2015</td>
+<td style="text-align: right;">62.10232</td>
+<td style="text-align: right;">62.94780</td>
+<td style="text-align: right;">0.8454744</td>
+<td style="text-align: right;">1.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 7 2023</td>
+<td style="text-align: right;">66.00121</td>
+<td style="text-align: right;">66.89919</td>
+<td style="text-align: right;">0.8979759</td>
+<td style="text-align: right;">1.36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 4 2013</td>
+<td style="text-align: right;">88.96555</td>
+<td style="text-align: right;">87.76129</td>
+<td style="text-align: right;">1.2042664</td>
+<td style="text-align: right;">1.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_IV UPA_15 plot 4 2020</td>
+<td style="text-align: right;">49.51833</td>
+<td style="text-align: right;">48.84890</td>
+<td style="text-align: right;">0.6694356</td>
+<td style="text-align: right;">1.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 4 2019</td>
+<td style="text-align: right;">57.98692</td>
+<td style="text-align: right;">58.76763</td>
+<td style="text-align: right;">0.7807015</td>
+<td style="text-align: right;">1.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 4 2012</td>
+<td style="text-align: right;">86.21513</td>
+<td style="text-align: right;">85.06654</td>
+<td style="text-align: right;">1.1485848</td>
+<td style="text-align: right;">1.33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 8 2014</td>
+<td style="text-align: right;">60.99722</td>
+<td style="text-align: right;">61.79394</td>
+<td style="text-align: right;">0.7967169</td>
+<td style="text-align: right;">1.31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 1 2015</td>
+<td style="text-align: right;">96.62997</td>
+<td style="text-align: right;">97.86797</td>
+<td style="text-align: right;">1.2379950</td>
+<td style="text-align: right;">1.28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_IV UPA_15 plot 4 2022</td>
+<td style="text-align: right;">51.02614</td>
+<td style="text-align: right;">50.37884</td>
+<td style="text-align: right;">0.6472966</td>
+<td style="text-align: right;">1.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 1 2014</td>
+<td style="text-align: right;">99.55331</td>
+<td style="text-align: right;">100.78863</td>
+<td style="text-align: right;">1.2353146</td>
+<td style="text-align: right;">1.24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 8 2012</td>
+<td style="text-align: right;">56.95336</td>
+<td style="text-align: right;">57.65442</td>
+<td style="text-align: right;">0.7010619</td>
+<td style="text-align: right;">1.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 1 2013</td>
+<td style="text-align: right;">94.39891</td>
+<td style="text-align: right;">95.55004</td>
+<td style="text-align: right;">1.1511343</td>
+<td style="text-align: right;">1.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 4 2022</td>
+<td style="text-align: right;">82.50755</td>
+<td style="text-align: right;">83.49894</td>
+<td style="text-align: right;">0.9913893</td>
+<td style="text-align: right;">1.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_13 plot 4 2020</td>
+<td style="text-align: right;">80.37445</td>
+<td style="text-align: right;">81.33181</td>
+<td style="text-align: right;">0.9573547</td>
+<td style="text-align: right;">1.19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 1 2012</td>
+<td style="text-align: right;">96.85337</td>
+<td style="text-align: right;">98.00653</td>
+<td style="text-align: right;">1.1531593</td>
+<td style="text-align: right;">1.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 3 2023</td>
+<td style="text-align: right;">53.80592</td>
+<td style="text-align: right;">54.44106</td>
+<td style="text-align: right;">0.6351407</td>
+<td style="text-align: right;">1.18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 2 2020</td>
+<td style="text-align: right;">43.71303</td>
+<td style="text-align: right;">44.20093</td>
+<td style="text-align: right;">0.4879055</td>
+<td style="text-align: right;">1.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 2 2023</td>
+<td style="text-align: right;">63.50069</td>
+<td style="text-align: right;">62.79932</td>
+<td style="text-align: right;">0.7013696</td>
+<td style="text-align: right;">1.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 3 2016</td>
+<td style="text-align: right;">68.01510</td>
+<td style="text-align: right;">68.74598</td>
+<td style="text-align: right;">0.7308836</td>
+<td style="text-align: right;">1.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 5 2012</td>
+<td style="text-align: right;">46.09271</td>
+<td style="text-align: right;">45.59783</td>
+<td style="text-align: right;">0.4948804</td>
+<td style="text-align: right;">1.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 2 2013</td>
+<td style="text-align: right;">90.47815</td>
+<td style="text-align: right;">89.51823</td>
+<td style="text-align: right;">0.9599262</td>
+<td style="text-align: right;">1.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 4 2013</td>
+<td style="text-align: right;">68.88582</td>
+<td style="text-align: right;">69.60691</td>
+<td style="text-align: right;">0.7210914</td>
+<td style="text-align: right;">1.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 2 2012</td>
+<td style="text-align: right;">86.64463</td>
+<td style="text-align: right;">85.74108</td>
+<td style="text-align: right;">0.9035441</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 4 2015</td>
+<td style="text-align: right;">70.69376</td>
+<td style="text-align: right;">71.42920</td>
+<td style="text-align: right;">0.7354401</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 10 2010</td>
+<td style="text-align: right;">78.02907</td>
+<td style="text-align: right;">78.83287</td>
+<td style="text-align: right;">0.8038040</td>
+<td style="text-align: right;">1.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 5 2013</td>
+<td style="text-align: right;">48.58948</td>
+<td style="text-align: right;">48.10361</td>
+<td style="text-align: right;">0.4858700</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_7 plot 1 2020</td>
+<td style="text-align: right;">44.15510</td>
+<td style="text-align: right;">44.58483</td>
+<td style="text-align: right;">0.4297336</td>
+<td style="text-align: right;">0.97</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 1 2019</td>
+<td style="text-align: right;">43.97294</td>
+<td style="text-align: right;">44.39937</td>
+<td style="text-align: right;">0.4264318</td>
+<td style="text-align: right;">0.97</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 10 2016</td>
+<td style="text-align: right;">42.77583</td>
+<td style="text-align: right;">43.18735</td>
+<td style="text-align: right;">0.4115190</td>
+<td style="text-align: right;">0.96</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 7 2019</td>
+<td style="text-align: right;">71.38729</td>
+<td style="text-align: right;">70.71808</td>
+<td style="text-align: right;">0.6692170</td>
+<td style="text-align: right;">0.94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 5 2023</td>
+<td style="text-align: right;">39.22463</td>
+<td style="text-align: right;">38.85817</td>
+<td style="text-align: right;">0.3664532</td>
+<td style="text-align: right;">0.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 10 2014</td>
+<td style="text-align: right;">38.23924</td>
+<td style="text-align: right;">38.59431</td>
+<td style="text-align: right;">0.3550766</td>
+<td style="text-align: right;">0.93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_7 plot 7 2020</td>
+<td style="text-align: right;">71.77288</td>
+<td style="text-align: right;">71.10683</td>
+<td style="text-align: right;">0.6660560</td>
+<td style="text-align: right;">0.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 8 2020</td>
+<td style="text-align: right;">64.27557</td>
+<td style="text-align: right;">64.86683</td>
+<td style="text-align: right;">0.5912558</td>
+<td style="text-align: right;">0.92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_IV UPA_15 plot 1 2020</td>
+<td style="text-align: right;">85.66747</td>
+<td style="text-align: right;">84.89497</td>
+<td style="text-align: right;">0.7725050</td>
+<td style="text-align: right;">0.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 4 2023</td>
+<td style="text-align: right;">63.04084</td>
+<td style="text-align: right;">63.60904</td>
+<td style="text-align: right;">0.5682029</td>
+<td style="text-align: right;">0.90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 4 2021</td>
+<td style="text-align: right;">77.42662</td>
+<td style="text-align: right;">76.74579</td>
+<td style="text-align: right;">0.6808313</td>
+<td style="text-align: right;">0.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 3 2014</td>
+<td style="text-align: right;">66.90394</td>
+<td style="text-align: right;">67.49047</td>
+<td style="text-align: right;">0.5865315</td>
+<td style="text-align: right;">0.88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_IV UPA_15 plot 1 2022</td>
+<td style="text-align: right;">87.35465</td>
+<td style="text-align: right;">86.59366</td>
+<td style="text-align: right;">0.7609898</td>
+<td style="text-align: right;">0.87</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 3 2013</td>
+<td style="text-align: right;">84.61047</td>
+<td style="text-align: right;">83.87583</td>
+<td style="text-align: right;">0.7346432</td>
+<td style="text-align: right;">0.87</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 6 2021</td>
+<td style="text-align: right;">64.89678</td>
+<td style="text-align: right;">65.45626</td>
+<td style="text-align: right;">0.5594741</td>
+<td style="text-align: right;">0.86</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 5 2021</td>
+<td style="text-align: right;">52.16414</td>
+<td style="text-align: right;">51.71444</td>
+<td style="text-align: right;">0.4496935</td>
+<td style="text-align: right;">0.86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 5 2017</td>
+<td style="text-align: right;">50.05510</td>
+<td style="text-align: right;">49.62707</td>
+<td style="text-align: right;">0.4280239</td>
+<td style="text-align: right;">0.86</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 3 2012</td>
+<td style="text-align: right;">81.53275</td>
+<td style="text-align: right;">80.83752</td>
+<td style="text-align: right;">0.6952286</td>
+<td style="text-align: right;">0.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 5 2023</td>
+<td style="text-align: right;">51.86898</td>
+<td style="text-align: right;">51.42948</td>
+<td style="text-align: right;">0.4395053</td>
+<td style="text-align: right;">0.85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 8 2020</td>
+<td style="text-align: right;">89.54130</td>
+<td style="text-align: right;">90.29225</td>
+<td style="text-align: right;">0.7509533</td>
+<td style="text-align: right;">0.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_7 plot 8 2019</td>
+<td style="text-align: right;">89.34384</td>
+<td style="text-align: right;">90.09226</td>
+<td style="text-align: right;">0.7484156</td>
+<td style="text-align: right;">0.84</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 3 2017</td>
+<td style="text-align: right;">82.47439</td>
+<td style="text-align: right;">81.78563</td>
+<td style="text-align: right;">0.6887610</td>
+<td style="text-align: right;">0.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 3 2023</td>
+<td style="text-align: right;">87.47240</td>
+<td style="text-align: right;">86.75832</td>
+<td style="text-align: right;">0.7140807</td>
+<td style="text-align: right;">0.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 7 2019</td>
+<td style="text-align: right;">58.83860</td>
+<td style="text-align: right;">59.30061</td>
+<td style="text-align: right;">0.4620051</td>
+<td style="text-align: right;">0.79</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 7 2019</td>
+<td style="text-align: right;">58.83860</td>
+<td style="text-align: right;">59.30061</td>
+<td style="text-align: right;">0.4620051</td>
+<td style="text-align: right;">0.79</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 6 2013</td>
+<td style="text-align: right;">65.40087</td>
+<td style="text-align: right;">64.90076</td>
+<td style="text-align: right;">0.5001170</td>
+<td style="text-align: right;">0.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 2 2014</td>
+<td style="text-align: right;">42.16957</td>
+<td style="text-align: right;">41.85613</td>
+<td style="text-align: right;">0.3134444</td>
+<td style="text-align: right;">0.74</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 5 2014</td>
+<td style="text-align: right;">74.23097</td>
+<td style="text-align: right;">73.68984</td>
+<td style="text-align: right;">0.5411267</td>
+<td style="text-align: right;">0.73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 6 2015</td>
+<td style="text-align: right;">67.84900</td>
+<td style="text-align: right;">67.36446</td>
+<td style="text-align: right;">0.4845461</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 5 2018</td>
+<td style="text-align: right;">49.43925</td>
+<td style="text-align: right;">49.08748</td>
+<td style="text-align: right;">0.3517625</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 5 2019</td>
+<td style="text-align: right;">45.13145</td>
+<td style="text-align: right;">45.45032</td>
+<td style="text-align: right;">0.3188698</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_13 plot 7 2022</td>
+<td style="text-align: right;">79.77982</td>
+<td style="text-align: right;">80.33656</td>
+<td style="text-align: right;">0.5567359</td>
+<td style="text-align: right;">0.70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_13 plot 7 2020</td>
+<td style="text-align: right;">77.39105</td>
+<td style="text-align: right;">77.91421</td>
+<td style="text-align: right;">0.5231639</td>
+<td style="text-align: right;">0.68</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 6 2019</td>
+<td style="text-align: right;">67.57095</td>
+<td style="text-align: right;">67.12176</td>
+<td style="text-align: right;">0.4491889</td>
+<td style="text-align: right;">0.66</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 5 2016</td>
+<td style="text-align: right;">73.14978</td>
+<td style="text-align: right;">72.66495</td>
+<td style="text-align: right;">0.4848302</td>
+<td style="text-align: right;">0.66</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 1 2023</td>
+<td style="text-align: right;">84.99371</td>
+<td style="text-align: right;">85.53011</td>
+<td style="text-align: right;">0.5363965</td>
+<td style="text-align: right;">0.63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 7 2010</td>
+<td style="text-align: right;">48.37900</td>
+<td style="text-align: right;">48.68136</td>
+<td style="text-align: right;">0.3023567</td>
+<td style="text-align: right;">0.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 10 2023</td>
+<td style="text-align: right;">116.53078</td>
+<td style="text-align: right;">115.80563</td>
+<td style="text-align: right;">0.7251568</td>
+<td style="text-align: right;">0.62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_8 plot 7 2017</td>
+<td style="text-align: right;">55.68702</td>
+<td style="text-align: right;">56.03201</td>
+<td style="text-align: right;">0.3449874</td>
+<td style="text-align: right;">0.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_9 plot 7 2017</td>
+<td style="text-align: right;">55.68702</td>
+<td style="text-align: right;">56.03201</td>
+<td style="text-align: right;">0.3449874</td>
+<td style="text-align: right;">0.62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 2 2018</td>
+<td style="text-align: right;">54.00996</td>
+<td style="text-align: right;">54.34087</td>
+<td style="text-align: right;">0.3309095</td>
+<td style="text-align: right;">0.61</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 2 2016</td>
+<td style="text-align: right;">44.53567</td>
+<td style="text-align: right;">44.26407</td>
+<td style="text-align: right;">0.2715974</td>
+<td style="text-align: right;">0.61</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 10 2012</td>
+<td style="text-align: right;">112.79100</td>
+<td style="text-align: right;">112.10639</td>
+<td style="text-align: right;">0.6846067</td>
+<td style="text-align: right;">0.61</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 10 2013</td>
+<td style="text-align: right;">85.05974</td>
+<td style="text-align: right;">85.56967</td>
+<td style="text-align: right;">0.5099252</td>
+<td style="text-align: right;">0.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 5 2020</td>
+<td style="text-align: right;">83.75145</td>
+<td style="text-align: right;">83.27018</td>
+<td style="text-align: right;">0.4812609</td>
+<td style="text-align: right;">0.57</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 9 2016</td>
+<td style="text-align: right;">95.03303</td>
+<td style="text-align: right;">94.53889</td>
+<td style="text-align: right;">0.4941441</td>
+<td style="text-align: right;">0.52</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 10 2014</td>
+<td style="text-align: right;">116.95538</td>
+<td style="text-align: right;">116.35725</td>
+<td style="text-align: right;">0.5981315</td>
+<td style="text-align: right;">0.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 2 2019</td>
+<td style="text-align: right;">56.53209</td>
+<td style="text-align: right;">56.81470</td>
+<td style="text-align: right;">0.2826127</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 2 2019</td>
+<td style="text-align: right;">56.53209</td>
+<td style="text-align: right;">56.81470</td>
+<td style="text-align: right;">0.2826127</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 4 2016</td>
+<td style="text-align: right;">63.55154</td>
+<td style="text-align: right;">63.23934</td>
+<td style="text-align: right;">0.3121983</td>
+<td style="text-align: right;">0.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 9 2023</td>
+<td style="text-align: right;">78.08600</td>
+<td style="text-align: right;">77.71997</td>
+<td style="text-align: right;">0.3660287</td>
+<td style="text-align: right;">0.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 9 2021</td>
+<td style="text-align: right;">112.67888</td>
+<td style="text-align: right;">112.15249</td>
+<td style="text-align: right;">0.5263914</td>
+<td style="text-align: right;">0.47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 10 2016</td>
+<td style="text-align: right;">93.31957</td>
+<td style="text-align: right;">93.75176</td>
+<td style="text-align: right;">0.4321846</td>
+<td style="text-align: right;">0.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 10 2020</td>
+<td style="text-align: right;">49.06983</td>
+<td style="text-align: right;">49.29309</td>
+<td style="text-align: right;">0.2232562</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 5 2021</td>
+<td style="text-align: right;">104.99960</td>
+<td style="text-align: right;">104.53147</td>
+<td style="text-align: right;">0.4681390</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 10 2013</td>
+<td style="text-align: right;">71.59298</td>
+<td style="text-align: right;">71.27629</td>
+<td style="text-align: right;">0.3166953</td>
+<td style="text-align: right;">0.44</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 1 2017</td>
+<td style="text-align: right;">91.30645</td>
+<td style="text-align: right;">91.70979</td>
+<td style="text-align: right;">0.4033415</td>
+<td style="text-align: right;">0.44</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 2 2012</td>
+<td style="text-align: right;">108.80715</td>
+<td style="text-align: right;">108.32791</td>
+<td style="text-align: right;">0.4792397</td>
+<td style="text-align: right;">0.44</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_4 plot 10 2018</td>
+<td style="text-align: right;">110.48908</td>
+<td style="text-align: right;">110.00539</td>
+<td style="text-align: right;">0.4836951</td>
+<td style="text-align: right;">0.44</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 9 2012</td>
+<td style="text-align: right;">81.29350</td>
+<td style="text-align: right;">81.64255</td>
+<td style="text-align: right;">0.3490532</td>
+<td style="text-align: right;">0.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 10 2018</td>
+<td style="text-align: right;">94.52630</td>
+<td style="text-align: right;">94.93131</td>
+<td style="text-align: right;">0.4050089</td>
+<td style="text-align: right;">0.43</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 2 2017</td>
+<td style="text-align: right;">53.73655</td>
+<td style="text-align: right;">53.96239</td>
+<td style="text-align: right;">0.2258434</td>
+<td style="text-align: right;">0.42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 2 2017</td>
+<td style="text-align: right;">53.73655</td>
+<td style="text-align: right;">53.96239</td>
+<td style="text-align: right;">0.2258434</td>
+<td style="text-align: right;">0.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 9 2017</td>
+<td style="text-align: right;">82.17611</td>
+<td style="text-align: right;">82.51290</td>
+<td style="text-align: right;">0.3367915</td>
+<td style="text-align: right;">0.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 10 2012</td>
+<td style="text-align: right;">68.93371</td>
+<td style="text-align: right;">68.65249</td>
+<td style="text-align: right;">0.2812111</td>
+<td style="text-align: right;">0.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 1 2015</td>
+<td style="text-align: right;">88.26045</td>
+<td style="text-align: right;">88.61520</td>
+<td style="text-align: right;">0.3547438</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 5 2016</td>
+<td style="text-align: right;">92.29810</td>
+<td style="text-align: right;">91.94119</td>
+<td style="text-align: right;">0.3569125</td>
+<td style="text-align: right;">0.39</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 6 2017</td>
+<td style="text-align: right;">75.02884</td>
+<td style="text-align: right;">74.74635</td>
+<td style="text-align: right;">0.2824919</td>
+<td style="text-align: right;">0.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 9 2013</td>
+<td style="text-align: right;">83.69625</td>
+<td style="text-align: right;">84.00952</td>
+<td style="text-align: right;">0.3132760</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 6 2015</td>
+<td style="text-align: right;">72.87267</td>
+<td style="text-align: right;">72.60231</td>
+<td style="text-align: right;">0.2703594</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 1 2016</td>
+<td style="text-align: right;">68.44220</td>
+<td style="text-align: right;">68.69547</td>
+<td style="text-align: right;">0.2532788</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 2 2014</td>
+<td style="text-align: right;">111.15618</td>
+<td style="text-align: right;">110.77485</td>
+<td style="text-align: right;">0.3813256</td>
+<td style="text-align: right;">0.34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 5 2013</td>
+<td style="text-align: right;">82.59449</td>
+<td style="text-align: right;">82.32679</td>
+<td style="text-align: right;">0.2677017</td>
+<td style="text-align: right;">0.32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 1 2023</td>
+<td style="text-align: right;">99.61186</td>
+<td style="text-align: right;">99.91806</td>
+<td style="text-align: right;">0.3062021</td>
+<td style="text-align: right;">0.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 9 2013</td>
+<td style="text-align: right;">84.28983</td>
+<td style="text-align: right;">84.03138</td>
+<td style="text-align: right;">0.2584545</td>
+<td style="text-align: right;">0.31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 2 2023</td>
+<td style="text-align: right;">55.26882</td>
+<td style="text-align: right;">55.43507</td>
+<td style="text-align: right;">0.1662474</td>
+<td style="text-align: right;">0.30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_8 plot 8 2019</td>
+<td style="text-align: right;">62.52768</td>
+<td style="text-align: right;">62.69680</td>
+<td style="text-align: right;">0.1691232</td>
+<td style="text-align: right;">0.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_9 plot 8 2019</td>
+<td style="text-align: right;">62.52768</td>
+<td style="text-align: right;">62.69680</td>
+<td style="text-align: right;">0.1691232</td>
+<td style="text-align: right;">0.27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 1 2018</td>
+<td style="text-align: right;">71.14094</td>
+<td style="text-align: right;">71.33313</td>
+<td style="text-align: right;">0.1921936</td>
+<td style="text-align: right;">0.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 2 2015</td>
+<td style="text-align: right;">53.74205</td>
+<td style="text-align: right;">53.88480</td>
+<td style="text-align: right;">0.1427504</td>
+<td style="text-align: right;">0.27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_3 plot 10 2023</td>
+<td style="text-align: right;">71.49882</td>
+<td style="text-align: right;">71.68077</td>
+<td style="text-align: right;">0.1819545</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 7 2018</td>
+<td style="text-align: right;">58.71161</td>
+<td style="text-align: right;">58.56780</td>
+<td style="text-align: right;">0.1438099</td>
+<td style="text-align: right;">0.24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 6 2020</td>
+<td style="text-align: right;">49.78098</td>
+<td style="text-align: right;">49.90245</td>
+<td style="text-align: right;">0.1214775</td>
+<td style="text-align: right;">0.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_8 plot 8 2017</td>
+<td style="text-align: right;">60.54031</td>
+<td style="text-align: right;">60.67592</td>
+<td style="text-align: right;">0.1356164</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_9 plot 8 2017</td>
+<td style="text-align: right;">60.54031</td>
+<td style="text-align: right;">60.67592</td>
+<td style="text-align: right;">0.1356164</td>
+<td style="text-align: right;">0.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 7 2016</td>
+<td style="text-align: right;">57.77350</td>
+<td style="text-align: right;">57.65079</td>
+<td style="text-align: right;">0.1227096</td>
+<td style="text-align: right;">0.21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 9 2011</td>
+<td style="text-align: right;">74.85400</td>
+<td style="text-align: right;">74.71161</td>
+<td style="text-align: right;">0.1423887</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_5 plot 2 2019</td>
+<td style="text-align: right;">94.52580</td>
+<td style="text-align: right;">94.35240</td>
+<td style="text-align: right;">0.1734021</td>
+<td style="text-align: right;">0.18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 2 2013</td>
+<td style="text-align: right;">89.07632</td>
+<td style="text-align: right;">88.91380</td>
+<td style="text-align: right;">0.1625188</td>
+<td style="text-align: right;">0.18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_6 plot 6 2016</td>
+<td style="text-align: right;">78.62709</td>
+<td style="text-align: right;">78.75516</td>
+<td style="text-align: right;">0.1280660</td>
+<td style="text-align: right;">0.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_5 plot 2 2015</td>
+<td style="text-align: right;">90.92365</td>
+<td style="text-align: right;">90.77653</td>
+<td style="text-align: right;">0.1471140</td>
+<td style="text-align: right;">0.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 10 2016</td>
+<td style="text-align: right;">83.98366</td>
+<td style="text-align: right;">83.85487</td>
+<td style="text-align: right;">0.1287838</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 10 2013</td>
+<td style="text-align: right;">77.00184</td>
+<td style="text-align: right;">76.89262</td>
+<td style="text-align: right;">0.1092198</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 5 2016</td>
+<td style="text-align: right;">47.68992</td>
+<td style="text-align: right;">47.75724</td>
+<td style="text-align: right;">0.0673127</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 1 2021</td>
+<td style="text-align: right;">76.89511</td>
+<td style="text-align: right;">77.00218</td>
+<td style="text-align: right;">0.1070777</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 7 2021</td>
+<td style="text-align: right;">61.43515</td>
+<td style="text-align: right;">61.35126</td>
+<td style="text-align: right;">0.0838844</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 5 2011</td>
+<td style="text-align: right;">72.96436</td>
+<td style="text-align: right;">72.87122</td>
+<td style="text-align: right;">0.0931383</td>
+<td style="text-align: right;">0.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_10 plot 2 2017</td>
+<td style="text-align: right;">56.43735</td>
+<td style="text-align: right;">56.50327</td>
+<td style="text-align: right;">0.0659212</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 8 2013</td>
+<td style="text-align: right;">69.36293</td>
+<td style="text-align: right;">69.28518</td>
+<td style="text-align: right;">0.0777496</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_2 plot 10 2021</td>
+<td style="text-align: right;">97.49249</td>
+<td style="text-align: right;">97.38766</td>
+<td style="text-align: right;">0.1048290</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_2 plot 10 2011</td>
+<td style="text-align: right;">68.19918</td>
+<td style="text-align: right;">68.13211</td>
+<td style="text-align: right;">0.0670619</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_4 plot 1 2018</td>
+<td style="text-align: right;">94.11279</td>
+<td style="text-align: right;">94.20081</td>
+<td style="text-align: right;">0.0880225</td>
+<td style="text-align: right;">0.09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_6 plot 6 2014</td>
+<td style="text-align: right;">77.67906</td>
+<td style="text-align: right;">77.74176</td>
+<td style="text-align: right;">0.0627007</td>
+<td style="text-align: right;">0.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 10 2021</td>
+<td style="text-align: right;">99.37983</td>
+<td style="text-align: right;">99.45315</td>
+<td style="text-align: right;">0.0733164</td>
+<td style="text-align: right;">0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_1 plot 7 2013</td>
+<td style="text-align: right;">55.56796</td>
+<td style="text-align: right;">55.52756</td>
+<td style="text-align: right;">0.0404060</td>
+<td style="text-align: right;">0.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_7 plot 5 2020</td>
+<td style="text-align: right;">52.46662</td>
+<td style="text-align: right;">52.49355</td>
+<td style="text-align: right;">0.0269255</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_10 plot 6 2023</td>
+<td style="text-align: right;">71.15509</td>
+<td style="text-align: right;">71.17819</td>
+<td style="text-align: right;">0.0230965</td>
+<td style="text-align: right;">0.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_1 plot 8 2010</td>
+<td style="text-align: right;">62.20382</td>
+<td style="text-align: right;">62.18935</td>
+<td style="text-align: right;">0.0144732</td>
+<td style="text-align: right;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UMF_I UPA_7 plot 5 2019</td>
+<td style="text-align: right;">52.01084</td>
+<td style="text-align: right;">52.01619</td>
+<td style="text-align: right;">0.0053426</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMF_I UPA_3 plot 10 2017</td>
+<td style="text-align: right;">67.96002</td>
+<td style="text-align: right;">67.96002</td>
+<td style="text-align: right;">0.0000056</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>text <span class="ot">&lt;-</span> <span class="fu">max</span>(dif_AGBs<span class="sc">$</span>diff_perc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can see as much as 8.08 % difference in biomass estimation due to the different wood density databases.</p>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Chave2009" class="csl-entry" role="listitem">
+Chave, Jerome, David Coomes, Steven Jansen, Simon L. Lewis, Nathan G. Swenson, and Amy E. Zanne. 2009. <span>“Towards a Worldwide Wood Economics Spectrum.”</span> <em>Ecology Letters</em> 12: 351–66. <a href="https://doi.org/10.1111/j.1461-0248.2009.01285.x">https://doi.org/10.1111/j.1461-0248.2009.01285.x</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./21_data_exploration.html" class="pagination-link" aria-label="Exploring data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./30_data_analisys.html" class="pagination-link" aria-label="Data Analisys">
+        <span class="nav-page-text">Data Analisys</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

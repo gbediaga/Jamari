@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Workflow to extract tree height from Lidar CHM – Phd scripts book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./33_estimate_biomass.html" rel="next">
+<link href="./31_tree_height_from_lidar.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./30_data_analisys.html">Data Analisys</a></li><li class="breadcrumb-item"><a href="./32_tree_height_from_lidar_all_apus.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Phd scripts book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./10_data_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data preparation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_pps_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation of Permament Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_harmonizing_pps_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_merge_if100_romaneio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./20_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Exploration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_wood_density_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./30_data_analisys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Analisys</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31_tree_height_from_lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./32_tree_height_from_lidar_all_apus.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./33_estimate_biomass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./34_modelling_H.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modelling DBH x Height</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
+  <li><a href="#lecture" id="toc-lecture" class="nav-link" data-scroll-target="#lecture"><span class="header-section-number">7.2</span> Lecture</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">7.3</span> Setup</a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters"><span class="header-section-number">7.4</span> Parameters</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">7.5</span> Data</a></li>
+  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code"><span class="header-section-number">7.6</span> Running Code</a></li>
+  <li><a href="#chm-processing" id="toc-chm-processing" class="nav-link" data-scroll-target="#chm-processing"><span class="header-section-number">7.7</span> CHM processing</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./30_data_analisys.html">Data Analisys</a></li><li class="breadcrumb-item"><a href="./32_tree_height_from_lidar_all_apus.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-height_from_lidar" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
+<p>This is the final script to extract tree heights from Canopy Height Models (CHMs) generated from LiDAR-derived point clouds in a forest management area. Two CHMs will be used: one from the year before harvesting and one from the year after. The paths to the CHMs for each area are provided in a table.</p>
+<p>Data from the Forest Inventory of the area are also incorporated (from <a href="13_merge_if100_romaneio.html" class="quarto-xref"><span>Chapter 3</span></a>). The goal is to identify the crowns of harvested trees and obtain their heights from the CHM metrics. Step-by-step processing of the workflow can be found in the <a href="31_tree_height_from_lidar.html" class="quarto-xref"><span>Chapter 6</span></a> script.</p>
+</section>
+<section id="lecture" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="lecture"><span class="header-section-number">7.2</span> Lecture</h2>
+<ul>
+<li>CHM generation: <span class="citation" data-cites="Fischer2024">Fischer et al. (<a href="99_references.html#ref-Fischer2024" role="doc-biblioref">2024</a>)</span>.</li>
+</ul>
+</section>
+<section id="setup" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">7.3</span> Setup</h2>
+<p>You need <code>terra</code> package to handle spatial data and <code>dplyr</code> to manipulate tabular data.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="parameters" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="parameters"><span class="header-section-number">7.4</span> Parameters</h2>
+<p>Then we set the script parameters.</p>
+<p><strong>lim_inf</strong> = Percentage points threshold to be considered as a gap. When subtracting two CHMs the output difference can be full of noises (a branch that broke or moved for example). Setting a threshold ensures we will select only the large differences.</p>
+<p><strong>pol_area</strong> = Minimum area to be considered as a gap (m<sup>2</sup>).</p>
+<p><strong>projection</strong> = Projection of spatial data.</p>
+<p><strong>buffer_size</strong> = Buffer size around each tree to avoid confusing very close trees and also to identify the associated gap.</p>
+<p><strong>percentil</strong> = Percentile used to extract maximum height in the identified canopy area.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>lim_inf <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>pol_area <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>projection <span class="ot">&lt;-</span> <span class="st">"EPSG:31980"</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>buffer_size <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a>percentil <span class="ot">&lt;-</span> <span class="fl">0.95</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="data" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="data"><span class="header-section-number">7.5</span> Data</h2>
+<p>The CHMs were generated by Fabian Fischer from Brazilian Forest Concessions Lidar data, using the method described in <span class="citation" data-cites="Fischer2024">Fischer et al. (<a href="99_references.html#ref-Fischer2024" role="doc-biblioref">2024</a>)</span>.</p>
+<p>Commercial inventories were obtained from Brazilian Forest Concessions.</p>
+</section>
+<section id="running-code" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="running-code"><span class="header-section-number">7.6</span> Running Code</h2>
+</section>
+<section id="chm-processing" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="chm-processing"><span class="header-section-number">7.7</span> CHM processing</h2>
+<p>Read the table with the file path of each CHM before and after exploitation for each APU. Read the commercial forest inventory merged with logbook records in the <code>13_merge_if100_romaneio.qmd</code> script.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>chm_list <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/chm/APUs_CHMs.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>chm_list <span class="ot">&lt;-</span>chm_list[chm_list<span class="sc">$</span>before_exploit <span class="sc">!=</span> <span class="st">""</span>, ]</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>if100_romaneio <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/if100/if100_romaneio_madeflona.csv"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>if100_romaneio<span class="sc">$</span>id_arv <span class="ot">&lt;-</span> <span class="fu">paste0</span>(if100_romaneio<span class="sc">$</span>codigo,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>                                <span class="st">"_arv_"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>                                if100_romaneio<span class="sc">$</span>num_arvore)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Let’s loop it</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(chm_list)) {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  </span>
+<span id="cb4-3"><a href="#cb4-3"></a>upa <span class="ot">&lt;-</span> chm_list<span class="sc">$</span>apu[i]</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  </span>
+<span id="cb4-5"><a href="#cb4-5"></a>umf <span class="ot">&lt;-</span> chm_list<span class="sc">$</span>fmu[i]</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  </span>
+<span id="cb4-7"><a href="#cb4-7"></a>lid.antes <span class="ot">&lt;-</span> chm_list<span class="sc">$</span>before_exploit[i]</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  </span>
+<span id="cb4-9"><a href="#cb4-9"></a>lid.depois <span class="ot">&lt;-</span> chm_list<span class="sc">$</span>after_exploit[i]</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="fu">stopifnot</span>(<span class="fu">file.exists</span>(lid.antes))</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="fu">stopifnot</span>(<span class="fu">file.exists</span>(lid.depois))</span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a>r1 <span class="ot">&lt;-</span> <span class="fu">rast</span>(lid.antes)</span>
+<span id="cb4-16"><a href="#cb4-16"></a>r2 <span class="ot">&lt;-</span> <span class="fu">rast</span>(lid.depois)</span>
+<span id="cb4-17"><a href="#cb4-17"></a></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="cf">if</span> (<span class="fu">crs</span>(r1) <span class="sc">!=</span> projection) r1 <span class="ot">&lt;-</span> <span class="fu">project</span>(r1, projection)</span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="cf">if</span> (<span class="fu">crs</span>(r2) <span class="sc">!=</span> projection) r2 <span class="ot">&lt;-</span> <span class="fu">project</span>(r2, projection)</span>
+<span id="cb4-20"><a href="#cb4-20"></a>  </span>
+<span id="cb4-21"><a href="#cb4-21"></a>ext_intersect <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">intersect</span>(<span class="fu">ext</span>(r1), <span class="fu">ext</span>(r2))</span>
+<span id="cb4-22"><a href="#cb4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23"></a>r1_crop <span class="ot">&lt;-</span> <span class="fu">crop</span>(r1, </span>
+<span id="cb4-24"><a href="#cb4-24"></a>                ext_intersect)</span>
+<span id="cb4-25"><a href="#cb4-25"></a>r2_crop <span class="ot">&lt;-</span> <span class="fu">crop</span>(r2, </span>
+<span id="cb4-26"><a href="#cb4-26"></a>                ext_intersect)</span>
+<span id="cb4-27"><a href="#cb4-27"></a></span>
+<span id="cb4-28"><a href="#cb4-28"></a>diff_raster <span class="ot">&lt;-</span> r2_crop <span class="sc">-</span> r1_crop</span>
+<span id="cb4-29"><a href="#cb4-29"></a></span>
+<span id="cb4-30"><a href="#cb4-30"></a>diff_raster <span class="ot">&lt;-</span> <span class="fu">mask</span>(diff_raster, </span>
+<span id="cb4-31"><a href="#cb4-31"></a>                    (<span class="sc">!</span><span class="fu">is.na</span>(r1_crop) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(r2_crop)))</span>
+<span id="cb4-32"><a href="#cb4-32"></a>  </span>
+<span id="cb4-33"><a href="#cb4-33"></a>q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="fu">values</span>(diff_raster), </span>
+<span id="cb4-34"><a href="#cb4-34"></a>               <span class="at">probs =</span> lim_inf, </span>
+<span id="cb4-35"><a href="#cb4-35"></a>               <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-36"><a href="#cb4-36"></a></span>
+<span id="cb4-37"><a href="#cb4-37"></a>r_low <span class="ot">&lt;-</span> diff_raster</span>
+<span id="cb4-38"><a href="#cb4-38"></a>r_low[diff_raster <span class="sc">&gt;</span> q1] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a>r_low[<span class="sc">!</span><span class="fu">is.na</span>(r_low)] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb4-40"><a href="#cb4-40"></a></span>
+<span id="cb4-41"><a href="#cb4-41"></a>r_low_patches <span class="ot">&lt;-</span> <span class="fu">patches</span>(r_low, <span class="at">directions =</span> <span class="dv">8</span>)</span>
+<span id="cb4-42"><a href="#cb4-42"></a>poly_low <span class="ot">&lt;-</span> <span class="fu">as.polygons</span>(r_low_patches, </span>
+<span id="cb4-43"><a href="#cb4-43"></a>                        <span class="at">dissolve =</span> T, </span>
+<span id="cb4-44"><a href="#cb4-44"></a>                        <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-45"><a href="#cb4-45"></a></span>
+<span id="cb4-46"><a href="#cb4-46"></a><span class="fu">crs</span>(poly_low) <span class="ot">&lt;-</span> projection</span>
+<span id="cb4-47"><a href="#cb4-47"></a></span>
+<span id="cb4-48"><a href="#cb4-48"></a>poly_low<span class="sc">$</span>area_m2 <span class="ot">&lt;-</span> <span class="fu">expanse</span>(poly_low, </span>
+<span id="cb4-49"><a href="#cb4-49"></a>                            <span class="at">unit =</span> <span class="st">"m"</span>)</span>
+<span id="cb4-50"><a href="#cb4-50"></a></span>
+<span id="cb4-51"><a href="#cb4-51"></a>poly_filtrado <span class="ot">&lt;-</span> poly_low[poly_low<span class="sc">$</span>area_m2 <span class="sc">&gt;</span> pol_area, ]</span>
+<span id="cb4-52"><a href="#cb4-52"></a></span>
+<span id="cb4-53"><a href="#cb4-53"></a></span>
+<span id="cb4-54"><a href="#cb4-54"></a>upa.umf <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Jamari_"</span>,</span>
+<span id="cb4-55"><a href="#cb4-55"></a>                  <span class="st">"UMF_"</span>,</span>
+<span id="cb4-56"><a href="#cb4-56"></a>                  umf,</span>
+<span id="cb4-57"><a href="#cb4-57"></a>                  <span class="st">"_UPA_"</span>,</span>
+<span id="cb4-58"><a href="#cb4-58"></a>                  upa)</span>
+<span id="cb4-59"><a href="#cb4-59"></a></span>
+<span id="cb4-60"><a href="#cb4-60"></a></span>
+<span id="cb4-61"><a href="#cb4-61"></a>if100_upa <span class="ot">&lt;-</span> if100_romaneio <span class="sc">%&gt;%</span></span>
+<span id="cb4-62"><a href="#cb4-62"></a>                  <span class="fu">filter</span>(codigo <span class="sc">==</span> upa.umf)</span>
+<span id="cb4-63"><a href="#cb4-63"></a> </span>
+<span id="cb4-64"><a href="#cb4-64"></a><span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(if100_upa<span class="sc">$</span>vol_tora))) {</span>
+<span id="cb4-65"><a href="#cb4-65"></a>                                      <span class="fu">message</span>(<span class="st">"Volume de tora igual a zero na iteração "</span>, i)</span>
+<span id="cb4-66"><a href="#cb4-66"></a>                                      <span class="cf">next</span></span>
+<span id="cb4-67"><a href="#cb4-67"></a>                                    }</span>
+<span id="cb4-68"><a href="#cb4-68"></a></span>
+<span id="cb4-69"><a href="#cb4-69"></a>if100_upa <span class="ot">&lt;-</span> if100_upa[<span class="sc">!</span><span class="fu">is.na</span>(if100_upa<span class="sc">$</span>vol_tora), ]</span>
+<span id="cb4-70"><a href="#cb4-70"></a></span>
+<span id="cb4-71"><a href="#cb4-71"></a>if100_pts <span class="ot">&lt;-</span> <span class="fu">vect</span>(if100_upa, </span>
+<span id="cb4-72"><a href="#cb4-72"></a>                  <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>,</span>
+<span id="cb4-73"><a href="#cb4-73"></a>                           <span class="st">"Latitude"</span>),</span>
+<span id="cb4-74"><a href="#cb4-74"></a>                  <span class="at">keepgeom =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-75"><a href="#cb4-75"></a>                  <span class="at">crs =</span> <span class="st">"EPSG:4674"</span>)</span>
+<span id="cb4-76"><a href="#cb4-76"></a></span>
+<span id="cb4-77"><a href="#cb4-77"></a><span class="fu">crs</span>(if100_pts) <span class="ot">&lt;-</span> <span class="st">"EPSG:4674"</span></span>
+<span id="cb4-78"><a href="#cb4-78"></a></span>
+<span id="cb4-79"><a href="#cb4-79"></a>if100_pts <span class="ot">&lt;-</span> <span class="fu">project</span>(if100_pts, </span>
+<span id="cb4-80"><a href="#cb4-80"></a>                     projection)</span>
+<span id="cb4-81"><a href="#cb4-81"></a></span>
+<span id="cb4-82"><a href="#cb4-82"></a>if100_pts <span class="ot">&lt;-</span> <span class="fu">crop</span>(if100_pts, </span>
+<span id="cb4-83"><a href="#cb4-83"></a>                  diff_raster)</span>
+<span id="cb4-84"><a href="#cb4-84"></a></span>
+<span id="cb4-85"><a href="#cb4-85"></a>if100_pts<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(if100_pts)</span>
+<span id="cb4-86"><a href="#cb4-86"></a></span>
+<span id="cb4-87"><a href="#cb4-87"></a>buffer_if100 <span class="ot">&lt;-</span> <span class="fu">buffer</span>(if100_pts,</span>
+<span id="cb4-88"><a href="#cb4-88"></a>                       <span class="at">width =</span> buffer_size)</span>
+<span id="cb4-89"><a href="#cb4-89"></a></span>
+<span id="cb4-90"><a href="#cb4-90"></a>toca <span class="ot">&lt;-</span> <span class="fu">relate</span>(buffer_if100, </span>
+<span id="cb4-91"><a href="#cb4-91"></a>               buffer_if100, </span>
+<span id="cb4-92"><a href="#cb4-92"></a>               <span class="st">"overlaps"</span>)</span>
+<span id="cb4-93"><a href="#cb4-93"></a></span>
+<span id="cb4-94"><a href="#cb4-94"></a><span class="fu">diag</span>(toca) <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb4-95"><a href="#cb4-95"></a></span>
+<span id="cb4-96"><a href="#cb4-96"></a>tocam_outros <span class="ot">&lt;-</span> <span class="fu">apply</span>(toca, <span class="dv">1</span>, any)</span>
+<span id="cb4-97"><a href="#cb4-97"></a></span>
+<span id="cb4-98"><a href="#cb4-98"></a>b_isolados <span class="ot">&lt;-</span> buffer_if100[<span class="sc">!</span>tocam_outros]</span>
+<span id="cb4-99"><a href="#cb4-99"></a></span>
+<span id="cb4-100"><a href="#cb4-100"></a>pts_sel <span class="ot">&lt;-</span> if100_pts[ if100_pts<span class="sc">$</span>id_arv <span class="sc">%in%</span> b_isolados<span class="sc">$</span>id_arv , ]</span>
+<span id="cb4-101"><a href="#cb4-101"></a></span>
+<span id="cb4-102"><a href="#cb4-102"></a>sel <span class="ot">&lt;-</span> <span class="fu">relate</span>(poly_filtrado, </span>
+<span id="cb4-103"><a href="#cb4-103"></a>              b_isolados, </span>
+<span id="cb4-104"><a href="#cb4-104"></a>              <span class="st">"intersects"</span>)</span>
+<span id="cb4-105"><a href="#cb4-105"></a></span>
+<span id="cb4-106"><a href="#cb4-106"></a>lista_copas <span class="ot">&lt;-</span> <span class="fu">apply</span>(sel, </span>
+<span id="cb4-107"><a href="#cb4-107"></a>                     <span class="dv">2</span>, </span>
+<span id="cb4-108"><a href="#cb4-108"></a>                     <span class="cf">function</span>(x) <span class="fu">which</span>(x))</span>
+<span id="cb4-109"><a href="#cb4-109"></a></span>
+<span id="cb4-110"><a href="#cb4-110"></a>idx_mantidos <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb4-111"><a href="#cb4-111"></a></span>
+<span id="cb4-112"><a href="#cb4-112"></a><span class="cf">for</span> (o <span class="cf">in</span> <span class="fu">seq_along</span>(lista_copas)) {</span>
+<span id="cb4-113"><a href="#cb4-113"></a>  </span>
+<span id="cb4-114"><a href="#cb4-114"></a>  copas_idx <span class="ot">&lt;-</span> lista_copas[[o]]</span>
+<span id="cb4-115"><a href="#cb4-115"></a>  </span>
+<span id="cb4-116"><a href="#cb4-116"></a>  <span class="cf">if</span> (<span class="fu">length</span>(copas_idx) <span class="sc">==</span> <span class="dv">0</span>) <span class="cf">next</span></span>
+<span id="cb4-117"><a href="#cb4-117"></a>  </span>
+<span id="cb4-118"><a href="#cb4-118"></a>  <span class="cf">if</span> (<span class="fu">length</span>(copas_idx) <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb4-119"><a href="#cb4-119"></a>    idx_mantidos <span class="ot">&lt;-</span> <span class="fu">c</span>(idx_mantidos, </span>
+<span id="cb4-120"><a href="#cb4-120"></a>                      copas_idx)</span>
+<span id="cb4-121"><a href="#cb4-121"></a>    <span class="cf">next</span></span>
+<span id="cb4-122"><a href="#cb4-122"></a>  }</span>
+<span id="cb4-123"><a href="#cb4-123"></a>  </span>
+<span id="cb4-124"><a href="#cb4-124"></a>  distancias <span class="ot">&lt;-</span> <span class="fu">distance</span>(</span>
+<span id="cb4-125"><a href="#cb4-125"></a>    pts_sel[o, ],</span>
+<span id="cb4-126"><a href="#cb4-126"></a>    poly_filtrado[copas_idx, ]</span>
+<span id="cb4-127"><a href="#cb4-127"></a>  )</span>
+<span id="cb4-128"><a href="#cb4-128"></a>  </span>
+<span id="cb4-129"><a href="#cb4-129"></a></span>
+<span id="cb4-130"><a href="#cb4-130"></a>  idx_melhor <span class="ot">&lt;-</span> copas_idx[ <span class="fu">which.min</span>(distancias) ]</span>
+<span id="cb4-131"><a href="#cb4-131"></a>  idx_mantidos <span class="ot">&lt;-</span> <span class="fu">c</span>(idx_mantidos, </span>
+<span id="cb4-132"><a href="#cb4-132"></a>                    idx_melhor)</span>
+<span id="cb4-133"><a href="#cb4-133"></a>}</span>
+<span id="cb4-134"><a href="#cb4-134"></a></span>
+<span id="cb4-135"><a href="#cb4-135"></a></span>
+<span id="cb4-136"><a href="#cb4-136"></a>idx_mantidos <span class="ot">&lt;-</span> <span class="fu">unique</span>(idx_mantidos)</span>
+<span id="cb4-137"><a href="#cb4-137"></a></span>
+<span id="cb4-138"><a href="#cb4-138"></a>idx_mantidos <span class="ot">&lt;-</span> idx_mantidos[<span class="sc">!</span><span class="fu">is.na</span>(idx_mantidos)]</span>
+<span id="cb4-139"><a href="#cb4-139"></a></span>
+<span id="cb4-140"><a href="#cb4-140"></a><span class="cf">if</span> (<span class="fu">length</span>(idx_mantidos) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb4-141"><a href="#cb4-141"></a>                                <span class="fu">message</span>(<span class="st">"Pulando iteração "</span>, i, <span class="st">": idx_mantidos é NA"</span>)</span>
+<span id="cb4-142"><a href="#cb4-142"></a>                                <span class="cf">next</span></span>
+<span id="cb4-143"><a href="#cb4-143"></a>                              }</span>
+<span id="cb4-144"><a href="#cb4-144"></a></span>
+<span id="cb4-145"><a href="#cb4-145"></a>pol_copas_sel <span class="ot">&lt;-</span> poly_filtrado[idx_mantidos, ]</span>
+<span id="cb4-146"><a href="#cb4-146"></a></span>
+<span id="cb4-147"><a href="#cb4-147"></a></span>
+<span id="cb4-148"><a href="#cb4-148"></a>m <span class="ot">&lt;-</span> <span class="fu">relate</span>(pol_copas_sel, b_isolados, <span class="st">"intersects"</span>)</span>
+<span id="cb4-149"><a href="#cb4-149"></a></span>
+<span id="cb4-150"><a href="#cb4-150"></a>idx <span class="ot">&lt;-</span> <span class="fu">apply</span>(m, </span>
+<span id="cb4-151"><a href="#cb4-151"></a>             <span class="dv">1</span>, </span>
+<span id="cb4-152"><a href="#cb4-152"></a>             <span class="cf">function</span>(x) <span class="fu">ifelse</span>(<span class="fu">any</span>(x), </span>
+<span id="cb4-153"><a href="#cb4-153"></a>                                <span class="fu">which</span>(x)[<span class="dv">1</span>], </span>
+<span id="cb4-154"><a href="#cb4-154"></a>                                <span class="cn">NA</span>))</span>
+<span id="cb4-155"><a href="#cb4-155"></a></span>
+<span id="cb4-156"><a href="#cb4-156"></a>pol_copas_sel<span class="sc">$</span>ID_B <span class="ot">&lt;-</span> b_isolados<span class="sc">$</span>ID[idx]</span>
+<span id="cb4-157"><a href="#cb4-157"></a></span>
+<span id="cb4-158"><a href="#cb4-158"></a></span>
+<span id="cb4-159"><a href="#cb4-159"></a>valores <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">extract</span>(r1, </span>
+<span id="cb4-160"><a href="#cb4-160"></a>                          pol_copas_sel)</span>
+<span id="cb4-161"><a href="#cb4-161"></a></span>
+<span id="cb4-162"><a href="#cb4-162"></a>valores <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(valores)</span>
+<span id="cb4-163"><a href="#cb4-163"></a></span>
+<span id="cb4-164"><a href="#cb4-164"></a><span class="fu">colnames</span>(valores) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"id_pol"</span>, <span class="st">"z"</span>)</span>
+<span id="cb4-165"><a href="#cb4-165"></a></span>
+<span id="cb4-166"><a href="#cb4-166"></a>stats <span class="ot">&lt;-</span> valores <span class="sc">%&gt;%</span></span>
+<span id="cb4-167"><a href="#cb4-167"></a>  <span class="fu">group_by</span>(id_pol) <span class="sc">%&gt;%</span></span>
+<span id="cb4-168"><a href="#cb4-168"></a>  <span class="fu">summarise</span>(<span class="at">z_lidar =</span> <span class="fu">quantile</span>(z, </span>
+<span id="cb4-169"><a href="#cb4-169"></a>                             percentil, </span>
+<span id="cb4-170"><a href="#cb4-170"></a>                             <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-171"><a href="#cb4-171"></a></span>
+<span id="cb4-172"><a href="#cb4-172"></a>pol_copas_sel<span class="sc">$</span>z_lidar <span class="ot">&lt;-</span> stats<span class="sc">$</span>z_lidar</span>
+<span id="cb4-173"><a href="#cb4-173"></a></span>
+<span id="cb4-174"><a href="#cb4-174"></a>if100_pts_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(if100_pts)</span>
+<span id="cb4-175"><a href="#cb4-175"></a>pol_copas_sel_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pol_copas_sel)</span>
+<span id="cb4-176"><a href="#cb4-176"></a></span>
+<span id="cb4-177"><a href="#cb4-177"></a>if100_pts_z <span class="ot">&lt;-</span> <span class="fu">left_join</span>(if100_pts_df, </span>
+<span id="cb4-178"><a href="#cb4-178"></a>                         pol_copas_sel_df, </span>
+<span id="cb4-179"><a href="#cb4-179"></a>                         <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ID"</span> <span class="ot">=</span> <span class="st">"ID_B"</span>))</span>
+<span id="cb4-180"><a href="#cb4-180"></a></span>
+<span id="cb4-181"><a href="#cb4-181"></a><span class="fu">write.csv</span>(if100_pts_z,</span>
+<span id="cb4-182"><a href="#cb4-182"></a>          <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"output/tree_height/"</span>,</span>
+<span id="cb4-183"><a href="#cb4-183"></a>                        <span class="st">"Jamari"</span>,</span>
+<span id="cb4-184"><a href="#cb4-184"></a>                        <span class="st">"_FMU_"</span>,</span>
+<span id="cb4-185"><a href="#cb4-185"></a>                        umf,</span>
+<span id="cb4-186"><a href="#cb4-186"></a>                        <span class="st">"_APU_"</span>,</span>
+<span id="cb4-187"><a href="#cb4-187"></a>                        upa,</span>
+<span id="cb4-188"><a href="#cb4-188"></a>                        <span class="st">"_if100_pts_z.csv"</span>))</span>
+<span id="cb4-189"><a href="#cb4-189"></a></span>
+<span id="cb4-190"><a href="#cb4-190"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>And now we merge all the outputs tables</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>list_csv <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"output/tree_height/"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2"></a>                       <span class="st">"*pts_z.csv$"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>                       <span class="at">full.names =</span> T)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>all_tables <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>                    <span class="fu">lapply</span>(list_csv,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>                           read.csv,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>                           <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>                    )</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="fu">write.csv</span>(all_tables,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>          <span class="at">file =</span> <span class="st">"output/tree_height/all_tables.csv"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13"></a></span>
+<span id="cb5-14"><a href="#cb5-14"></a>text <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(all_tables<span class="sc">$</span>z_lidar)),</span>
+<span id="cb5-15"><a href="#cb5-15"></a>              <span class="st">" tree heights were estimated from LiDAR data."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>798 tree heights were estimated from LiDAR data.</p>
+</div>
+</div>
+<p>Let’s take a look to the data distribution</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(all_tables, <span class="fu">aes</span>(<span class="at">x =</span> z_lidar)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>                 <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">title =</span> <span class="fu">paste0</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(all_tables<span class="sc">$</span>z_lidar)),<span class="st">" Lidar heights"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">x =</span> <span class="st">"LiDAR height (m)"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="32_tree_height_from_lidar_all_apus_files/figure-html/h_lidar-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(all_tables, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> DAP, </span>
+<span id="cb7-3"><a href="#cb7-3"></a>           <span class="at">y =</span> z_lidar)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, </span>
+<span id="cb7-5"><a href="#cb7-5"></a>             <span class="fu">aes</span>(<span class="at">color =</span> nome_florabr),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>             <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb7-8"><a href="#cb7-8"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb7-9"><a href="#cb7-9"></a>              <span class="at">color =</span> <span class="st">"black"</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>              ) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="at">title =</span> <span class="st">"DBH x Lidar height"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>    <span class="at">x =</span> <span class="st">"DBH (cm, log scale)"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>    <span class="at">y =</span> <span class="st">"Lidar height (m, log scale)"</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-20"><a href="#cb7-20"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb7-21"><a href="#cb7-21"></a>                              <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb7-22"><a href="#cb7-22"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb7-23"><a href="#cb7-23"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="32_tree_height_from_lidar_all_apus_files/figure-html/h_lidar-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Fischer2024" class="csl-entry" role="listitem">
+Fischer, Fabian Jörg, Toby Jackson, Grégoire Vincent, and Tommaso Jucker. 2024. <span>“Robust Characterisation of Forest Structure from Airborne Laser Scanning—a Systematic Assessment and Sample Workflow for Ecologists.”</span> <em>Methods in Ecology and Evolution</em> 15 (October): 1873–88. <a href="https://doi.org/10.1111/2041-210X.14416">https://doi.org/10.1111/2041-210X.14416</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./31_tree_height_from_lidar.html" class="pagination-link" aria-label="Workflow to extract tree height from Lidar CHM">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./33_estimate_biomass.html" class="pagination-link" aria-label="Estimate biomass with different total height estimations">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

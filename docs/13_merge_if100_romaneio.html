@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Merging IF100 + logbook data – Phd scripts book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./20_data_exploration.html" rel="next">
+<link href="./12_harmonizing_pps_data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_data_prep.html">Data preparation</a></li><li class="breadcrumb-item"><a href="./13_merge_if100_romaneio.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Phd scripts book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./10_data_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data preparation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_pps_prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preparation of Permament Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_harmonizing_pps_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_merge_if100_romaneio.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./20_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Exploration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_data_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_wood_density_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing wood density databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./30_data_analisys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Analisys</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31_tree_height_from_lidar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./32_tree_height_from_lidar_all_apus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow to extract tree height from Lidar CHM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./33_estimate_biomass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate biomass with different total height estimations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./34_modelling_H.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modelling DBH x Height</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">3.2</span> Setup</a></li>
+  <li><a href="#if100-and-logbooks-information" id="toc-if100-and-logbooks-information" class="nav-link" data-scroll-target="#if100-and-logbooks-information"><span class="header-section-number">3.3</span> IF100 and logbooks information</a></li>
+  <li><a href="#merging-if100-and-logbook-tables" id="toc-merging-if100-and-logbook-tables" class="nav-link" data-scroll-target="#merging-if100-and-logbook-tables"><span class="header-section-number">3.4</span> Merging IF100 and logbook tables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_data_prep.html">Data preparation</a></li><li class="breadcrumb-item"><a href="./13_merge_if100_romaneio.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-merge_if100" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Merging IF100 + logbook data</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.1</span> Introduction</h2>
+<p>This script merges data from Commercial Forest Inventories (IF100) and logbooks. The objective is to enrich the IF100 tables with information from the logbooks on log volumes measured after tree felling.</p>
+<p>IF100 and logbook data were obtained from Ibama and the Brazilian Forest Service. For each Annual Production Unit (APU), there is one XLS (or XLSX) file containing IF100 data and one XLS (or XLSX) file containing the corresponding logbook records.</p>
+</section>
+<section id="setup" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">3.2</span> Setup</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(florabr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="if100-and-logbooks-information" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="if100-and-logbooks-information"><span class="header-section-number">3.3</span> IF100 and logbooks information</h2>
+<section id="if100" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="if100"><span class="header-section-number">3.3.1</span> IF100</h3>
+<p>IF100 are commercial forest inventories carried out one year before exploitation. All commercial species trees with DBH above 40 cm have their <code>diameter</code> and <code>commercial height</code> estimated. Species are also identified by a parataxonomist.</p>
+<p>The <code>diameter</code> is measured by wrapping a diameter tape around the tree trunk at a height of 1.3 meters above the ground. Trees with buttresses or other irregularities in the trunk have their diameter measured just above the buttress, or estimated based on the projection of a regular trunk section at 1.3 meters above the ground.</p>
+<p><code>Commercial height</code> is measured by visual estimation, aiming to determine the height between the ground and the first branching of the trunk.</p>
+<p>Species identification is carried out by a trained parataxonomist, based on prior botanical identification of the most common species present in the forest.</p>
+<p>Except for one APU, all trees in the IF100 dataset have a pair of geographic coordinates (long/lat).</p>
+<p>IF100 tables have also a <code>categoria</code> column, indicating whether the tree is a <em>Remanescente</em> (will remain in the area), a <em>Explorar</em> (selected for harvesting) or a <em>Substituta</em> (can be harvested if the <em>Explorar</em> tree can’t be cut).</p>
+<p>More information about IF100 procedures can be found in the Sustainable Forest Management Plan approved by IBAMA for Madeflona’s Forest Concession (<a href="https://www.gov.br/florestal/pt-br/assuntos/concessoes-e-monitoramento/concessoes-florestais-em-andamento/floresta-nacional-do-jamari-ro-2/floresta-nacional-do-jamari-ro-1" class="uri">https://www.gov.br/florestal/pt-br/assuntos/concessoes-e-monitoramento/concessoes-florestais-em-andamento/floresta-nacional-do-jamari-ro-2/floresta-nacional-do-jamari-ro-1</a>).</p>
+<p>IF100 and logbook data from all Forest Concessions were gathered by <span class="citation" data-cites="Oliveira2024a">Oliveira, Santos, and Chaves (<a href="99_references.html#ref-Oliveira2024a" role="doc-biblioref">2024</a>)</span>.</p>
+</section>
+<section id="logbook" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="logbook"><span class="header-section-number">3.3.2</span> Logbook</h3>
+<p>After the trees are felled, their stems are sectioned and skidded to the log yard. At the yard, the volume of each log section is estimated using the <strong>Smalian method</strong>. For this purpose, two diameter measurements are taken at the base and two at the top of each log section, in addition to its length. Each tree has a unique identification code, and each log section from the same tree is assigned a letter code (A, B, C, and so on). All measurements are recorded in the <strong>logbook (romaneio)</strong>.</p>
+</section>
+<section id="loading-if100" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="loading-if100"><span class="header-section-number">3.3.3</span> Loading IF100</h3>
+<p>We will use complete IF100 from Madeflona, then subset it to the APUs studied in this project.</p>
+<p>Column DAP is in <em>meters</em>, so we will multiply it by 100 to convert to <em>cm</em>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>if100_madeflona <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/if100/2022_MADEFLONA_Por árvore_Alvaro.xlsx"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>upas_selecionadas <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/if100/lista_upas_pesquisa.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>if100_upas <span class="ot">&lt;-</span> if100_madeflona <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(UMF,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"flona"</span>, <span class="st">"umf"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8"></a>           <span class="at">sep =</span> <span class="st">" "</span>,</span>
+<span id="cb2-9"><a href="#cb2-9"></a>           <span class="at">remove =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">filter</span>(flona <span class="sc">==</span> <span class="st">"JAMARI"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">mutate</span>(<span class="at">DAP =</span> (CAP <span class="sc">/</span> pi ) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">mutate</span>(<span class="at">flona =</span> <span class="fu">str_to_title</span>(flona)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">rename</span>(<span class="at">num_arvore =</span> Árvore) <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">mutate</span>(<span class="at">umf =</span> <span class="fu">as.numeric</span>(umf)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">rename</span>(<span class="at">upa =</span> UPA) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">mutate</span>(<span class="at">upa =</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"UPA"</span>, </span>
+<span id="cb2-17"><a href="#cb2-17"></a>                              <span class="st">""</span>,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>                              upa))) <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="fu">semi_join</span>(upas_selecionadas, </span>
+<span id="cb2-20"><a href="#cb2-20"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"umf"</span>, <span class="st">"upa"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We will harmonize scientific names using ‘check_names’ function of the <code>florabr</code> package. <code>check_names</code> need input names So we will remove any “cf.” from the names, and also any words in parentheses. Then we will extract only genus and epithet (with <code>get_binomial</code>). Some species can’t be corrected with <code>check_names</code>. We will have to correct them mannualy.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="do">###########################################################################################</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># Clean scientific names: </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="co"># 1. Remove "cf."</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="co"># 2. Remove anything under parentheses.</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  if100_upas<span class="sc">$</span>nome_corrigido <span class="ot">&lt;-</span> <span class="fu">trimws</span>(</span>
+<span id="cb3-7"><a href="#cb3-7"></a>                                  <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">s*cf</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">s*|</span><span class="sc">\\</span><span class="st">([^)]*</span><span class="sc">\\</span><span class="st">)"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>                                       <span class="st">" "</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>                                       if100_upas<span class="sc">$</span><span class="st">`</span><span class="at">Nome científico</span><span class="st">`</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>                                       <span class="at">ignore.case =</span> T</span>
+<span id="cb3-11"><a href="#cb3-11"></a>                                       )</span>
+<span id="cb3-12"><a href="#cb3-12"></a>                                     )</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  </span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="co"># Get the binomial name (epithet + genus)</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>  </span>
+<span id="cb3-16"><a href="#cb3-16"></a>  if100_upas<span class="sc">$</span>nome_corrigido <span class="ot">&lt;-</span>  <span class="fu">get_binomial</span>(if100_upas<span class="sc">$</span>nome_corrigido)</span>
+<span id="cb3-17"><a href="#cb3-17"></a></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"data/taxo/if100_florabr_taxo.rds"</span>)) {</span>
+<span id="cb3-19"><a href="#cb3-19"></a>   </span>
+<span id="cb3-20"><a href="#cb3-20"></a>  </span>
+<span id="cb3-21"><a href="#cb3-21"></a>  </span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="co"># Check names with florabr</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a>  </span>
+<span id="cb3-24"><a href="#cb3-24"></a>  floraBR <span class="ot">&lt;-</span> <span class="fu">load_florabr</span>(<span class="st">"C:/Gustavo/Doutorado/Dados/Taxo_databases/florabr"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25"></a></span>
+<span id="cb3-26"><a href="#cb3-26"></a>   res_florabr <span class="ot">&lt;-</span> <span class="fu">check_names</span>(<span class="at">data =</span> floraBR,</span>
+<span id="cb3-27"><a href="#cb3-27"></a>                                     <span class="at">max_distance =</span> <span class="fl">0.1</span>,</span>
+<span id="cb3-28"><a href="#cb3-28"></a>                                     <span class="at">species =</span> if100_upas<span class="sc">$</span>nome_corrigido,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>                                     <span class="at">parallel =</span> T,</span>
+<span id="cb3-30"><a href="#cb3-30"></a>                                     <span class="at">ncores =</span> <span class="dv">12</span>,</span>
+<span id="cb3-31"><a href="#cb3-31"></a>                                     <span class="at">progress_bar =</span> T</span>
+<span id="cb3-32"><a href="#cb3-32"></a>                                       )</span>
+<span id="cb3-33"><a href="#cb3-33"></a>   </span>
+<span id="cb3-34"><a href="#cb3-34"></a>   <span class="co"># Resolve some species mannualy</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a></span>
+<span id="cb3-36"><a href="#cb3-36"></a>   <span class="fu">write.csv</span>(res_florabr<span class="sc">$</span>input_name[res_florabr<span class="sc">$</span>Spelling <span class="sc">==</span> <span class="st">"Not_found"</span>],</span>
+<span id="cb3-37"><a href="#cb3-37"></a>             <span class="at">file =</span> <span class="st">"data/taxo/manually_corrected_species_if100.csv"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38"></a>              </span>
+<span id="cb3-39"><a href="#cb3-39"></a>   <span class="co"># Hymenaea capanema</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a>   <span class="co"># https://repositorio.ufms.br/bitstream/123456789/2579/1/LUCAS%20TJHIO%20CESAR%20PESTANA.pdf</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a>   res_florabr<span class="sc">$</span>acceptedName[res_florabr<span class="sc">$</span>input_name <span class="sc">==</span> <span class="st">"Hymenaea capanema"</span>] <span class="ot">&lt;-</span> <span class="st">"Hymenaea courbaril"</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a>   </span>
+<span id="cb3-43"><a href="#cb3-43"></a>   <span class="co"># Pouteria pachycarpa</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a>   <span class="co"># https://lpf.florestal.gov.br/pt-br/?option=com_madeirasbrasileiras&amp;view=especieestudada&amp;especieestudadaid=206</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a>   res_florabr<span class="sc">$</span>acceptedName[res_florabr<span class="sc">$</span>input_name <span class="sc">==</span> <span class="st">"Pouteria pachycarpa"</span>] <span class="ot">&lt;-</span> <span class="st">"Chrysophyllum lucentifolium"</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a>   </span>
+<span id="cb3-47"><a href="#cb3-47"></a>   <span class="co"># Peltogyne pophyrocardia</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a>   <span class="co"># https://www.scielo.br/j/aa/a/94Ch8c533SxxM9mZzNvvKFx/?format=pdf&amp;lang=pt</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a>   res_florabr<span class="sc">$</span>acceptedName[res_florabr<span class="sc">$</span>input_name <span class="sc">==</span> <span class="st">"Peltogyne pophyrocardia"</span>] <span class="ot">&lt;-</span> <span class="st">"Peltogyne porphyrocardia"</span></span>
+<span id="cb3-50"><a href="#cb3-50"></a>   </span>
+<span id="cb3-51"><a href="#cb3-51"></a>   <span class="co"># Planchonella pachycarpa</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a>   <span class="co"># https://reflora.jbrj.gov.br/reflora/herbarioVirtual/ConsultaPublicoHVUC/ConsultaPublicoHVUC.do?idTestemunho=5524739</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a>   res_florabr<span class="sc">$</span>acceptedName[res_florabr<span class="sc">$</span>input_name <span class="sc">==</span> <span class="st">"Planchonella pachycarpa"</span>] <span class="ot">&lt;-</span> <span class="st">"Planchonella pachycarpa"</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a>   </span>
+<span id="cb3-55"><a href="#cb3-55"></a>   <span class="co"># A identificar </span></span>
+<span id="cb3-56"><a href="#cb3-56"></a>   <span class="co"># Non identified species</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a>   res_florabr<span class="sc">$</span>acceptedName[res_florabr<span class="sc">$</span>input_name <span class="sc">==</span> <span class="st">"A identificar"</span>] <span class="ot">&lt;-</span> <span class="st">"NI"</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a>   </span>
+<span id="cb3-59"><a href="#cb3-59"></a>   </span>
+<span id="cb3-60"><a href="#cb3-60"></a>  <span class="fu">saveRDS</span>(res_florabr, <span class="st">"data/taxo/if100_florabr_taxo.rds"</span>)</span>
+<span id="cb3-61"><a href="#cb3-61"></a>                                                } <span class="cf">else</span> {</span>
+<span id="cb3-62"><a href="#cb3-62"></a>   res_florabr <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/taxo/if100_florabr_taxo.rds"</span>)</span>
+<span id="cb3-63"><a href="#cb3-63"></a>                                                       }</span>
+<span id="cb3-64"><a href="#cb3-64"></a>   </span>
+<span id="cb3-65"><a href="#cb3-65"></a>res_florabr_unique <span class="ot">&lt;-</span> res_florabr <span class="sc">%&gt;%</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a>  <span class="fu">distinct</span>(input_name, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb3-67"><a href="#cb3-67"></a></span>
+<span id="cb3-68"><a href="#cb3-68"></a>if100_upas <span class="ot">&lt;-</span> if100_upas <span class="sc">%&gt;%</span></span>
+<span id="cb3-69"><a href="#cb3-69"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb3-70"><a href="#cb3-70"></a>    res_florabr_unique <span class="sc">%&gt;%</span></span>
+<span id="cb3-71"><a href="#cb3-71"></a>      <span class="fu">select</span>(input_name, acceptedName),</span>
+<span id="cb3-72"><a href="#cb3-72"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"nome_corrigido"</span> <span class="ot">=</span> <span class="st">"input_name"</span>)</span>
+<span id="cb3-73"><a href="#cb3-73"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-74"><a href="#cb3-74"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-75"><a href="#cb3-75"></a>    <span class="at">nome_florabr =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-76"><a href="#cb3-76"></a>      <span class="co"># keep name when second word is "sp.", since florabr assign a random name in these cases</span></span>
+<span id="cb3-77"><a href="#cb3-77"></a>      <span class="fu">str_detect</span>(nome_corrigido, <span class="st">"^</span><span class="sc">\\</span><span class="st">S+</span><span class="sc">\\</span><span class="st">s+sp</span><span class="sc">\\</span><span class="st">.$"</span>) <span class="sc">~</span> nome_corrigido,</span>
+<span id="cb3-78"><a href="#cb3-78"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> acceptedName</span>
+<span id="cb3-79"><a href="#cb3-79"></a>    )</span>
+<span id="cb3-80"><a href="#cb3-80"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-81"><a href="#cb3-81"></a>  <span class="fu">select</span>(<span class="sc">-</span>acceptedName)</span>
+<span id="cb3-82"><a href="#cb3-82"></a></span>
+<span id="cb3-83"><a href="#cb3-83"></a></span>
+<span id="cb3-84"><a href="#cb3-84"></a></span>
+<span id="cb3-85"><a href="#cb3-85"></a><span class="do">###########################################################################################</span></span>
+<span id="cb3-86"><a href="#cb3-86"></a></span>
+<span id="cb3-87"><a href="#cb3-87"></a><span class="co"># </span></span>
+<span id="cb3-88"><a href="#cb3-88"></a><span class="co"># res_taxo &lt;- correctTaxo(if100_upas$`Nome científico`,</span></span>
+<span id="cb3-89"><a href="#cb3-89"></a><span class="co">#                         useCache = F)</span></span>
+<span id="cb3-90"><a href="#cb3-90"></a><span class="co"># </span></span>
+<span id="cb3-91"><a href="#cb3-91"></a><span class="co"># if100_upas$nome_corrigido &lt;- paste(res_taxo$genusCorrected, </span></span>
+<span id="cb3-92"><a href="#cb3-92"></a><span class="co">#                                    res_taxo$speciesCorrected)</span></span>
+<span id="cb3-93"><a href="#cb3-93"></a></span>
+<span id="cb3-94"><a href="#cb3-94"></a><span class="do">###########################################################################################</span></span>
+<span id="cb3-95"><a href="#cb3-95"></a></span>
+<span id="cb3-96"><a href="#cb3-96"></a><span class="co"># if (!file.exists("data/taxo/worldflora_taxo.rds")) {</span></span>
+<span id="cb3-97"><a href="#cb3-97"></a><span class="co">#   WFO.remember() </span></span>
+<span id="cb3-98"><a href="#cb3-98"></a><span class="co">#   res_wflora &lt;- WorldFlora:::WFO.match(spec.data = if100_upas$`Nome científico`,</span></span>
+<span id="cb3-99"><a href="#cb3-99"></a><span class="co">#                                        WFO.data = WFO.data,</span></span>
+<span id="cb3-100"><a href="#cb3-100"></a><span class="co">#                                        counter = 10000,</span></span>
+<span id="cb3-101"><a href="#cb3-101"></a><span class="co">#                                        verbose = T)</span></span>
+<span id="cb3-102"><a href="#cb3-102"></a><span class="co">#   saveRDS(res_wflora, "data/taxo/worldflora_taxo.rds")</span></span>
+<span id="cb3-103"><a href="#cb3-103"></a><span class="co">#                                                 } else {</span></span>
+<span id="cb3-104"><a href="#cb3-104"></a><span class="co">#   res_wflora &lt;- readRDS("data/taxo/worldflora_taxo.rds")</span></span>
+<span id="cb3-105"><a href="#cb3-105"></a><span class="co">#                                                       }</span></span>
+<span id="cb3-106"><a href="#cb3-106"></a></span>
+<span id="cb3-107"><a href="#cb3-107"></a></span>
+<span id="cb3-108"><a href="#cb3-108"></a>sp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/taxo/manually_corrected_species_if100.csv"</span>,</span>
+<span id="cb3-109"><a href="#cb3-109"></a><span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-110"><a href="#cb3-110"></a></span>
+<span id="cb3-111"><a href="#cb3-111"></a>text <span class="ot">&lt;-</span> {</span>
+<span id="cb3-112"><a href="#cb3-112"></a>species <span class="ot">&lt;-</span> sp<span class="sc">$</span>x</span>
+<span id="cb3-113"><a href="#cb3-113"></a>species <span class="ot">&lt;-</span> species[<span class="sc">!</span><span class="fu">is.na</span>(species)]</span>
+<span id="cb3-114"><a href="#cb3-114"></a></span>
+<span id="cb3-115"><a href="#cb3-115"></a><span class="cf">if</span> (<span class="fu">length</span>(species) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb3-116"><a href="#cb3-116"></a><span class="fu">paste</span>(</span>
+<span id="cb3-117"><a href="#cb3-117"></a><span class="st">"Species corrected manually (n ="</span>,</span>
+<span id="cb3-118"><a href="#cb3-118"></a><span class="fu">length</span>(species),</span>
+<span id="cb3-119"><a href="#cb3-119"></a><span class="st">"):"</span>,</span>
+<span id="cb3-120"><a href="#cb3-120"></a><span class="fu">paste</span>(species, <span class="at">collapse =</span> <span class="st">", "</span>)</span>
+<span id="cb3-121"><a href="#cb3-121"></a>)</span>
+<span id="cb3-122"><a href="#cb3-122"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-123"><a href="#cb3-123"></a><span class="st">"No species required manual correction."</span></span>
+<span id="cb3-124"><a href="#cb3-124"></a>}</span>
+<span id="cb3-125"><a href="#cb3-125"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Species corrected manually (n = 5 ): Hymenaea capanema, Pouteria pachycarpa, Peltogyne pophyrocardia, Planchonella pachycarpa, A identificar</p>
+</div>
+</div>
+</section>
+<section id="loading-logbooks" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="loading-logbooks"><span class="header-section-number">3.3.4</span> Loading Logbooks</h3>
+<p>We already have our study areas logbooks. As we are interested only in the log total volume information from the logbook, we will sum up the sections volumes of the same tree. Some trees have <code>tora</code>, that is the main trunk, and also have <code>toretes</code>, which are branches big enough to have commercial value, or segments of the trunk after the first bifurcation.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>romaneio <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"data/if100/romaneio_upas_pesquisa.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>romaneio_voltotal <span class="ot">&lt;-</span> romaneio <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>                          <span class="fu">group_by</span>(codigo,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>                                   num_arvore,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>                                   produto) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>                          <span class="fu">summarise</span>(<span class="st">"Volume"</span> <span class="ot">=</span> <span class="fu">sum</span>(volume),</span>
+<span id="cb4-8"><a href="#cb4-8"></a>                                    <span class="st">"comprimento"</span> <span class="ot">=</span> <span class="fu">sum</span>(comprimento))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'codigo', 'num_arvore'. You can override
+using the `.groups` argument.</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>vol_wide <span class="ot">&lt;-</span> romaneio_voltotal <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> produto, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>                     <span class="at">values_from =</span> Volume, </span>
+<span id="cb6-4"><a href="#cb6-4"></a>                     <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>df_final <span class="ot">&lt;-</span> vol_wide <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">mutate</span>(<span class="at">id_arvore =</span> <span class="fu">paste</span>(codigo, </span>
+<span id="cb6-8"><a href="#cb6-8"></a>                           num_arvore)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="at">comprim_torete =</span> <span class="fu">ifelse</span>(Tora <span class="sc">==</span> <span class="dv">0</span>, </span>
+<span id="cb6-11"><a href="#cb6-11"></a>                          comprimento, </span>
+<span id="cb6-12"><a href="#cb6-12"></a>                          <span class="cn">NA</span>),</span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="at">comprimento =</span> <span class="fu">ifelse</span>(Torete <span class="sc">==</span> <span class="dv">0</span>, </span>
+<span id="cb6-14"><a href="#cb6-14"></a>                       comprimento, </span>
+<span id="cb6-15"><a href="#cb6-15"></a>                       <span class="cn">NA</span>)</span>
+<span id="cb6-16"><a href="#cb6-16"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">group_by</span>(codigo, </span>
+<span id="cb6-18"><a href="#cb6-18"></a>           num_arvore) <span class="sc">%&gt;%</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="at">vol_tora =</span> <span class="fu">sum</span>(Tora, </span>
+<span id="cb6-21"><a href="#cb6-21"></a>                   <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="at">vol_torete =</span> <span class="fu">sum</span>(Torete, </span>
+<span id="cb6-23"><a href="#cb6-23"></a>                     <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-24"><a href="#cb6-24"></a>    <span class="at">arvore =</span> <span class="fu">sum</span>(Árvore, </span>
+<span id="cb6-25"><a href="#cb6-25"></a>                 <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-26"><a href="#cb6-26"></a>    <span class="at">comprim_tora =</span> <span class="fu">mean</span>(comprimento, </span>
+<span id="cb6-27"><a href="#cb6-27"></a>                        <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-28"><a href="#cb6-28"></a>    <span class="at">comprim_torete =</span> <span class="fu">mean</span>(comprim_torete, </span>
+<span id="cb6-29"><a href="#cb6-29"></a>                          <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-30"><a href="#cb6-30"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="merging-if100-and-logbook-tables" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="merging-if100-and-logbook-tables"><span class="header-section-number">3.4</span> Merging IF100 and logbook tables</h2>
+<p>We will use the tree unique identifier to merge data from the different datasets.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>if100_upas<span class="sc">$</span>codigo <span class="ot">&lt;-</span> <span class="fu">paste0</span>(if100_upas<span class="sc">$</span>flona,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>                       <span class="st">"_UMF_"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>                       if100_upas<span class="sc">$</span>umf,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>                       <span class="st">"_UPA_"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>                       if100_upas<span class="sc">$</span>upa)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>if100_com_romaneio <span class="ot">&lt;-</span> if100_upas <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>                          <span class="fu">left_join</span>(df_final, </span>
+<span id="cb7-8"><a href="#cb7-8"></a>                                    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"codigo"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9"></a>                                           <span class="st">"num_arvore"</span>))</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="fu">write.csv</span>(if100_com_romaneio,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>           <span class="st">"output/if100/if100_romaneio_madeflona.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Let’s take a look at the data.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(if100_com_romaneio, </span>
+<span id="cb8-2"><a href="#cb8-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> DAP)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">binwidth =</span> <span class="dv">10</span>,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="at">fill =</span> <span class="st">"forestgreen"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  )<span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(if100_com_romaneio<span class="sc">$</span>DAP,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>                        <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb8-11"><a href="#cb8-11"></a>                 <span class="at">by =</span> <span class="dv">10</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)</span>
+<span id="cb8-16"><a href="#cb8-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-18"><a href="#cb8-18"></a>    <span class="at">x =</span> <span class="st">"DBH (cm)"</span>,</span>
+<span id="cb8-19"><a href="#cb8-19"></a>    <span class="at">y =</span> <span class="st">"Number of trees"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20"></a>    <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Diameter distribution of the "</span>,</span>
+<span id="cb8-21"><a href="#cb8-21"></a>                   <span class="fu">nrow</span>(if100_com_romaneio),</span>
+<span id="cb8-22"><a href="#cb8-22"></a>                   <span class="st">" trees"</span>)</span>
+<span id="cb8-23"><a href="#cb8-23"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_merge_if100_romaneio_files/figure-html/graphs-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(if100_com_romaneio, </span>
+<span id="cb9-2"><a href="#cb9-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Altura)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">binwidth =</span> <span class="dv">5</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">fill =</span> <span class="st">"forestgreen"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  )<span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(if100_com_romaneio<span class="sc">$</span>Altura,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>                        <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb9-11"><a href="#cb9-11"></a>                 <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb9-12"><a href="#cb9-12"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="at">x =</span> <span class="st">"Commercial height (m)"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19"></a>    <span class="at">y =</span> <span class="st">"Number of trees"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Commercial height distribution of the "</span>,</span>
+<span id="cb9-21"><a href="#cb9-21"></a>                   <span class="fu">nrow</span>(if100_com_romaneio),</span>
+<span id="cb9-22"><a href="#cb9-22"></a>                   <span class="st">" trees"</span>)</span>
+<span id="cb9-23"><a href="#cb9-23"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_merge_if100_romaneio_files/figure-html/graphs-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>if100_com_romaneio <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">group_by</span>(nome_florabr) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">summarise</span>(<span class="st">"Number of trees"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="cb10-4"><a href="#cb10-4"></a>            <span class="st">"Total volume (m³)"</span> <span class="ot">=</span> <span class="fu">sum</span>(Volume),</span>
+<span id="cb10-5"><a href="#cb10-5"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Number of trees</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">kbl</span>(</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    <span class="at">caption =</span> <span class="st">"Top 15 species with more individuals"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11"></a>              <span class="st">"r"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small">
+<caption>Top 15 species with more individuals</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">nome_florabr</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Number of trees</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Total volume (m³)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Peltogyne lecointei</td>
+<td style="text-align: right;">12913</td>
+<td style="text-align: left;">35348.940</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NI</td>
+<td style="text-align: right;">12024</td>
+<td style="text-align: left;">31615.093</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tachigali paniculata</td>
+<td style="text-align: right;">6236</td>
+<td style="text-align: left;">19508.294</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clarisia racemosa</td>
+<td style="text-align: right;">5036</td>
+<td style="text-align: left;">14362.124</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Astronium lecointei</td>
+<td style="text-align: right;">4125</td>
+<td style="text-align: left;">21250.972</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Couratari guianensis</td>
+<td style="text-align: right;">3214</td>
+<td style="text-align: left;">23421.251</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hymenolobium excelsum</td>
+<td style="text-align: right;">2840</td>
+<td style="text-align: left;">15588.518</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dinizia excelsa</td>
+<td style="text-align: right;">2625</td>
+<td style="text-align: left;">30746.081</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brosimum rubescens</td>
+<td style="text-align: right;">2586</td>
+<td style="text-align: left;">9896.106</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bertholletia excelsa</td>
+<td style="text-align: right;">2548</td>
+<td style="text-align: left;">34877.206</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Allantoma lineata</td>
+<td style="text-align: right;">2393</td>
+<td style="text-align: left;">13455.234</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Parkia decussata</td>
+<td style="text-align: right;">2295</td>
+<td style="text-align: left;">6041.836</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Copaifera multijuga</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: left;">4473.362</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Caryocar glabrum</td>
+<td style="text-align: right;">1973</td>
+<td style="text-align: left;">7738.574</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Copaifera duckei</td>
+<td style="text-align: right;">1951</td>
+<td style="text-align: left;">5060.719</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Oliveira2024a" class="csl-entry" role="listitem">
+Oliveira, Gustavo Bediaga, Robson Cruz Santos, and José Humberto Chaves. 2024. <span>“Produção Madeireira Nas Concessões Florestais Federais Da Amazônia.”</span> <em>Gestão Da Informação Ambiental</em>, 170–82. <a href="https://www.ibama.gov.br/sophia/cnia/periodico/trajetoriasperspectivas4.pdf">https://www.ibama.gov.br/sophia/cnia/periodico/trajetoriasperspectivas4.pdf</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./12_harmonizing_pps_data.html" class="pagination-link" aria-label="Harmonizing Permanent Plots data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Harmonizing Permanent Plots data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./20_data_exploration.html" class="pagination-link" aria-label="Data Exploration">
+        <span class="nav-page-text">Data Exploration</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
